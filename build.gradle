@@ -1,0 +1,61 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "https://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
+
+
+repositories {
+    maven { // JEI
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+    maven { // HoloGUI
+        url "http://maven.k-4u.nl"
+    }
+    maven { // TOP and Chisel
+        name 'tterrag maven'
+        url "http://maven.tterrag.com/"
+    }
+}
+
+version = "0.1.0"
+group = "com.mr208.unwired"
+archivesBaseName = "UnWIRED"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    version = "${minecraft_version}-${forge_version}"
+    runDir = "run"
+    mappings = mcp_mappings
+    useDepAts = true  
+}
+
+dependencies {
+    deobfCompile "mezz.jei:jei_${jei_version}"    
+    deobfCompile "mcjty.hologui:hologui:${hologui_version}"        
+    compile "team.chisel.ctm:CTM:MC1.12-0.2.3.12"
+}
+
+processResources {
+    
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+       
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+            
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
