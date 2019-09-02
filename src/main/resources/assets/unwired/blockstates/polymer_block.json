@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "" : { "model": "unwired:block/polymer_block" }
+  }
+}

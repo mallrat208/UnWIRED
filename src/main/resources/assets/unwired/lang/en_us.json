@@ -1,0 +1,22 @@
+{
+  "itemGroup.unwired":"UnWIRED",
+  "block.unwired.smartglass":"Smart Glass",
+  "block.unwired.plexiglass":"Plexiglass",
+  "item.unwired.soybean_seed":"Soybean Seed",
+  "item.unwired.soybean":"Soybean",
+  "block.unwired.soybean_crop":"Soybean Crop",
+  "item.unwired.polymer_ingot":"Polymer Ingot",
+  "item.unwired.polymer_nugget":"Polymer Nugget",
+  "item.unwired.polymer_dust":"Polymer Dust",
+  "item.unwired.polymer_plate":"Polymer Sheet",
+  "item.unwired.plasteel_ingot":"Plasteel Ingot",
+  "item.unwired.plasteel_nugget":"Plasteel Nugget",
+  "item.unwired.plasteel_dust":"Plasteel Dust",
+  "item.unwired.plasteel_plate":"Plasteel Plate",
+  "item.unwired.carbon_dust":"Carbon Dust",
+  "item.unwired.carbonfibre":"Carbon Fiber",
+  "item.unwired.carbonfibre_plate":"Carbon Fiber Plate",
+  "item.unwired.grey_goo":"Grey Goo",
+  "item.unwired.grey_goo_activated": "Activated Grey Goo",
+  "entity.unwired.grey_goo":"Grey Goo"
+}

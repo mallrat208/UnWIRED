@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[25,)"
+# issueTrackerURL="http://my.issue.tracker/"
+displayURL=""
+authors="mallrat208"
+
+[[mods]]
+modId="unwired"
+version="1.0.0"
+displayName="UnWIRED"
+# updateJSONURL="http://myurl.me/" #optional
+description='''
+Ah... To be Determined...
+'''
