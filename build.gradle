@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0'
+version = '1.0.0'
 group = 'com.mr208.unwired' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'UnWIRED'
 
@@ -69,11 +69,27 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
     }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.0.45'
-    //compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}")
+    minecraft 'net.minecraftforge:forge:1.14.4-28.1.6'
+    //Curios
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios:${version_curios}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios:${version_curios}:api")
+    //JEI
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

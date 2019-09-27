@@ -2,19 +2,17 @@ package com.mr208.unwired.common.block;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.common.block.base.AbstractUnWIREDGlass;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.state.properties.RedstoneSide;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.ArrayUtils;
@@ -58,8 +56,7 @@ public class SmartglassBlock extends AbstractUnWIREDGlass
 	
 	public SmartglassBlock()
 	{
-		setRegistryName(UnWIRED.MOD_ID,"smartglass");
-		createItemBlock();
+		super("smartglass");
 		setDefaultState(getDefaultState().with(POWER,0));
 	}
 	

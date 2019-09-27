@@ -4,6 +4,7 @@ import com.mr208.unwired.client.render.GreyGooRenderer;
 import com.mr208.unwired.common.entity.GreyGooEntity;
 import com.mr208.unwired.setup.IProxy;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import tabsapi.TabRegistry;
 
 public class ClientProxy implements IProxy
 {
@@ -12,5 +13,7 @@ public class ClientProxy implements IProxy
 	{
 		
 		RenderingRegistry.registerEntityRenderingHandler(GreyGooEntity.class, GreyGooRenderer::new);
+		
+		TabRegistry.registerTab(new ExoTab());
 	}
 }

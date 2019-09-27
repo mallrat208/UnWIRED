@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "unwired:block/nano_fluid_block" }
+  }
+}
