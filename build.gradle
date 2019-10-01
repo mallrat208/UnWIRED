@@ -21,7 +21,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 
 minecraft {
     mappings channel: 'snapshot', version: '20190719-1.14.3'
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/unwired_at.cfg')
     runs {
         client {
             workingDirectory project.file('run')
@@ -30,7 +30,7 @@ minecraft {
             // Recommended logging level for the console
             //property 'forge.logging.console.level', 'debug'
             mods {
-                examplemod {
+                unwired {
                     source sourceSets.main
                 }
             }
@@ -43,7 +43,7 @@ minecraft {
             // Recommended logging level for the console
             // property 'forge.logging.console.level', 'debug'
             mods {
-                examplemod {
+                unwired {
                     source sourceSets.main
                 }
             }
@@ -57,7 +57,7 @@ minecraft {
             // property 'forge.logging.console.level', 'debug'
             args '--mod', 'unwired', '--all', '--output', file('src/generated/resources/')
             mods {
-                examplemod {
+                unwired {
                     source sourceSets.main
                 }
             }

@@ -1,0 +1,10 @@
+{
+  "type":"unwired:resequencer",
+  "ingredient":
+  {
+    "item":"unwired:soybean"
+  },
+  "in-count": 3,
+  "result":"minecraft:porkchop",
+  "count":1
+}

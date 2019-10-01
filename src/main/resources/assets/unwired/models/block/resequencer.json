@@ -1,0 +1,12 @@
+{
+  "parent": "unwired:block/vertical_slab_directional",
+  "textures": {
+    "north":"unwired:block/resequencer_back",
+    "south": "unwired:block/resequencer_front",
+    "east":"unwired:block/resequencer_side",
+    "west":"unwired:block/resequencer_side",
+    "up":"unwired:block/resequencer_side",
+    "down": "unwired:block/resequencer_side",
+    "particle": "unwired:block/resequencer_back"
+  }
+}

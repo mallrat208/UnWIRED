@@ -1,0 +1,7 @@
+{
+  "parent": "unwired:block/resequencer",
+  "textures": {
+    "north": "unwired:block/resequencer_front",
+    "south":"unwired:block/resequencer_back"
+  }
+}

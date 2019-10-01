@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north" : { "model": "unwired:block/resequencer" },
+    "facing=south" : { "model": "unwired:block/resequencer", "y": 180 },
+    "facing=east" : { "model": "unwired:block/resequencer", "y": 90 },
+    "facing=west" : { "model": "unwired:block/resequencer", "y": 270 }
+  }
+}

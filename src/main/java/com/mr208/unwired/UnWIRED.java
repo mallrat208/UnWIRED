@@ -4,8 +4,10 @@ import com.mr208.unwired.client.ClientProxy;
 import com.mr208.unwired.common.entity.EntityHelper;
 import com.mr208.unwired.setup.IProxy;
 import com.mr208.unwired.common.CommonProxy;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -32,6 +34,11 @@ public class UnWIRED
 	private void setup(final FMLCommonSetupEvent event)
 	{
 		proxy.init();
+	}
+	
+	private void clientSetup(FMLClientSetupEvent event)
+	{
+	
 	}
 	
 	private void loadComplete(final FMLLoadCompleteEvent event)

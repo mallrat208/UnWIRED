@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:glass",
+  "pattern": [
+    "PPP",
+    "PGP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "unwired:plexiglass"
+    },
+    "G": {
+      "item": "unwired:active_goo"
+    }
+  },
+  "result": {
+    "item": "unwired:smartglass",
+    "count": 8
+  }
+}

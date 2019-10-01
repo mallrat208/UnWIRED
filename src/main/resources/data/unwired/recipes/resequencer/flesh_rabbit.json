@@ -1,0 +1,10 @@
+{
+  "type":"unwired:resequencer",
+  "ingredient":
+  {
+    "item":"minecraft:rotten_flesh"
+  },
+  "in-count": 6,
+  "result":"minecraft:rabbit",
+  "count":1
+}

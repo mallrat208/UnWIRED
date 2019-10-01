@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:polymer",
+  "pattern": [
+    "III",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/plastic"
+    }
+  },
+  "result": {
+    "item": "unwired:block_polymer"
+  }
+}

@@ -1,5 +1,8 @@
 {
   "itemGroup.unwired":"UnWIRED",
+  "block.unwired.frame_polymer": "Polymer Machine Frame",
+  "block.unwired.frame_carbon": "Carbon Machine Frame",
+  "block.unwired.frame_plasteel": "Plasteel Machine Frame",
   "block.unwired.smartglass":"Smart Glass",
   "block.unwired.plexiglass":"Plexiglass",
   "block.unwired.block_polymer":"Block of Polymer",
@@ -21,6 +24,23 @@
   "item.unwired.active_goo":"Activated Grey Goo",
   "item.unwired.grey_goo_spawn_egg":"Grey Goo Spawn Egg",
   "item.unwired.nano_fluid_bucket":"Nano Fluid Bucket",
-
-  "entity.unwired.grey_goo":"Grey Goo"
+  "container.unwired.resequencer":"Protein Resequencer",
+  "entity.unwired.grey_goo":"Grey Goo",
+  "block.unwired.resequencer":"Protein Resequencer",
+  "resequencer.soymeat":"§8Made from Soybeans",
+  "resequencer.fleshmeat":"§8Made from Rotten Flesh",
+  "item.minecraft.beef.reclaimed":"§rReclaimed Raw Beef",
+  "item.minecraft.beef.synthetic":"§rSynthetic Raw Beef",
+  "item.minecraft.chicken.reclaimed":"§rReclaimed Raw Chicken",
+  "item.minecraft.chicken.synthetic":"§rSynthetic Raw Chicken",
+  "item.minecraft.cod.reclaimed":"§rReclaimed Raw Cod",
+  "item.minecraft.cod.synthetic":"§rSynthetic Raw Cod",
+  "item.minecraft.mutton.reclaimed":"§rReclaimed Raw Mutton",
+  "item.minecraft.mutton.synthetic":"§rSynthetic Raw Mutton",
+  "item.minecraft.porkchop.reclaimed":"§rReclaimed Raw Porkchop",
+  "item.minecraft.porkchop.synthetic":"§rSynthetic Raw Porkchop",
+  "item.minecraft.rabbit.reclaimed":"§rReclaimed Raw Rabbit",
+  "item.minecraft.rabbit.synthetic":"§rSynthetic Raw Rabbit",
+  "item.minecraft.salmon.reclaimed":"§rReclaimed Raw Salmon",
+  "item.minecraft.salmon.synthetic":"§rSynthetic Raw Salmon"
 }
