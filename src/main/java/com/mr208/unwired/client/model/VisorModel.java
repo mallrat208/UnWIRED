@@ -1,7 +1,10 @@
 package com.mr208.unwired.client.model;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.entity.LivingEntity;
+import org.lwjgl.opengl.GL11;
 
 public class VisorModel extends BipedModel
 {
@@ -50,38 +53,50 @@ public class VisorModel extends BipedModel
 		this.lens.addBox(0.0F, 0.0F, 0.5F, 3, 3, 1, 0.0F);
 		this.setRotation(lens, 0,0,0);
 		
-		bipedHead.addChild(back_frame);
-		bipedHead.addChild(arm_1);
-		bipedHead.addChild(arm_2);
-		bipedHead.addChild(lens_mount);
-		bipedHead.addChild(lens);
+		this.bipedHead.addChild(back_frame);
+		this.bipedHead.addChild(arm_1);
+		this.bipedHead.addChild(arm_2);
+		this.bipedHead.addChild(lens_mount);
+		this.bipedHead.addChild(lens);
 	}
 	
 	
-	
-	/*
-	public void render(float scale, ItemStack itemStack)
+	@Override
+	public void render(LivingEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
-		float[] colors = new float[]{0,0,0};
+		lens.isHidden = true;
+		arm_1.isHidden = false;
+		arm_2.isHidden = false;
+		lens_mount.isHidden = false;
+		back_frame.isHidden = false;
 		
-		if(itemStack.getItem() instanceof IColorableEquipment)
-		{
-			colors = ((IColorableEquipment)itemStack.getItem()).getColorFloat(itemStack);
-		}
+		super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		
-		back_frame.render(scale);
-		arm_1.render(scale);
-		lens_mount.render(scale);
-		arm_2.render(scale);
+		lens.isHidden = false;
+		arm_1.isHidden = true;
+		arm_2.isHidden = true;
+		lens_mount.isHidden = true;
+		back_frame.isHidden = true;
 		
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GlStateManager.color( colors[0], colors[1], colors[2], 0.40F);
-		lens.render(scale);
-		GlStateManager.color(1F,1F,1F,1F);
+		GlStateManager.color4f( 0.2f, 0.3f, 0.5f, 0.8F);
 		
+		super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+		
+		GlStateManager.color4f(1F,1F,1F,1F);
+		GlStateManager.disableBlend();
 	}
-	*/
+	
+	private void render(float scale)
+	{
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.color4f( 1f, 1f, 1f, 0.40F);
+		this.lens.render(scale);
+		GlStateManager.color4f(1F,1F,1F,1F);
+		GlStateManager.disableBlend();
+	}
 	
 	private void setRotation(RendererModel model, float x, float y, float z)
 	{
