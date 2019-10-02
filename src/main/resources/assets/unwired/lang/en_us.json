@@ -1,5 +1,8 @@
 {
   "itemGroup.unwired":"UnWIRED",
+  "item.unwired.helmet_rebreather":"Rebreather",
+  "item.unwired.helmet_visor": "Targeting Visor",
+  "item.unwired.boots_flippers":"Plastic Flippers",
   "block.unwired.frame_polymer": "Polymer Machine Frame",
   "block.unwired.frame_carbon": "Carbon Machine Frame",
   "block.unwired.frame_plasteel": "Plasteel Machine Frame",
@@ -26,6 +29,7 @@
   "item.unwired.nano_fluid_bucket":"Nano Fluid Bucket",
   "container.unwired.resequencer":"Protein Resequencer",
   "entity.unwired.grey_goo":"Grey Goo",
+  "attribute.name.forge.swim":"Swimming",
   "block.unwired.resequencer":"Protein Resequencer",
   "resequencer.soymeat":"§8Made from Soybeans",
   "resequencer.fleshmeat":"§8Made from Rotten Flesh",

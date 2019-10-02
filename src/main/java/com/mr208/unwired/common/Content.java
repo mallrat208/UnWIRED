@@ -17,13 +17,14 @@ import com.mr208.unwired.common.item.base.UWBlockItem;
 import com.mr208.unwired.common.item.base.UWBucket;
 import com.mr208.unwired.common.item.base.UWDirectionalBlockItem;
 import com.mr208.unwired.common.item.base.UWSpawnItem;
-import net.minecraft.block.Blocks;
+import com.mr208.unwired.common.item.equipment.FlippersBoot;
+import com.mr208.unwired.common.item.equipment.RebreatherHelm;
+import com.mr208.unwired.common.item.equipment.VisorHelm;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.ContainerType;
@@ -31,11 +32,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
-import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -61,6 +58,9 @@ public class Content
 		public static final Item frame_plastic = null;
 		public static final Item frame_carbon = null;
 		public static final Item frame_plasteel = null;
+		public static final Item helmet_rebreather = null;
+		public static final Item helmet_visor = null;
+		public static final Item boots_flippers = null;
 	}
 	
 	@ObjectHolder(UnWIRED.MOD_ID)
@@ -144,7 +144,10 @@ public class Content
 				new SoybeanItem(),
 				new UWBlockItem(Blocks.frame_polymer),
 				new UWBlockItem(Blocks.block_polymer),
-				new UWDirectionalBlockItem(Blocks.resequencer)
+				new UWDirectionalBlockItem(Blocks.resequencer),
+				new RebreatherHelm(),
+				new VisorHelm(),
+				new FlippersBoot()
 		);
 	}
 	

@@ -2,6 +2,7 @@ package com.mr208.unwired;
 
 import com.mr208.unwired.client.ClientProxy;
 import com.mr208.unwired.common.entity.EntityHelper;
+import com.mr208.unwired.common.network.NetworkHandler;
 import com.mr208.unwired.setup.IProxy;
 import com.mr208.unwired.common.CommonProxy;
 import net.minecraftforge.event.LootTableLoadEvent;
@@ -34,6 +35,7 @@ public class UnWIRED
 	private void setup(final FMLCommonSetupEvent event)
 	{
 		proxy.init();
+		NetworkHandler.onSetup();
 	}
 	
 	private void clientSetup(FMLClientSetupEvent event)

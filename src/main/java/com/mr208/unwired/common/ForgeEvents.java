@@ -17,8 +17,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(bus = Bus.FORGE)
 public class ForgeEvents
 {
-	
-	
 	/*	Quick and Easy way to add Soybean's to the drops from Grass. Technically wrong since it ignores the loot table
 		for Grass blocks, however adding another LootPool would make my item far too common compared to Wheat Seeds		*/
 	@SubscribeEvent
@@ -29,10 +27,8 @@ public class ForgeEvents
 		{
 			if(event.getState().getBlock()== Blocks.GRASS||event.getState().getBlock()== Blocks.TALL_GRASS)
 			{
-				UnWIRED.getLogger().info("We broke grass!");
 				if(event.getWorld().getRandom().nextFloat() <= 0.125f)
 				{
-					UnWIRED.getLogger().info("Time to drop some seeds!");
 					event.getWorld().removeBlock(event.getPos(), true);
 					
 					event.getWorld().addEntity(new ItemEntity((World)event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(Items.soybean)));
