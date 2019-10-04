@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:gadget",
+  "pattern": [
+    "I I",
+    "P P"
+  ],
+  "key": {
+    "I": {
+      "item": "forge:ingots/plastic"
+    },
+    "P": {
+      "tag": "forge:plates/plastic"
+    }
+  },
+  "result": {
+    "item": "unwired:boots_flippers"
+  }
+}

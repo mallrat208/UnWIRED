@@ -18,19 +18,7 @@ import java.util.Random;
 
 public class ClientProxy implements IProxy
 {
-	Random rand;
-	
-	@Override
-	public void init()
-	{
-		rand = new Random();
-		
-		ScreenManager.registerFactory(Containers.resequencer, ResequencerScreen::new);
-		
-		RenderingRegistry.registerEntityRenderingHandler(GreyGooEntity.class, GreyGooRenderer::new);
-		
-		TabRegistry.registerTab(new ExoTab());
-	}
+	private static Random rand = new Random();
 	
 	@Override
 	public void spawnRebreatherParticle(BlockPos pos, float eyeHeight, float pitch, float yaw)
@@ -49,6 +37,24 @@ public class ClientProxy implements IProxy
 					modifiedPos.getY(),
 					modifiedPos.getZ(),
 					0f, 1f, 0f);
+		}
+	}
+	
+	@Override
+	public void spawnConversionParticles(BlockPos pos)
+	{
+		for(int i = 0; i < 20; i++)
+		{
+			Minecraft.getInstance().worldRenderer.addParticle(
+					ParticleTypes.EXPLOSION,
+					true,
+					pos.getX() + .5 + rand.nextGaussian()/2,
+					pos.getY() + .5 + rand.nextGaussian()/2,
+					pos.getZ() + .5 + rand.nextGaussian()/2,
+					0f,
+					0.8f,
+					00f
+			);
 		}
 	}
 }

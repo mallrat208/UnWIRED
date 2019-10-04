@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:gadget",
+  "pattern": [
+    "PPP",
+    "AGP"
+  ],
+  "key": {
+    "G": {
+      "item": "unwired:smartglass"
+    },
+    "P": {
+      "tag": "forge:ingots/plastic"
+    },
+    "A": {
+      "item": "unwired:active_goo"
+    }
+  },
+  "result": {
+    "item": "unwired:helmet_visor"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:machine",
+  "pattern": [
+    " G ",
+    "SAR",
+    "PFP"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "S":{
+      "item": "unwired:soybean"
+    },
+    "R":{
+      "item": "minecraft:rotten_flesh"
+    },
+    "P": {
+      "tag": "forge:plates/plastic"
+    },
+    "F": {
+      "item": "unwired:frame_polymer"
+    },
+    "A": {
+      "item": "unwired:active_goo"
+    }
+  },
+  "result": {
+    "item": "unwired:resequencer"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:goo",
+  "pattern": [
+    " N ",
+    "RGR",
+    " N "
+  ],
+  "key": {
+    "G": {
+      "item": "unwired:inert_goo"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "N": {
+      "tag": "forge:nuggets"
+    }
+  },
+  "result": {
+    "item": "unwired:active_goo"
+  }
+}

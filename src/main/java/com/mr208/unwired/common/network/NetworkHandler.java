@@ -1,6 +1,7 @@
 package com.mr208.unwired.common.network;
 
 import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.common.network.packet.ConversionParticlePacket;
 import com.mr208.unwired.common.network.packet.RebreatherParticlePacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -24,18 +25,31 @@ public class NetworkHandler
 	
 	public static void onSetup()
 	{
-		instance.registerMessage(id++, RebreatherParticlePacket.class, RebreatherParticlePacket::encode, RebreatherParticlePacket::decode, RebreatherParticlePacket.Handler::process);
+		instance.registerMessage(
+				id++,
+				RebreatherParticlePacket.class,
+				RebreatherParticlePacket::encode,
+				RebreatherParticlePacket::decode,
+				RebreatherParticlePacket.Handler::process);
+		
+		instance.registerMessage(
+				id++,
+				ConversionParticlePacket.class,
+				ConversionParticlePacket::encode,
+				ConversionParticlePacket::decode,
+				ConversionParticlePacket.Handler::process);
 	}
 	
 	public static void sendToNearbyPlayers(PlayerEntity originating, int range, DimensionType dimensionType, Object msg)
 	{
-		instance.send(PacketDistributor.NEAR.with(() ->new TargetPoint(
-				null,
-				originating.posX,
-				originating.posY,
-				originating.posZ,
-				range,
-				dimensionType)),
-				msg);
+		instance.send(
+				PacketDistributor.NEAR.with(() -> new TargetPoint(
+					null,
+					originating.posX,
+					originating.posY,
+					originating.posZ,
+					range,
+					dimensionType)),
+					msg);
 	}
 }

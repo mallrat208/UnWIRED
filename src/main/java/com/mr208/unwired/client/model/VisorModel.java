@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.LivingEntity;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
+
 public class VisorModel extends BipedModel
 {
 	private RendererModel lens;
@@ -14,8 +16,17 @@ public class VisorModel extends BipedModel
 	private RendererModel arm_2;
 	private RendererModel lens_mount;
 	
+	private float[] colorArray;
+	
 	public VisorModel()
 	{
+		this(0);
+	}
+	
+	public VisorModel(int color)
+	{
+		colorArray = new Color(color).getRGBColorComponents(null);
+		
 		this.textureWidth = 32;
 		this.textureHeight = 32;
 		
@@ -80,7 +91,7 @@ public class VisorModel extends BipedModel
 		
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GlStateManager.color4f( 0.2f, 0.3f, 0.5f, 0.8F);
+		GlStateManager.color4f( colorArray[0], colorArray[1], colorArray[2], 0.4F);
 		
 		super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		
@@ -88,15 +99,7 @@ public class VisorModel extends BipedModel
 		GlStateManager.disableBlend();
 	}
 	
-	private void render(float scale)
-	{
-		GlStateManager.enableBlend();
-		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GlStateManager.color4f( 1f, 1f, 1f, 0.40F);
-		this.lens.render(scale);
-		GlStateManager.color4f(1F,1F,1F,1F);
-		GlStateManager.disableBlend();
-	}
+	
 	
 	private void setRotation(RendererModel model, float x, float y, float z)
 	{

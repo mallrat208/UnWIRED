@@ -2,6 +2,7 @@ package com.mr208.unwired.common.item.equipment;
 
 import com.google.common.collect.Multimap;
 import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.common.item.base.IColorableEquipment;
 import com.mr208.unwired.common.item.base.UWGadget;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -14,7 +15,7 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 
-public class FlippersBoot extends UWGadget
+public class FlippersBoot extends UWGadget implements IColorableEquipment
 {
 	public FlippersBoot()
 	{
@@ -47,7 +48,19 @@ public class FlippersBoot extends UWGadget
 			map.put(LivingEntity.SWIM_SPEED.getName(), new AttributeModifier(ARMOR_MODIFIERS[slot.getIndex()], "Armor swim speed", 0.25f, Operation.MULTIPLY_BASE));
 		}
 		
-		
 		return map;
+	}
+	
+	@Override
+	public boolean isDyable(ItemStack stack)
+	{
+		return stack.getItem() == this;
+	}
+	
+	@Override
+	public int getDefaultColor()
+	{
+		
+		return 139;
 	}
 }

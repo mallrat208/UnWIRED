@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:gadget",
+  "pattern": [
+    " S ",
+    "IAI",
+    " P "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sponge"
+    },
+    "P": {
+      "tag": "forge:plates/plastic"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "A": {
+      "item": "unwired:active_goo"
+    }
+  },
+  "result": {
+    "item": "unwired:helmet_rebreather"
+  }
+}

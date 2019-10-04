@@ -18,6 +18,7 @@ import com.mr208.unwired.common.item.base.UWBucket;
 import com.mr208.unwired.common.item.base.UWDirectionalBlockItem;
 import com.mr208.unwired.common.item.base.UWSpawnItem;
 import com.mr208.unwired.common.item.equipment.FlippersBoot;
+import com.mr208.unwired.common.item.equipment.MoonBoot;
 import com.mr208.unwired.common.item.equipment.RebreatherHelm;
 import com.mr208.unwired.common.item.equipment.VisorHelm;
 import net.minecraft.block.Block;
@@ -61,6 +62,7 @@ public class Content
 		public static final Item helmet_rebreather = null;
 		public static final Item helmet_visor = null;
 		public static final Item boots_flippers = null;
+		public static final Item boots_moon = null;
 	}
 	
 	@ObjectHolder(UnWIRED.MOD_ID)
@@ -147,7 +149,8 @@ public class Content
 				new UWDirectionalBlockItem(Blocks.resequencer),
 				new RebreatherHelm(),
 				new VisorHelm(),
-				new FlippersBoot()
+				new FlippersBoot(),
+				new MoonBoot()
 		);
 	}
 	
