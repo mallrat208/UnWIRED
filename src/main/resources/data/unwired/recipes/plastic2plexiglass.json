@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:ingots/plastic"
+  },
+  "result": "unwired:plexiglass",
+  "experience": 0.35,
+  "cookingtime": 200
+}

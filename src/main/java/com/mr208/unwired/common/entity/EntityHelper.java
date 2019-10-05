@@ -9,9 +9,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -28,6 +30,9 @@ public class EntityHelper
 			
 			for(Biome biome : ForgeRegistries.BIOMES.getValues())
 			{
+				if(biome == Biomes.THE_VOID)
+					continue;
+				
 				biome.getSpawns(EntityClassification.MONSTER).add(new SpawnListEntry(EntityTypes.grey_goo, 20, 1, 1));
 			}
 		}
@@ -35,6 +40,8 @@ public class EntityHelper
 	
 	public static boolean canEntitySpawn(EntityType<? extends LivingEntity> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
 		BlockPos blockpos = pos.down();
-		return reason == SpawnReason.SPAWNER || world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entityType);
+		
+		return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entityType) && world.getLight(blockpos) < 8;
+		//return (reason == SpawnReason.SPAWNER || world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entityType)) && world.getLight(pos.down()) < 8;
 	}
 }

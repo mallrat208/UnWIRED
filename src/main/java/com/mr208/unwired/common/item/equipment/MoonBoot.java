@@ -1,7 +1,11 @@
 package com.mr208.unwired.common.item.equipment;
 
 import com.google.common.collect.Multimap;
+import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.client.model.MunModel;
 import com.mr208.unwired.common.item.base.UWGadget;
+import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
@@ -13,13 +17,39 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
+import javax.annotation.Nullable;
+
 @EventBusSubscriber(bus = Bus.FORGE)
 public class MoonBoot extends UWGadget
 {
+	private Object model;
+	
 	public MoonBoot()
 	{
 		super("boots_moon", EquipmentSlotType.FEET);
 	}
+	
+	@Nullable
+	@Override
+	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
+	{
+		if(!(model instanceof MunModel))
+		{
+			model = new MunModel();
+		}
+		
+		((MunModel)model).isChild = _default.isChild;
+		((MunModel)model).isSitting = _default.isSitting;
+		((MunModel)model).isSneak = _default.isSneak;
+		
+		return (A) model;
+	}
+	
+	@Nullable
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
+	{
+		return UnWIRED.MOD_ID+":textures/model/gadget/munboots.png";	}
 	
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot, ItemStack stack)

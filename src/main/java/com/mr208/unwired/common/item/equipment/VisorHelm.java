@@ -67,20 +67,20 @@ public class VisorHelm extends UWGadget implements IColorableEquipment
 		
 		if(itemStack.getItem() instanceof IColorableEquipment)
 		{
-			model = new VisorModel(((IColorableEquipment)itemStack.getItem()).getColorInt(itemStack));
+			((VisorModel)model).setColorArray(getColorInt(itemStack));
 		}
 		
 		((VisorModel)model).isChild = _default.isChild;
 		((VisorModel)model).isSitting = _default.isSitting;
-		((VisorModel)model).isSitting = _default.isSitting;
+		((VisorModel)model).isSneak = _default.isSneak;
 		
 		return (A) model;
 	}
 	
 	@Override
-	public boolean isDyable(ItemStack stack)
+	public boolean isDyable()
 	{
-		return stack.getItem() == this;
+		return true;
 	}
 	
 	@SubscribeEvent

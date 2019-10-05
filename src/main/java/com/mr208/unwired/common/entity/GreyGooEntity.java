@@ -57,7 +57,7 @@ public class GreyGooEntity extends SlimeEntity
 	@Override
 	public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn)
 	{
-		return worldIn.getDifficulty()!= Difficulty.PEACEFUL;
+		return worldIn.getDifficulty()!= Difficulty.PEACEFUL && worldIn.getLight(this.getPosition()) < 8;
 	}
 	
 	@Override

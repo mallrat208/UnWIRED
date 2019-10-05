@@ -98,10 +98,9 @@ public class ResequencerRecipe implements IRecipe<IInventory>
 	}
 	
 	@Override
-	//TODO: Replace with Resequencer Block
 	public ItemStack getIcon()
 	{
-		return new ItemStack(Blocks.block_polymer);
+		return new ItemStack(Blocks.resequencer);
 	}
 	
 	@Override

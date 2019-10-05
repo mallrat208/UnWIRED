@@ -7,7 +7,6 @@ import com.mr208.unwired.common.entity.EntityHelper;
 import com.mr208.unwired.common.network.NetworkHandler;
 import com.mr208.unwired.setup.IProxy;
 import com.mr208.unwired.common.CommonProxy;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -53,6 +52,7 @@ public class UnWIRED
 	private void loadComplete(final FMLLoadCompleteEvent event)
 	{
 		EntityHelper.loadComplete();
+		Recipes.loadComplete();
 	}
 	
 	private void outgoingIMC(final InterModEnqueueEvent event)
@@ -63,7 +63,7 @@ public class UnWIRED
 	@SubscribeEvent
 	public void serverStarting(FMLServerStartingEvent event)
 	{
-		Recipes.loadComplete();
+		Recipes.serverStarting();
 	}
 	
 	public static Logger getLogger()

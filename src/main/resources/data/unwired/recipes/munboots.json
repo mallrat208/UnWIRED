@@ -2,18 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "group": "unwired:gadget",
   "pattern": [
-    "I I",
-    "P P"
+    "M M",
+    "I I"
   ],
   "key": {
+    "M": {
+      "item": "minecraft:phantom_membrane"
+    },
     "I": {
       "tag": "forge:ingots/plastic"
-    },
-    "P": {
-      "tag": "forge:plates/plastic"
     }
   },
   "result": {
-    "item": "unwired:boots_flippers"
+    "item": "unwired:boots_moon"
   }
 }

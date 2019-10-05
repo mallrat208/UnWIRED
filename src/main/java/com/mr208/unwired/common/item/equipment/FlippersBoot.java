@@ -2,6 +2,7 @@ package com.mr208.unwired.common.item.equipment;
 
 import com.google.common.collect.Multimap;
 import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.client.model.FlippersModel;
 import com.mr208.unwired.common.item.base.IColorableEquipment;
 import com.mr208.unwired.common.item.base.UWGadget;
 import net.minecraft.client.renderer.entity.model.BipedModel;
@@ -12,16 +13,21 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
 public class FlippersBoot extends UWGadget implements IColorableEquipment
 {
+	private Object model;
+	
 	public FlippersBoot()
 	{
 		super("boots_flippers", EquipmentSlotType.FEET);
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@Nullable
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
@@ -29,11 +35,26 @@ public class FlippersBoot extends UWGadget implements IColorableEquipment
 		return UnWIRED.MOD_ID+":textures/model/gadget/flippers.png";
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@Nullable
 	@Override
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
 	{
-		return null;
+		if(!(model instanceof FlippersModel))
+		{
+			model = new FlippersModel();
+		}
+		
+		if(itemStack.getItem() instanceof IColorableEquipment)
+		{
+			((FlippersModel)model).setColorArray(getColorInt(itemStack));
+		}
+		
+		((FlippersModel)model).isChild = _default.isChild;
+		((FlippersModel)model).isSitting = _default.isSitting;
+		((FlippersModel)model).isSneak = _default.isSneak;
+		
+		return (A) model;
 	}
 	
 	@Override
@@ -44,7 +65,6 @@ public class FlippersBoot extends UWGadget implements IColorableEquipment
 		
 		if(this.slot == slot)
 		{
-			map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(ARMOR_MODIFIERS[slot.getIndex()], "Armor speed",  -0.15f, Operation.MULTIPLY_BASE));
 			map.put(LivingEntity.SWIM_SPEED.getName(), new AttributeModifier(ARMOR_MODIFIERS[slot.getIndex()], "Armor swim speed", 0.25f, Operation.MULTIPLY_BASE));
 		}
 		
@@ -52,9 +72,9 @@ public class FlippersBoot extends UWGadget implements IColorableEquipment
 	}
 	
 	@Override
-	public boolean isDyable(ItemStack stack)
+	public boolean isDyable()
 	{
-		return stack.getItem() == this;
+		return true;
 	}
 	
 	@Override

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -18,14 +19,13 @@ public class VisorModel extends BipedModel
 	
 	private float[] colorArray;
 	
-	public VisorModel()
+	public void setColorArray(int color)
 	{
-		this(0);
+		this.colorArray= new Color(color).getRGBColorComponents(null);
 	}
 	
-	public VisorModel(int color)
+	public VisorModel()
 	{
-		colorArray = new Color(color).getRGBColorComponents(null);
 		
 		this.textureWidth = 32;
 		this.textureHeight = 32;
@@ -70,7 +70,6 @@ public class VisorModel extends BipedModel
 		this.bipedHead.addChild(lens_mount);
 		this.bipedHead.addChild(lens);
 	}
-	
 	
 	@Override
 	public void render(LivingEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)

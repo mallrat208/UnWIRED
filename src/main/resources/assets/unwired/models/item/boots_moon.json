@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "unwired:item/equipment/moonboots"
+    "layer0": "unwired:item/equipment/munboots"
   }
 }

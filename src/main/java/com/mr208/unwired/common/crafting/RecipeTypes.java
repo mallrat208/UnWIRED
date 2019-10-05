@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry;
 public class RecipeTypes
 {
 	public static IRecipeType<ResequencerRecipe> RESEQUENCER = registerRecipeType("resequencer");
+	public static IRecipeType<DyeColorableRecipe> DYE_COLORABLE = registerRecipeType("dye_colorable");
 	
 	private static <T extends IRecipe<?>> IRecipeType<T> registerRecipeType(final String key)
 	{

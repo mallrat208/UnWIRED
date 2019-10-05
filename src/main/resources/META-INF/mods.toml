@@ -6,7 +6,7 @@ authors="mallrat208"
 
 [[mods]]
 modId="unwired"
-version="1.0.0"
+version="0.1.0"
 displayName="UnWIRED"
 # updateJSONURL="http://myurl.me/" #optional
 description='''

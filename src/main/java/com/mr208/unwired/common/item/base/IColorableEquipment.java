@@ -10,7 +10,7 @@ public interface IColorableEquipment
 {
 	String COLORTAG = "UW_COLOR_OVERLAY";
 	
-	default boolean isDyable(ItemStack stack)
+	default boolean isDyable()
 	{
 		return false;
 	}
