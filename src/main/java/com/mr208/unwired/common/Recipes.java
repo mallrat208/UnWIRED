@@ -16,7 +16,7 @@ public class Recipes
 	
 	public static void loadComplete()
 	{
-		registerCompostable = ObfuscationReflectionHelper.findMethod(ComposterBlock.class, "registerCompostable", float.class, IItemProvider.class);
+		registerCompostable = ObfuscationReflectionHelper.findMethod(ComposterBlock.class, "func_220290_a", float.class, IItemProvider.class);
 		
 		try
 		{
