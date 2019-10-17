@@ -9,6 +9,7 @@ import com.mr208.unwired.common.Content.Items;
 import com.mr208.unwired.common.block.StorageCrate;
 import com.mr208.unwired.common.block.tile.StorageCrateTile;
 import com.mr208.unwired.common.entity.GreyGooEntity;
+import com.mr208.unwired.common.item.CrateItem;
 import com.mr208.unwired.common.item.LabelMarker;
 import com.mr208.unwired.common.item.base.IColorableEquipment;
 import net.minecraft.client.Minecraft;
@@ -44,8 +45,10 @@ public class ClientSetup
 					(itemStack, layer) -> layer == 1 ? ((LabelMarker)itemStack.getItem()).getMarkerColor().getColorValue() : -1, marker);
 		}
 		
-		Minecraft.getInstance().getItemColors().register(
-				(itemStack, i) -> i == 1 ? DyeColor.LIGHT_GRAY.getColorValue() : -1, Items.crate_polymer);		
+		for(CrateItem crate:CrateItem.registeredCrates)
+		{
+			Minecraft.getInstance().getItemColors().register((itemStack, layer) -> layer == 1 ? ((CrateItem)itemStack.getItem()).getColor().getColorValue():-1, crate);
+		}
 		
 		Minecraft.getInstance().getBlockColors().register((blockState, iEnviromentBlockReader, blockPos, i) -> i == 1 ? blockState.get(StorageCrate.COLOR).getColorValue() : -1, Blocks.crate_polymer);
 		

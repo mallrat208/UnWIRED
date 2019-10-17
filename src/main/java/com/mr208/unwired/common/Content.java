@@ -14,6 +14,7 @@ import com.mr208.unwired.common.entity.GreyGooEntity;
 import com.mr208.unwired.common.fluid.NanoFluid;
 import com.mr208.unwired.common.inventory.ResequencerContainer;
 import com.mr208.unwired.common.item.ActivatedGoo;
+import com.mr208.unwired.common.item.CrateItem;
 import com.mr208.unwired.common.item.LabelMarker;
 import com.mr208.unwired.common.item.SoybeanItem;
 import com.mr208.unwired.common.item.base.UWBase;
@@ -39,6 +40,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -69,7 +71,7 @@ public class Content
 		public static final Item helmet_visor = null;
 		public static final Item boots_flippers = null;
 		public static final Item boots_moon = null;
-		public static final Item crate_polymer = null;
+		public static final Item crate_polymer_light_gray = null;
 		public static final Item marker_black = null;
 	}
 	
@@ -173,11 +175,20 @@ public class Content
 				new VisorHelm(),
 				new FlippersBoot(),
 				new MoonBoot(),
-				new UWDirectionalBlockItem(Blocks.crate_polymer)
+				new UWDirectionalBlockItem(Blocks.crate_polymer){
+					@Override
+					public void fillItemGroup(ItemGroup p_150895_1_, NonNullList<ItemStack> p_150895_2_)
+					{
+					
+					}
+				}
 		);
 		
 		for(DyeColor color : DyeColor.values())
+		{
 			registry.register(new LabelMarker(color));
+			registry.register(new CrateItem(Blocks.crate_polymer, Crate.POLYMER, color));
+		}
 	}
 	
 	@SubscribeEvent

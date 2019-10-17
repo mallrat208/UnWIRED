@@ -13,6 +13,11 @@ public class UWBlockItem extends BlockItem
 		this.setRegistryName(blockIn.getRegistryName());
 	}
 	
+	public UWBlockItem(Block blockIn, boolean setRegistry)
+	{
+		super(blockIn, new Item.Properties().group(Content.itemGroup));
+	}
+	
 	public UWBlockItem(Block blockIn)
 	{
 		this(blockIn, new Item.Properties().group(Content.itemGroup));

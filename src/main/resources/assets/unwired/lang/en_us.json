@@ -41,6 +41,7 @@
   "unwired.reseqeuencer.reclaimed":"§rReclaimed %1$s",
   "tooltip.unwired.colorable":"This item can be recolored",
   "block.unwired.crate_polymer":"Polymer Crate",
+  "item.unwired.crate_polymer": "Polymer Crate",
   "block.unwired.crate_carbon":"Carbon Crate",
   "block.unwired.crate_plasteel":"Plasteel Crate",
   "container.storage_crate.polymer": "Polymer Crate (%1$s)",

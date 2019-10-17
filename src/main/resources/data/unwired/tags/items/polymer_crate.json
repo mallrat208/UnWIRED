@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "unwired:crate_polymer_cyan",
+    "unwired:crate_polymer_purple",
+    "unwired:crate_polymer_white",
+    "unwired:crate_polymer_orange",
+    "unwired:crate_polymer_magenta",
+    "unwired:crate_polymer_yellow",
+    "unwired:crate_polymer_pink",
+    "unwired:crate_polymer_lime",
+    "unwired:crate_polymer_light_gray",
+    "unwired:crate_polymer_gray",
+    "unwired:crate_polymer_light_blue",
+    "unwired:crate_polymer_blue",
+    "unwired:crate_polymer_brown",
+    "unwired:crate_polymer_green",
+    "unwired:crate_polymer_red",
+    "unwired:crate_polymer_black"
+  ]
+}

@@ -20,6 +20,10 @@ public class UWDirectionalBlockItem extends UWBlockItem
 		super(blockIn, builder);
 	}
 	
+	public UWDirectionalBlockItem(Block blockIn, boolean setRegistry)
+	{
+		super(blockIn, setRegistry);
+	}
 	
 	@Nullable
 	@Override

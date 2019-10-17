@@ -1,5 +1,7 @@
 package com.mr208.unwired.common.item;
 
+import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.common.Content;
 import com.mr208.unwired.common.block.StorageCrate;
 import com.mr208.unwired.common.block.StorageCrate.Crate;
 import com.mr208.unwired.common.item.base.UWDirectionalBlockItem;
@@ -14,16 +16,32 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 public class CrateItem extends UWDirectionalBlockItem
 {
-	private DyeColor color = DyeColor.LIGHT_GRAY;
+	public static ArrayList<CrateItem> registeredCrates = new ArrayList<>();
+	private DyeColor color;
 	private Crate crate;
 	
-	public CrateItem(Block blockIn, Crate crate)
+	public CrateItem(Block blockIn, Crate crate, DyeColor colorIn)
 	{
-		super(blockIn);
-		this.crate=crate;
+		super(blockIn,false);
+		this.setRegistryName(UnWIRED.MOD_ID,  blockIn.getRegistryName().getPath()+"_" + colorIn.getTranslationKey());
+		this.crate = crate;
+		color = colorIn;
+		registeredCrates.add(this);
+	}
+	
+	public DyeColor getColor()
+	{
+		return color;
+	}
+	
+	@Override
+	public String getTranslationKey()
+	{
+		return super.getTranslationKey();
 	}
 	
 	@Override
@@ -54,7 +72,9 @@ public class CrateItem extends UWDirectionalBlockItem
 	@Override
 	public void fillItemGroup(ItemGroup p_150895_1_, NonNullList<ItemStack> p_150895_2_)
 	{
-		if(this.color == DyeColor.LIGHT_GRAY)
-			super.fillItemGroup(p_150895_1_, p_150895_2_);
+		if(p_150895_1_ ==Content.itemGroup && color == DyeColor.LIGHT_GRAY)
+		{
+			p_150895_2_.add(new ItemStack(this));
+		}
 	}
 }

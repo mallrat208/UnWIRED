@@ -5,13 +5,264 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "unwired:crate_polymer"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "orange"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_orange"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "white"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_white"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "magenta"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_magenta"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "light_blue"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_light_blue"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "yellow"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_yellow"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "lime"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_lime"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "pink"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_pink"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "gray"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_gray"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "light_gray"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_light_gray"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "cyan"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_cyan"
+            },            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "purple"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_purple"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "blue"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_blue"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "brown"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_brown"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "green"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_green"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "red"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_red"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "unwired:crate_polymer",
+                  "properties": {
+                    "color": "black"
+                  }
+                },
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "unwired:crate_polymer_black"
+            }
+          ]
         }
       ]
     }

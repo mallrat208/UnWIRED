@@ -15,6 +15,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.DyeColor;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
@@ -30,6 +32,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -170,6 +173,12 @@ public class StorageCrate extends UWBlock implements IWaterLoggable, ITileEntity
 	public TileEntity createNewTileEntity(IBlockReader iBlockReader)
 	{
 		return new StorageCrateTile(this.crateType);
+	}
+	
+	@Override
+	public Item asItem()
+	{
+		return super.asItem();
 	}
 	
 	public enum Crate implements IStringSerializable
