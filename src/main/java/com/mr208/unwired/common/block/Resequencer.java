@@ -1,13 +1,15 @@
 package com.mr208.unwired.common.block;
 
+import com.mr208.unwired.common.Content.Materials;
 import com.mr208.unwired.common.block.base.UWBlock;
 import com.mr208.unwired.common.inventory.ResequencerContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.state.BooleanProperty;
@@ -26,12 +28,14 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
-public class Resequencer extends UWBlock
+public class Resequencer extends UWBlock implements IWaterLoggable
 {
-	public static final DirectionProperty DIRECTION = BlockStateProperties.HORIZONTAL_FACING;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	
 	protected static final VoxelShape VERT_SLAB_NORTH;
 	protected static final VoxelShape VERT_SLAB_SOUTH;
@@ -40,14 +44,14 @@ public class Resequencer extends UWBlock
 	
 	public Resequencer()
 	{
-		super("resequencer", Block.Properties.create(Material.IRON));
-		setDefaultState(this.getDefaultState().with(DIRECTION, Direction.WEST));
+		super("resequencer", Block.Properties.create(Materials.MACHINE).hardnessAndResistance(1.5f).harvestTool(ToolType.PICKAXE));
+		setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
 	}
 	
 	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder)
 	{
-		builder.add(DIRECTION);
+		builder.add(FACING,WATERLOGGED);
 	}
 	
 	@Override
@@ -69,16 +73,22 @@ public class Resequencer extends UWBlock
 	{
 		if(Plane.HORIZONTAL.test(facing))
 		{
-			return this.getDefaultState().with(DIRECTION, facing);
+			return this.getDefaultState().with(FACING, facing);
 		}
 		
 		return super.getStateForPlacement(state, facing, state2, world, pos1, pos2, hand);
 	}
 	
 	@Override
+	public IFluidState getFluidState(BlockState state)
+	{
+		return state.get(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+	}
+	
+	@Override
 	public VoxelShape getShape(BlockState stateIn, IBlockReader blockReader, BlockPos posIn, ISelectionContext context)
 	{
-		switch(stateIn.get(DIRECTION))
+		switch(stateIn.get(FACING))
 		{
 			case NORTH:
 				return VERT_SLAB_NORTH;

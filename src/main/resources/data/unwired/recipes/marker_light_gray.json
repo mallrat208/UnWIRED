@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:marker",
+  "pattern": [
+    "F  ",
+    " P ",
+    "  D"
+  ],
+  "key": {
+    "F": {
+      "tag": "forge:feathers"
+    },
+    "P": {
+      "tag": "forge:plates/plastic"
+    },
+    "D": {
+      "tag": "forge:dyes/light_gray"
+    }
+  },
+  "result": {
+    "item": "unwired:marker_light_gray"
+  }
+}

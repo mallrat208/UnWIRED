@@ -3,7 +3,6 @@ package com.mr208.unwired.common.item.equipment;
 import com.google.common.collect.Multimap;
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.client.model.MunModel;
-import com.mr208.unwired.common.item.base.UWGadget;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -12,6 +11,8 @@ import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -29,6 +30,7 @@ public class MoonBoot extends UWGadget
 		super("boots_moon", EquipmentSlotType.FEET);
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@Nullable
 	@Override
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
@@ -45,6 +47,7 @@ public class MoonBoot extends UWGadget
 		return (A) model;
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@Nullable
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)

@@ -1,6 +1,5 @@
 package com.mr208.unwired.common;
 
-import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.common.Content.Items;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
@@ -13,6 +12,8 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+
+import static com.mr208.unwired.common.block.StorageCrate.COLOR;
 
 @EventBusSubscriber(bus = Bus.FORGE)
 public class ForgeEvents

@@ -1,13 +1,11 @@
 package com.mr208.unwired.common.inventory;
 
 import com.google.common.collect.Lists;
-import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.libs.TagLib;
 import com.mr208.unwired.common.Content;
 import com.mr208.unwired.common.crafting.RecipeTypes;
 import com.mr208.unwired.common.crafting.ResequencerRecipe;
-import com.mr208.unwired.common.item.SoybeanItem;
 import com.mr208.unwired.common.util.NBTHelper;
-import net.minecraft.client.gui.screen.inventory.AnvilScreen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftResultInventory;
@@ -19,14 +17,10 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.StringNBT;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -118,25 +112,21 @@ public class ResequencerContainer extends Container
 		trackInt(this.intReferenceHolder);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public int func_217073_e()
 	{
 		return this.intReferenceHolder.get();
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public List<ResequencerRecipe> getRecipeList()
 	{
 		return this.recipes;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public int getRecipeListSize()
 	{
 		return this.recipes.size();
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public boolean func_217083_h()
 	{
 		return this.inputSlot.getHasStack() && !this.recipes.isEmpty();
@@ -197,16 +187,17 @@ public class ResequencerContainer extends Container
 			{
 				outputStack = ItemStack.EMPTY;
 			}
-			else if(this.inputSlot.getStack().getItem() == Content.Items.soybean)
+			else if(this.inputSlot.getStack().getItem().getTags().contains(TagLib.ITEM_SOYBEAN))
 			{
-				
+				outputStack.setDisplayName(new TranslationTextComponent("unwired.reseqeuencer.synthetic", outputStack.getDisplayName()));
 				NBTHelper.addUnlocalizedLoreTag(outputStack, "resequencer.soymeat");
-				NBTHelper.setUnlocalizedNameTag(outputStack, outputStack.getTranslationKey() + ".synthetic");
+				//NBTHelper.setUnlocalizedNameTag(outputStack, outputStack.getTranslationKey() + ".synthetic");
 			}
-			else if(this.inputSlot.getStack().getItem() ==Items.ROTTEN_FLESH)
+			else if(this.inputSlot.getStack().getItem() == Items.ROTTEN_FLESH)
 			{
+				outputStack.setDisplayName(new TranslationTextComponent("unwired.reseqeuencer.reclaimed", outputStack.getDisplayName()));
 				NBTHelper.addUnlocalizedLoreTag(outputStack, "resequencer.fleshmeat");
-				NBTHelper.setUnlocalizedNameTag(outputStack, outputStack.getTranslationKey() + ".reclaimed");
+				
 			}
 			
 			this.outputSlot.putStack(outputStack.copy());

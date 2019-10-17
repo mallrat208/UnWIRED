@@ -23,8 +23,6 @@ public class ActivatedGoo extends UWBase
 		super("active_goo");
 	}
 	
-	
-	
 	@Override
 	public Rarity getRarity(ItemStack stack)
 	{

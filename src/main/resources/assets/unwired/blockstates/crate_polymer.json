@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north" : { "model": "unwired:block/crate/crate_polymer" },
+    "facing=south" : { "model": "unwired:block/crate/crate_polymer", "y": 180 },
+    "facing=east" : { "model": "unwired:block/crate/crate_polymer", "y": 90 },
+    "facing=west" : { "model": "unwired:block/crate/crate_polymer", "y": 270 }
+  }
+}

@@ -3,7 +3,6 @@ package tabsapi;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.client.gui.widget.Widget;
-import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.network.play.client.CCloseWindowPacket;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -135,8 +134,8 @@ public class TabRegistry
 	public static int getRecipeBookOffset(InventoryScreen screen)
 	{
 		boolean tooNarrow = screen.width < 379;
-		screen.func_194310_f().func_201520_a(screen.width, screen.height, mc, tooNarrow, screen.getContainer());
-		return screen.func_194310_f().updateScreenPosition(tooNarrow, screen.width, screen.getXSize()) - (screen.width - 176) / 2;
+		screen.getRecipeGui().init(screen.width, screen.height, mc, tooNarrow, screen.getContainer());
+		return screen.getRecipeGui().updateScreenPosition(tooNarrow, screen.width, screen.getXSize()) - (screen.width - 176) / 2;
 	}
 	
 	

@@ -1,24 +1,61 @@
 package com.mr208.unwired.client;
 
-import com.mr208.unwired.client.render.GreyGooRenderer;
-import com.mr208.unwired.client.screen.ResequencerScreen;
-import com.mr208.unwired.common.Content.Containers;
-import com.mr208.unwired.common.entity.GreyGooEntity;
+import com.mr208.unwired.client.screen.EditWritableScreen;
+import com.mr208.unwired.common.capability.IWritable;
 import com.mr208.unwired.setup.IProxy;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.particles.ParticleType;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.DyeColor;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.tileentity.SignTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import tabsapi.TabRegistry;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
+@OnlyIn(Dist.CLIENT)
 public class ClientProxy implements IProxy
 {
-	private static Random rand = new Random();
+	public static Random rand = new Random();
+	
+	@Override
+	public void setWritableSignColor(BlockPos blockPos, String colorKey)
+	{
+		World world = getClientPlayer().world;
+		
+		if(world.isBlockLoaded(blockPos))
+		{
+			TileEntity tile = world.getTileEntity(blockPos);
+			if(tile !=null && tile instanceof IWritable)
+			{
+				((IWritable)tile).setTextColor(DyeColor.byTranslationKey(colorKey,DyeColor.BLACK));
+			}
+			else if(tile != null && tile instanceof SignTileEntity)
+			{
+				((SignTileEntity)tile).setTextColor(DyeColor.byTranslationKey(colorKey, DyeColor.BLACK));
+			}
+		}
+	}
+	
+	@Override
+	public void openMarkerScreen(BlockPos blockPos)
+	{
+		World world = getClientPlayer().world;
+		if(world.isBlockLoaded(blockPos))
+			if(world.getTileEntity(blockPos) instanceof IWritable)
+				Minecraft.getInstance().displayGuiScreen(new EditWritableScreen((IWritable)world.getTileEntity(blockPos)));
+	}
+	
+	@Override
+	public PlayerEntity getClientPlayer()
+	{
+		return Minecraft.getInstance().player;
+	}
 	
 	@Override
 	public void spawnRebreatherParticle(BlockPos pos, float eyeHeight, float pitch, float yaw)

@@ -1,10 +1,10 @@
 package com.mr208.unwired.common.item.base;
 
-import com.mr208.unwired.common.block.Resequencer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DirectionalPlaceContext;
+import net.minecraft.state.properties.BlockStateProperties;
 
 import javax.annotation.Nullable;
 
@@ -20,6 +20,7 @@ public class UWDirectionalBlockItem extends UWBlockItem
 		super(blockIn, builder);
 	}
 	
+	
 	@Nullable
 	@Override
 	public BlockItemUseContext getBlockItemUseContext(BlockItemUseContext context)
@@ -29,12 +30,13 @@ public class UWDirectionalBlockItem extends UWBlockItem
 	
 	@Nullable
 	@Override
-	protected BlockState getStateForPlacement(BlockItemUseContext p_195945_1_)
+	protected BlockState getStateForPlacement(BlockItemUseContext useContext)
 	{
-		if(this.getBlock().getDefaultState().has(Resequencer.DIRECTION))
+		if(this.getBlock().getDefaultState().has(BlockStateProperties.HORIZONTAL_FACING))
 		{
-			return this.getBlock().getDefaultState().with(Resequencer.DIRECTION, p_195945_1_.getPlacementHorizontalFacing());
+			boolean isWaterlogged = useContext.getWorld().hasWater(useContext.getPos());
+			return this.getBlock().getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, useContext.getPlacementHorizontalFacing()).with(BlockStateProperties.WATERLOGGED, isWaterlogged);
 		}
-		return super.getStateForPlacement(p_195945_1_);
+		return super.getStateForPlacement(useContext);
 	}
 }

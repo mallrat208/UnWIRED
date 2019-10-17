@@ -4,11 +4,9 @@ import com.google.common.collect.Multimap;
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.client.model.FlippersModel;
 import com.mr208.unwired.common.item.base.IColorableEquipment;
-import com.mr208.unwired.common.item.base.UWGadget;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -18,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-public class FlippersBoot extends UWGadget implements IColorableEquipment
+public class FlippersBoot extends UWGadget
 {
 	private Object model;
 	

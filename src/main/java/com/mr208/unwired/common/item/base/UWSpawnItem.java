@@ -1,7 +1,6 @@
 package com.mr208.unwired.common.item.base;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.Content;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

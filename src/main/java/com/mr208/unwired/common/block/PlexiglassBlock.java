@@ -10,6 +10,11 @@ public class PlexiglassBlock extends AbstractUnWIREDGlass
 		super("plexiglass");
 	}
 	
+	public PlexiglassBlock(String name)
+	{
+		super("name");
+	}
+	
 	@Override
 	public BlockRenderLayer getRenderLayer()
 	{

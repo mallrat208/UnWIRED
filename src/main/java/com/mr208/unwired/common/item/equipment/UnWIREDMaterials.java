@@ -1,6 +1,5 @@
 package com.mr208.unwired.common.item.equipment;
 
-import com.mr208.unwired.common.Content;
 import com.mr208.unwired.common.Content.Items;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;

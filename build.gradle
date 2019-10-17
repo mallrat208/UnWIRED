@@ -8,20 +8,28 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
+
+plugins {
+    id "com.wynprice.cursemaven" version "1.2.3"
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
-version = '0.1.0'
+version = '0.1.3'
 group = 'com.mr208.unwired' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'UnWIRED'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
+
+
 minecraft {
-    mappings channel: 'snapshot', version: '20190719-1.14.3'
+    mappings channel: 'snapshot', version: '20191015-1.14.3'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -70,7 +78,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.1.37'
+    minecraft 'net.minecraftforge:forge:1.14.4-28.1.40'
     //Curios
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios:${version_curios}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios:${version_curios}:api")
@@ -78,6 +86,9 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
 
+    //runtimeOnly fg.deobf(curse.resolve("silentlib",2783899))
+    //runtimeOnly fg.deobf(curse.resolve("silentsmechanisms",2802465))
+    runtimeOnly fg.deobf(curse.resolve("the-one-probe", 2796414))
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

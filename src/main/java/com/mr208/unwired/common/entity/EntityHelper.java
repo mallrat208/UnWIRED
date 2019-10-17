@@ -15,6 +15,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.Heightmap.Type;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
@@ -30,7 +32,16 @@ public class EntityHelper
 			
 			for(Biome biome : ForgeRegistries.BIOMES.getValues())
 			{
+				
+				if(BiomeDictionary.hasType(biome, BiomeDictionary.Type.END))
+					continue;
+				if(BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER))
+					continue;
 				if(biome == Biomes.THE_VOID)
+					continue;
+				if(biome == Biomes.MUSHROOM_FIELD_SHORE)
+					continue;
+				if(biome == Biomes.MUSHROOM_FIELDS)
 					continue;
 				
 				biome.getSpawns(EntityClassification.MONSTER).add(new SpawnListEntry(EntityTypes.grey_goo, 20, 1, 1));

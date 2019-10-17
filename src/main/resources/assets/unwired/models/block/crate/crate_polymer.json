@@ -1,0 +1,11 @@
+{
+  "parent": "unwired:block/crate/crate_base",
+  "textures":
+  {
+      "particle": "unwired:block/crate_polymer_bottom_base",
+      "sides": "unwired:block/crate_polymer_side_base",
+      "top": "unwired:block/crate_polymer_top_tint",
+      "bottom": "unwired:block/crate_polymer_bottom_base",
+      "overlay": "unwired:block/crate_polymer_side_overlay"
+  }
+}

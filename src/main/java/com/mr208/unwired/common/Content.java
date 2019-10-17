@@ -5,12 +5,16 @@ import com.mr208.unwired.common.block.PlexiglassBlock;
 import com.mr208.unwired.common.block.Resequencer;
 import com.mr208.unwired.common.block.SmartglassBlock;
 import com.mr208.unwired.common.block.SoyCrop;
+import com.mr208.unwired.common.block.StorageCrate;
+import com.mr208.unwired.common.block.StorageCrate.Crate;
 import com.mr208.unwired.common.block.base.UWBlock;
 import com.mr208.unwired.common.block.base.UWFluidBlock;
+import com.mr208.unwired.common.block.tile.StorageCrateTile;
 import com.mr208.unwired.common.entity.GreyGooEntity;
 import com.mr208.unwired.common.fluid.NanoFluid;
 import com.mr208.unwired.common.inventory.ResequencerContainer;
 import com.mr208.unwired.common.item.ActivatedGoo;
+import com.mr208.unwired.common.item.LabelMarker;
 import com.mr208.unwired.common.item.SoybeanItem;
 import com.mr208.unwired.common.item.base.UWBase;
 import com.mr208.unwired.common.item.base.UWBlockItem;
@@ -24,6 +28,7 @@ import com.mr208.unwired.common.item.equipment.VisorHelm;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.FlowingFluid;
@@ -33,6 +38,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -63,6 +69,13 @@ public class Content
 		public static final Item helmet_visor = null;
 		public static final Item boots_flippers = null;
 		public static final Item boots_moon = null;
+		public static final Item crate_polymer = null;
+		public static final Item marker_black = null;
+	}
+	
+	public static class Materials
+	{
+		public static final Material MACHINE = new Material.Builder(MaterialColor.IRON).build();
 	}
 	
 	@ObjectHolder(UnWIRED.MOD_ID)
@@ -78,9 +91,17 @@ public class Content
 		
 		public static final Block block_polymer = null;
 		
+		public static final Block crate_polymer = null;
+		
 		public static final Block soy_crop = null;
 		
 		public static final Block nano_fluid_block = null;
+	}
+	
+	@ObjectHolder(UnWIRED.MOD_ID)
+	public static class TileEntities
+	{
+		public static final TileEntityType<StorageCrateTile> storage_crate = null;
 	}
 	
 	@ObjectHolder(UnWIRED.MOD_ID)
@@ -124,7 +145,8 @@ public class Content
 				new UWBlock("block_polymer", Block.Properties.create(Material.IRON, DyeColor.WHITE).hardnessAndResistance(5f).sound(SoundType.STONE)),
 				new SoyCrop(),
 				new UWFluidBlock(() -> (FlowingFluid) Fluids.nano_fluid_source, Block.Properties.create(Material.WATER).doesNotBlockMovement().noDrops(), "nano_fluid"),
-				new Resequencer()
+				new Resequencer(),
+				new StorageCrate(Crate.POLYMER)
 		);
 	}
 	
@@ -150,8 +172,12 @@ public class Content
 				new RebreatherHelm(),
 				new VisorHelm(),
 				new FlippersBoot(),
-				new MoonBoot()
+				new MoonBoot(),
+				new UWDirectionalBlockItem(Blocks.crate_polymer)
 		);
+		
+		for(DyeColor color : DyeColor.values())
+			registry.register(new LabelMarker(color));
 	}
 	
 	@SubscribeEvent
@@ -179,6 +205,19 @@ public class Content
 						.build(UnWIRED.MOD_ID+":grey_goo")
 						.setRegistryName(UnWIRED.MOD_ID, "grey_goo")
 		);
+	}
+	
+	@SubscribeEvent
+	public static void onTileEntityRegistryEvent(final RegistryEvent.Register<TileEntityType<?>> event)
+	{
+		IForgeRegistry registry = event.getRegistry();
+		
+		registry.registerAll(
+				TileEntityType.Builder.<StorageCrateTile>create(StorageCrateTile::new, Blocks.crate_polymer)
+				.build(null)
+				.setRegistryName(UnWIRED.MOD_ID,"storage_crate")
+		);
+
 	}
 	
 	public static ItemGroup itemGroup = new ItemGroup(UnWIRED.MOD_ID) {

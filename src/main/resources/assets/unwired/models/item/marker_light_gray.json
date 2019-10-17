@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer1": "unwired:item/marker_tip",
+    "layer0": "unwired:item/marker_base"
+  }
+}
