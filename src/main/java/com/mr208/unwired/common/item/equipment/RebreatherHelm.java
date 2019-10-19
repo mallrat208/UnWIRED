@@ -2,8 +2,8 @@ package com.mr208.unwired.common.item.equipment;
 
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.client.model.RebreatherModel;
-import com.mr208.unwired.common.network.NetworkHandler;
-import com.mr208.unwired.common.network.packet.RebreatherParticlePacket;
+import com.mr208.unwired.network.NetworkHandler;
+import com.mr208.unwired.network.packet.RebreatherParticlePacket;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

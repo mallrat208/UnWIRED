@@ -1,6 +1,6 @@
 package com.mr208.unwired.common.item.equipment;
 
-import com.mr208.unwired.common.Content.Items;
+import com.mr208.unwired.common.content.ModItems;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
@@ -13,8 +13,8 @@ import java.util.function.Supplier;
 public enum UnWIREDMaterials implements IArmorMaterial, IStringSerializable
 {
 
-	GADGET(9, new int[]{1,2,3,1},0f, 0,SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, () -> {return Ingredient.fromItems(Items.active_goo);}),
-	POLYMER(15, new int[]{2,5,6,2},0.0f,10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, () -> {return Ingredient.fromItems(Items.ingot_polymer);});
+	GADGET(9, new int[]{1,2,3,1},0f, 0,SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, () -> {return Ingredient.fromItems(ModItems.active_goo);}),
+	POLYMER(15, new int[]{2,5,6,2},0.0f,10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, () -> {return Ingredient.fromItems(ModItems.ingot_polymer);});
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
 	private final int durability;

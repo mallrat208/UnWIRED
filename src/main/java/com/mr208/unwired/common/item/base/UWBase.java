@@ -1,8 +1,8 @@
 package com.mr208.unwired.common.item.base;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.Content;
-import com.mr208.unwired.common.Content.Items;
+import com.mr208.unwired.common.content.ModGroups;
+import com.mr208.unwired.common.content.ModItems;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,16 +27,16 @@ public class UWBase extends Item
 	
 	public UWBase(String name)
 	{
-		this(name, new Item.Properties().group(Content.itemGroup));
+		this(name, new Item.Properties().group(ModGroups.mainGroup));
 	}
 	
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag advanced)
 	{
-		if(stack.getItem() == Items.ingot_polymer)
+		if(stack.getItem() == ModItems.ingot_polymer)
 			tooltip.add(new TranslationTextComponent("tooltip.unwired.polymer_ingot").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
-		else if(stack.getItem() == Items.inert_goo)
+		else if(stack.getItem() == ModItems.inert_goo)
 			tooltip.add(new TranslationTextComponent("tooltip.unwired.goo").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
 			
 		super.addInformation(stack, world, tooltip, advanced);

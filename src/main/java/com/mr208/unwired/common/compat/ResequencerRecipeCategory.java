@@ -2,9 +2,7 @@ package com.mr208.unwired.common.compat;
 
 import com.google.common.collect.Lists;
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.Content;
-import com.mr208.unwired.common.Content.Blocks;
-import com.mr208.unwired.common.Content.Items;
+import com.mr208.unwired.common.content.ModItems;
 import com.mr208.unwired.common.crafting.ResequencerRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -31,7 +29,7 @@ public class ResequencerRecipeCategory implements IRecipeCategory<ResequencerRec
 	ResequencerRecipeCategory(IGuiHelper guiHelper)
 	{
 		this.background = guiHelper.drawableBuilder(RECIPE_GUI_VANILLA, 49, 168, WIDTH, HEIGHT).addPadding(0,0,40,0).build();
-		this.icon = guiHelper.createDrawableIngredient(new ItemStack(Items.resequencer));
+		this.icon = guiHelper.createDrawableIngredient(new ItemStack(ModItems.resequencer));
 		this.localizedName = I18n.format("container.unwired.resequencer");
 	}
 	

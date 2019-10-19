@@ -1,8 +1,8 @@
 package com.mr208.unwired.common.inventory;
 
 import com.google.common.collect.Lists;
+import com.mr208.unwired.common.content.ModContainers;
 import com.mr208.unwired.libs.TagLib;
-import com.mr208.unwired.common.Content;
 import com.mr208.unwired.common.crafting.RecipeTypes;
 import com.mr208.unwired.common.crafting.ResequencerRecipe;
 import com.mr208.unwired.common.util.NBTHelper;
@@ -59,7 +59,7 @@ public class ResequencerContainer extends Container
 	
 	public ResequencerContainer(int id, PlayerInventory playerInventory, final IWorldPosCallable iWorldPosCallable)
 	{
-		super(Content.Containers.resequencer, id);
+		super(ModContainers.resequencer, id);
 		this.iWorldPosCallable = iWorldPosCallable;
 		this.world = playerInventory.player.world;
 		this.inputSlot = addSlot(new Slot(this.inventory, 0, 20, 33));
@@ -212,7 +212,7 @@ public class ResequencerContainer extends Container
 	@Override
 	public ContainerType<?> getType()
 	{
-		return Content.Containers.resequencer;
+		return ModContainers.resequencer;
 	}
 	
 	@OnlyIn(Dist.CLIENT)

@@ -1,21 +1,17 @@
 package com.mr208.unwired.common;
 
-import com.mr208.unwired.common.Content.Items;
+import com.mr208.unwired.common.content.ModItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.RegistryEvent.MissingMappings;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-
-import static com.mr208.unwired.common.block.StorageCrate.COLOR;
 
 @EventBusSubscriber(bus = Bus.FORGE)
 public class ForgeEvents
@@ -34,7 +30,7 @@ public class ForgeEvents
 				{
 					event.getWorld().removeBlock(event.getPos(), true);
 					
-					event.getWorld().addEntity(new ItemEntity((World)event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(Items.soybean)));
+					event.getWorld().addEntity(new ItemEntity((World)event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ModItems.soybean)));
 				}
 			}
 		}

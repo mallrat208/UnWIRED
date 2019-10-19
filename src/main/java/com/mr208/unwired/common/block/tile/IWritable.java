@@ -1,4 +1,4 @@
-package com.mr208.unwired.common.capability;
+package com.mr208.unwired.common.block.tile;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;

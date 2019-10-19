@@ -1,9 +1,8 @@
 package com.mr208.unwired.common.block.tile;
 
-import com.mr208.unwired.common.Content.TileEntities;
+import com.mr208.unwired.common.content.ModTileEntities;
 import com.mr208.unwired.common.block.StorageCrate;
 import com.mr208.unwired.common.block.StorageCrate.Crate;
-import com.mr208.unwired.common.capability.IWritable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -58,7 +57,7 @@ public class StorageCrateTile extends LockableLootTileEntity implements ITickabl
 	
 	public StorageCrateTile(StorageCrate.Crate crate)
 	{
-		super(TileEntities.storage_crate);
+		super(ModTileEntities.storage_crate);
 		this.invSize = crate.getSlotCount();
 		this.invRows = crate.getRows();
 		this.inventory = NonNullList.withSize(crate.getSlotCount(), ItemStack.EMPTY);

@@ -2,8 +2,8 @@ package com.mr208.unwired.common.item;
 
 import com.mr208.unwired.api.crafting.GooConversion;
 import com.mr208.unwired.common.item.base.UWBase;
-import com.mr208.unwired.common.network.NetworkHandler;
-import com.mr208.unwired.common.network.packet.ConversionParticlePacket;
+import com.mr208.unwired.network.NetworkHandler;
+import com.mr208.unwired.network.packet.ConversionParticlePacket;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;

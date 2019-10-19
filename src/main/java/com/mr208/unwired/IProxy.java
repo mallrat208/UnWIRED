@@ -1,4 +1,4 @@
-package com.mr208.unwired.setup;
+package com.mr208.unwired;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;

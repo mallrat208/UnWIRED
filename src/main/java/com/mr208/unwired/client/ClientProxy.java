@@ -1,10 +1,9 @@
 package com.mr208.unwired.client;
 
 import com.mr208.unwired.client.screen.EditWritableScreen;
-import com.mr208.unwired.common.capability.IWritable;
-import com.mr208.unwired.setup.IProxy;
+import com.mr208.unwired.common.block.tile.IWritable;
+import com.mr208.unwired.IProxy;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.particles.ParticleTypes;

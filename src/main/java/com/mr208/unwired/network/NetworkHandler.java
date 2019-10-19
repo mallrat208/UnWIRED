@@ -1,11 +1,11 @@
-package com.mr208.unwired.common.network;
+package com.mr208.unwired.network;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.network.packet.ConversionParticlePacket;
-import com.mr208.unwired.common.network.packet.RebreatherParticlePacket;
-import com.mr208.unwired.common.network.packet.WritableColorPacket;
-import com.mr208.unwired.common.network.packet.WritableMenuPacket;
-import com.mr208.unwired.common.network.packet.WritableSyncPacket;
+import com.mr208.unwired.network.packet.ConversionParticlePacket;
+import com.mr208.unwired.network.packet.RebreatherParticlePacket;
+import com.mr208.unwired.network.packet.WritableColorPacket;
+import com.mr208.unwired.network.packet.WritableMenuPacket;
+import com.mr208.unwired.network.packet.WritableSyncPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;

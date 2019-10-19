@@ -1,4 +1,4 @@
-package com.mr208.unwired.common.network.packet;
+package com.mr208.unwired.network.packet;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;

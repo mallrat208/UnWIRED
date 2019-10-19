@@ -1,7 +1,7 @@
 package com.mr208.unwired.common.block;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.Content.Items;
+import com.mr208.unwired.common.content.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
@@ -26,7 +26,7 @@ public class SoyCrop extends CropsBlock
 	@OnlyIn(Dist.CLIENT)
 	protected IItemProvider getSeedsItem()
 	{
-		return Items.soybean;
+		return ModItems.soybean;
 	}
 	
 	@Override

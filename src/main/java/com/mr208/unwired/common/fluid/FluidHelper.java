@@ -1,9 +1,9 @@
 package com.mr208.unwired.common.fluid;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.Content.Blocks;
-import com.mr208.unwired.common.Content.Fluids;
-import com.mr208.unwired.common.Content.Items;
+import com.mr208.unwired.common.content.ModBlocks;
+import com.mr208.unwired.common.content.ModFluids;
+import com.mr208.unwired.common.content.ModItems;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
@@ -20,8 +20,8 @@ public class FluidHelper
 			.sound(SoundEvents.ITEM_BUCKET_FILL_LAVA,SoundEvents.ITEM_BUCKET_EMPTY_LAVA)
 			.temperature(300);
 	
-	public static ForgeFlowingFluid.Properties nano_fluid_props = new ForgeFlowingFluid.Properties(() -> Fluids.nano_fluid_source, () -> Fluids.nano_fluid_flowing, nano_fluid_attributes)
-			.block(() -> (FlowingFluidBlock) Blocks.nano_fluid_block)
-			.bucket(() -> Items.nano_fluid_bucket);
+	public static ForgeFlowingFluid.Properties nano_fluid_props = new ForgeFlowingFluid.Properties(() -> ModFluids.nano_fluid_source, () -> ModFluids.nano_fluid_flowing, nano_fluid_attributes)
+			.block(() -> (FlowingFluidBlock) ModBlocks.nano_fluid_block)
+			.bucket(() -> ModItems.nano_fluid_bucket);
 	
 }

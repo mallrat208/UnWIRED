@@ -1,14 +1,11 @@
 package com.mr208.unwired.common.util;
 
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class FluxStorage implements IEnergyStorage
+public class FluxStorage extends EnergyStorage implements IEnergyStorage
 {
-	protected int energy;
-	protected int capacity;
-	protected int maxInput;
-	protected int maxOutput;
-	
 	public FluxStorage(int capacity)
 	{
 		this(capacity, capacity, capacity, 0);
@@ -19,73 +16,29 @@ public class FluxStorage implements IEnergyStorage
 		this(capacity, maxTransfer, maxTransfer, 0);
 	}
 	
-	public FluxStorage(int capacity, int maxInput, int maxOutput)
+	public FluxStorage(int capacity, int maxReceive, int maxExtract)
 	{
-		this(capacity, maxInput, maxOutput, 0);
+		this(capacity, maxReceive, maxExtract, 0);
 	}
 	
-	public FluxStorage(int capacity, int maxInput, int maxOutput, int startingEnergy)
+	public FluxStorage(int capacity, int maxReceive, int maxExtract, int energy)
 	{
-		this.capacity = capacity;
-		this.maxInput = maxInput;
-		this.maxOutput = maxOutput;
-		this.energy = Math.max(0, Math.min(capacity, startingEnergy));
+		super(capacity, maxReceive, maxExtract, energy);
 	}
 	
-	public void setEnergy(int energy)
+	public void writeToNBT(CompoundNBT compound)
 	{
-		this.energy = Math.max(0, Math.min(capacity, energy));
+		compound.putInt("Capacity", this.capacity);
+		compound.putInt("Energy", this.energy);
+		compound.putInt("MaxReceive", this.maxReceive);
+		compound.putInt("MaxExtract", this.maxExtract);
 	}
 	
-	@Override
-	public int receiveEnergy(int i, boolean b)
+	public void readFromNBT(CompoundNBT compound)
 	{
-		if(!this.canReceive())
-			return 0;
-		
-		int energyReceived = Math.min(this.capacity - this.energy, Math.min(this.maxInput, i));
-		if(!b)
-			this.energy += energyReceived;
-		
-		return energyReceived;
+		this.capacity = compound.getInt("Capacity");
+		this.energy = Math.min(0,compound.getInt("Energy"));
+		this.maxReceive = compound.getInt("MaxReceive");
+		this.maxExtract = compound.getInt("MaxExtract");
 	}
-	
-	@Override
-	public int extractEnergy(int i, boolean b)
-	{
-		if(!canExtract())
-			return 0;
-		
-		int energyExtracted = Math.min(this.energy, Math.min(this.maxOutput, i));
-		if(!b)
-			this.energy -= energyExtracted;
-		
-		return energyExtracted;
-	}
-	
-	@Override
-	public int getEnergyStored()
-	{
-		return this.energy;
-	}
-	
-	@Override
-	public int getMaxEnergyStored()
-	{
-		return this.capacity;
-	}
-	
-	@Override
-	public boolean canExtract()
-	{
-		return this.maxOutput > 0;
-	}
-	
-	@Override
-	public boolean canReceive()
-	{
-		return this.maxInput > 0;
-	}
-	
-	
 }

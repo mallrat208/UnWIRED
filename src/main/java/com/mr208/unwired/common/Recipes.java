@@ -1,7 +1,7 @@
 package com.mr208.unwired.common;
 
 import com.mr208.unwired.api.crafting.GooConversion;
-import com.mr208.unwired.common.Content.Items;
+import com.mr208.unwired.common.content.ModItems;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.IItemProvider;
@@ -20,7 +20,7 @@ public class Recipes
 		
 		try
 		{
-			registerCompostable.invoke(null, 0.5f, Items.soybean);
+			registerCompostable.invoke(null, 0.5f, ModItems.soybean);
 		}
 		catch(Exception e)
 		{
@@ -34,7 +34,7 @@ public class Recipes
 				.getAllElements()
 				.forEach(
 					(block)->
-						GooConversion.addConversion(block,  Items.ingot_polymer)
+						GooConversion.addConversion(block,  ModItems.ingot_polymer)
 				);
 		
 	}

@@ -1,13 +1,13 @@
 package com.mr208.unwired.common.block;
 
-import com.mr208.unwired.common.Content.Materials;
 import com.mr208.unwired.common.block.base.UWBlock;
 import com.mr208.unwired.common.block.tile.StorageCrateTile;
+import com.mr208.unwired.common.content.ModBlocks;
+import com.mr208.unwired.common.item.CrateItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.IWaterLoggable;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -15,7 +15,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -54,7 +53,7 @@ public class StorageCrate extends UWBlock implements IWaterLoggable, ITileEntity
 	
 	public StorageCrate(Crate type)
 	{
-		super("crate_"+type.getName(), Block.Properties.create(Materials.MACHINE).hardnessAndResistance(2.5f).harvestTool(ToolType.PICKAXE));
+		super("crate_"+type.getName(), Block.Properties.create(ModBlocks.Materials.MACHINE).hardnessAndResistance(2.5f).harvestTool(ToolType.PICKAXE));
 		this.crateType = type;
 		setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, false).with(COLOR, DyeColor.LIGHT_GRAY));
 	}
@@ -176,9 +175,9 @@ public class StorageCrate extends UWBlock implements IWaterLoggable, ITileEntity
 	}
 	
 	@Override
-	public Item asItem()
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player)
 	{
-		return super.asItem();
+		return CrateItem.getCrateStackForColor(state.get(COLOR));
 	}
 	
 	public enum Crate implements IStringSerializable

@@ -1,6 +1,6 @@
 package com.mr208.unwired.common.entity;
 
-import com.mr208.unwired.common.Content.EntityTypes;
+import com.mr208.unwired.common.content.ModEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -26,7 +26,7 @@ public class GreyGooEntity extends SlimeEntity
 {
 	public GreyGooEntity(World world)
 	{
-		super((EntityType<GreyGooEntity>)EntityTypes.grey_goo, world);
+		super((EntityType<GreyGooEntity>)ModEntities.grey_goo, world);
 	}
 	
 	public GreyGooEntity(EntityType<? extends SlimeEntity> type, World worldIn)

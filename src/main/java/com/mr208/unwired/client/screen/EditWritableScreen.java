@@ -2,28 +2,21 @@ package com.mr208.unwired.client.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.client.ClientProxy;
-import com.mr208.unwired.common.capability.IWritable;
-import com.mr208.unwired.common.network.NetworkHandler;
-import com.mr208.unwired.common.network.packet.WritableSyncPacket;
+import com.mr208.unwired.common.block.tile.IWritable;
+import com.mr208.unwired.network.NetworkHandler;
+import com.mr208.unwired.network.packet.WritableSyncPacket;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.fonts.TextInputUtil;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.model.ModelDataManager;
-import net.minecraftforge.client.model.data.IModelData;
 
 @OnlyIn(Dist.CLIENT)
 public class EditWritableScreen extends Screen

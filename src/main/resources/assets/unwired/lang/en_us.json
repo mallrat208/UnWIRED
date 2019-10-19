@@ -66,5 +66,6 @@
   "item.unwired.marker_black":"Black Marker",
   "tooltip.unwired.marker": "This item can recolor Signs and label Crates",
   "tooltip.unwired.polymer_ingot": "Crafted by using Activated Grey Goo on Logs",
-  "tooltip.unwired.goo": "It's sticky!"
+  "tooltip.unwired.goo": "It's sticky!",
+  "tooltip.unwired.wip":"WIP - Does Not Work Properly"
 }

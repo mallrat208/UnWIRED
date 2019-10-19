@@ -1,11 +1,11 @@
 package com.mr208.unwired.common.item;
 
-import com.mr208.unwired.common.Content;
-import com.mr208.unwired.common.capability.IWritable;
+import com.mr208.unwired.common.content.ModGroups;
+import com.mr208.unwired.common.block.tile.IWritable;
 import com.mr208.unwired.common.item.base.UWBase;
-import com.mr208.unwired.common.network.NetworkHandler;
-import com.mr208.unwired.common.network.packet.WritableColorPacket;
-import com.mr208.unwired.common.network.packet.WritableMenuPacket;
+import com.mr208.unwired.network.NetworkHandler;
+import com.mr208.unwired.network.packet.WritableColorPacket;
+import com.mr208.unwired.network.packet.WritableMenuPacket;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
@@ -41,7 +41,7 @@ public class LabelMarker extends UWBase
 	
 	public LabelMarker(DyeColor color)
 	{
-		super("marker_" + color.getName().toLowerCase(), new Item.Properties().group(Content.itemGroup).maxStackSize(1));
+		super("marker_" + color.getName().toLowerCase(), new Item.Properties().group(ModGroups.mainGroup).maxStackSize(1));
 		this.markerColor = color;
 		registeredMarkers.add(this);
 	}

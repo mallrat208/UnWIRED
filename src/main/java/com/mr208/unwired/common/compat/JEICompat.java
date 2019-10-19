@@ -1,8 +1,7 @@
 package com.mr208.unwired.common.compat;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.Content;
-import com.mr208.unwired.common.Content.Items;
+import com.mr208.unwired.common.content.ModItems;
 import com.mr208.unwired.common.crafting.RecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -42,6 +41,6 @@ public class JEICompat implements IModPlugin
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
 	{
-		registration.addRecipeCatalyst(new ItemStack(Items.resequencer), getPluginUid());
+		registration.addRecipeCatalyst(new ItemStack(ModItems.resequencer), getPluginUid());
 	}
 }

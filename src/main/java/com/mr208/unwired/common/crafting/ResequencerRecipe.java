@@ -1,7 +1,7 @@
 package com.mr208.unwired.common.crafting;
 
 import com.google.gson.JsonObject;
-import com.mr208.unwired.common.Content.Blocks;
+import com.mr208.unwired.common.content.ModBlocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -100,7 +100,7 @@ public class ResequencerRecipe implements IRecipe<IInventory>
 	@Override
 	public ItemStack getIcon()
 	{
-		return new ItemStack(Blocks.resequencer);
+		return new ItemStack(ModBlocks.resequencer);
 	}
 	
 	@Override

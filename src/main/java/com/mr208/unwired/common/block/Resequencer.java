@@ -1,11 +1,10 @@
 package com.mr208.unwired.common.block;
 
-import com.mr208.unwired.common.Content.Materials;
 import com.mr208.unwired.common.block.base.UWBlock;
+import com.mr208.unwired.common.content.ModBlocks;
 import com.mr208.unwired.common.inventory.ResequencerContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -44,7 +43,7 @@ public class Resequencer extends UWBlock implements IWaterLoggable
 	
 	public Resequencer()
 	{
-		super("resequencer", Block.Properties.create(Materials.MACHINE).hardnessAndResistance(1.5f).harvestTool(ToolType.PICKAXE));
+		super("resequencer", Block.Properties.create(ModBlocks.Materials.MACHINE).hardnessAndResistance(1.5f).harvestTool(ToolType.PICKAXE));
 		setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
 	}
 	

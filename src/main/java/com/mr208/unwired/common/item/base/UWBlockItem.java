@@ -1,6 +1,6 @@
 package com.mr208.unwired.common.item.base;
 
-import com.mr208.unwired.common.Content;
+import com.mr208.unwired.common.content.ModGroups;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -15,11 +15,11 @@ public class UWBlockItem extends BlockItem
 	
 	public UWBlockItem(Block blockIn, boolean setRegistry)
 	{
-		super(blockIn, new Item.Properties().group(Content.itemGroup));
+		super(blockIn, new Item.Properties().group(ModGroups.mainGroup));
 	}
 	
 	public UWBlockItem(Block blockIn)
 	{
-		this(blockIn, new Item.Properties().group(Content.itemGroup));
+		this(blockIn, new Item.Properties().group(ModGroups.mainGroup));
 	}
 }

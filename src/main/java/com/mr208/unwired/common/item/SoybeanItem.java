@@ -1,8 +1,8 @@
 package com.mr208.unwired.common.item;
 
 import com.mr208.unwired.common.item.base.UWBlockNamed;
-import com.mr208.unwired.common.Content;
-import com.mr208.unwired.common.Content.Blocks;
+import com.mr208.unwired.common.content.ModGroups;
+import com.mr208.unwired.common.content.ModBlocks;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.potion.EffectInstance;
@@ -16,7 +16,7 @@ public class SoybeanItem extends UWBlockNamed
 	
 	public SoybeanItem()
 	{
-		super("soybean", Blocks.soy_crop,new Item.Properties().group(Content.itemGroup));
+		super("soybean", ModBlocks.soy_crop,new Item.Properties().group(ModGroups.mainGroup));
 		foodstats = new Food.Builder().hunger(1).saturation(1).effect(new EffectInstance(Effects.NAUSEA, 30), 0.2f).build();
 	}
 	
