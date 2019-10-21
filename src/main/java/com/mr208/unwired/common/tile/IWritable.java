@@ -1,11 +1,9 @@
-package com.mr208.unwired.common.block.tile;
+package com.mr208.unwired.common.tile;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.ITextComponent.Serializer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

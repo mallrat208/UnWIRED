@@ -1,4 +1,4 @@
-package com.mr208.unwired.common.block.tile;
+package com.mr208.unwired.common.tile;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;

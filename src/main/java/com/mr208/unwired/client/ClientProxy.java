@@ -1,7 +1,7 @@
 package com.mr208.unwired.client;
 
 import com.mr208.unwired.client.screen.EditWritableScreen;
-import com.mr208.unwired.common.block.tile.IWritable;
+import com.mr208.unwired.common.tile.IWritable;
 import com.mr208.unwired.IProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;

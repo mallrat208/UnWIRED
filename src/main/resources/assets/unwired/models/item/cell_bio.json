@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer1": "unwired:item/bio_cell_tint",
+    "layer0": "unwired:item/bio_cell_base"
+  }
+}

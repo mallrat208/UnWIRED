@@ -15,8 +15,9 @@ import java.util.List;
 @EventBusSubscriber
 public class Config
 {
-	public static final String CATEGORY_GENERAL = "general";
-	public static final String CATEGORY_POWER = "power";
+	public static final String CATEGORY_ACCESSIBILITY = "Accessibility";
+	public static final String CATEGORY_GENERAL = "General";
+	public static final String CATEGORY_POWER = "Power";
 	public static final String CATEGORY_ENTITIES = "Entity";
 	public static final String SUBCATEGORY_GREY_GOO = "GreyGoo";
 	
@@ -27,6 +28,8 @@ public class Config
 	public static ForgeConfigSpec CLIENT;
 	
 	public static ForgeConfigSpec.ConfigValue<List<Integer>> GREY_GOO_DIMENSION_WHITELIST;
+	
+	public static ForgeConfigSpec.BooleanValue ENERGY_CELLS_USE_DURABILITY_BAR;
 	
 	static
 	{
@@ -41,6 +44,9 @@ public class Config
 		GREY_GOO_DIMENSION_WHITELIST = COMMON_BUILDER.define("GreyGoo Dimension Whitelist", Lists.newArrayList(0));
 		COMMON_BUILDER.pop();
 		COMMON_BUILDER.pop();
+		
+		CLIENT_BUILDER.push(CATEGORY_ACCESSIBILITY);
+		ENERGY_CELLS_USE_DURABILITY_BAR = CLIENT_BUILDER.define("Energy Cells Use Durability Bar", false);
 		
 		COMMON = COMMON_BUILDER.build();
 		CLIENT = CLIENT_BUILDER.build();

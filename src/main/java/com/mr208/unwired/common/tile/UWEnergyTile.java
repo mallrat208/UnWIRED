@@ -1,6 +1,6 @@
-package com.mr208.unwired.common.block.tile;
+package com.mr208.unwired.common.tile;
 
-import com.mr208.unwired.common.util.FluxStorage;
+import com.mr208.unwired.common.util.UWEnergyStorage;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -16,17 +16,17 @@ import javax.annotation.Nullable;
 
 public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergyStorage, ITickableTileEntity
 {
-	private FluxStorage energyStorage;
-	
-	private LazyOptional<IEnergyStorage> energyHandler = registerCapability(this);
+	UWEnergyStorage energyStorage;
+	LazyOptional<IEnergyStorage> energyHandler;
 	
 	public UWEnergyTile(TileEntityType<? extends TileEntity> type)
 	{
 		super(type);
 		this.energyStorage = createEnergyStorage();
+		this.energyHandler = registerCapability(energyStorage);
 	}
 	
-	public abstract FluxStorage createEnergyStorage();
+	public abstract UWEnergyStorage createEnergyStorage();
 	
 	public abstract void tick();
 	

@@ -1,8 +1,8 @@
 package com.mr208.unwired.common.content;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.block.tile.MetabolicGenTile;
-import com.mr208.unwired.common.block.tile.StorageCrateTile;
+import com.mr208.unwired.common.tile.MetabolicGenTile;
+import com.mr208.unwired.common.tile.StorageCrateTile;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

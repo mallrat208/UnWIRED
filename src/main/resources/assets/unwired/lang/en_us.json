@@ -67,5 +67,10 @@
   "tooltip.unwired.marker": "This item can recolor Signs and label Crates",
   "tooltip.unwired.polymer_ingot": "Crafted by using Activated Grey Goo on Logs",
   "tooltip.unwired.goo": "It's sticky!",
-  "tooltip.unwired.wip":"WIP - Does Not Work Properly"
+  "tooltip.unwired.wip":"WIP - Does Not Work Properly",
+  "container.unwired.metabolic_generator":"Metabolic Generator",
+  "tooltip.unwired.energy": "Energy: %1$s / %2$s ",
+  "item.unwired.cell_bio": "Bio Cell"
+
+
 }

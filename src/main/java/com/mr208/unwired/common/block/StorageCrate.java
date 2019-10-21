@@ -1,7 +1,7 @@
 package com.mr208.unwired.common.block;
 
 import com.mr208.unwired.common.block.base.UWBlock;
-import com.mr208.unwired.common.block.tile.StorageCrateTile;
+import com.mr208.unwired.common.tile.StorageCrateTile;
 import com.mr208.unwired.common.content.ModBlocks;
 import com.mr208.unwired.common.item.CrateItem;
 import net.minecraft.block.Block;

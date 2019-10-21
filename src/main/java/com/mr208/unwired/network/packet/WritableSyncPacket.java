@@ -1,6 +1,6 @@
 package com.mr208.unwired.network.packet;
 
-import com.mr208.unwired.common.block.tile.IWritable;
+import com.mr208.unwired.common.tile.IWritable;
 import net.minecraft.block.BlockState;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;

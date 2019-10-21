@@ -3,6 +3,7 @@ package com.mr208.unwired.common;
 import com.mr208.unwired.api.crafting.GooConversion;
 import com.mr208.unwired.common.content.ModItems;
 import net.minecraft.block.ComposterBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -34,7 +35,7 @@ public class Recipes
 				.getAllElements()
 				.forEach(
 					(block)->
-						GooConversion.addConversion(block,  ModItems.ingot_polymer)
+						GooConversion.addConversion(block,  new ItemStack(ModItems.ingot_polymer,2))
 				);
 		
 	}

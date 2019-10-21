@@ -1,27 +1,32 @@
-package com.mr208.unwired.common.block.tile;
+package com.mr208.unwired.common.tile;
 
 import com.mr208.unwired.common.content.ModTileEntities;
-import com.mr208.unwired.common.util.FluxStorage;
-import com.mr208.unwired.common.util.NBTHelper;
+import com.mr208.unwired.common.inventory.MetabolicGenContainer;
+import com.mr208.unwired.common.util.EnergyUtil;
+import com.mr208.unwired.common.util.UWEnergyStorage;
 import com.mr208.unwired.common.util.UWInventory;
 import com.mr208.unwired.common.util.UWInventoryHandler;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class MetabolicGenTile extends UWEnergyTile implements UWInventory
+public class MetabolicGenTile extends UWEnergyTile implements UWInventory, INamedContainerProvider
 {
 	
 	private static final int METABOLIC_INVENTORY_SLOTS = 3;
@@ -37,8 +42,8 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory
 	private boolean processing;
 	private float processingTime = 0;
 	
-	private NonNullList<ItemStack> inventory = NonNullList.withSize(METABOLIC_INVENTORY_SLOTS, ItemStack.EMPTY);
-	private LazyOptional<IItemHandler> itemHandler = registerCapability(new UWInventoryHandler(inventory.size(), this, 0, new boolean[]{false,true}, new boolean[]{true,false}));
+	NonNullList<ItemStack> inventory = NonNullList.withSize(METABOLIC_INVENTORY_SLOTS, ItemStack.EMPTY);
+	LazyOptional<IItemHandler> itemHandler = registerCapability(new UWInventoryHandler(inventory.size(), this));
 	
 	public MetabolicGenTile()
 	{
@@ -46,9 +51,9 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory
 	}
 	
 	@Override
-	public FluxStorage createEnergyStorage()
+	public UWEnergyStorage createEnergyStorage()
 	{
-		return new FluxStorage(40000, 80);
+		return new UWEnergyStorage(40000, 80);
 	}
 	
 	@Override
@@ -64,7 +69,7 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory
 		}
 		else
 		{
-			if(!inventory.get(SLOT_FOOD).isEmpty())
+			if(getEnergyStored() != getMaxEnergyStored() && !inventory.get(SLOT_FOOD).isEmpty())
 			{
 				Food stackFood = inventory.get(SLOT_FOOD).getItem().getFood();
 				
@@ -76,11 +81,47 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory
 				processingTime = foodModifier;
 				markDirty();
 			}
-			else if(getEnergyStored() == 0)
+		}
+		
+		if(!inventory.get(0).isEmpty())
+		{
+			if(!world.isRemote)
 			{
-				inventory.set(SLOT_FOOD, new ItemStack(Items.GOLDEN_CARROT, 1));
+				int stored = EnergyUtil.getEnergyStored(inventory.get(0));
+				int max = EnergyUtil.getMaxEnergyStored(inventory.get(0));
+				
+				int space = max-stored;
+				
+				if(space> 0)
+				{
+					int energyPre = (10 * stored)/max;
+					
+					int insert = Math.min(80, space);
+					int accepted = Math.min(EnergyUtil.extractEnergy(this,insert, true), EnergyUtil.insertEnergy(inventory.get(0), insert, true));
+					
+					if((accepted = EnergyUtil.extractEnergy(this, accepted, false)) > 0)
+						stored += EnergyUtil.insertEnergy(inventory.get(0), accepted, false);
+					
+					int energyPost = (10*stored)/max;
+					
+					if(energyPost!=energyPre)
+						this.markDirty();
+				}
 			}
 		}
+	}
+	
+	@Nullable
+	@Override
+	public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity)
+	{
+		return new MetabolicGenContainer(i, playerInventory, this.pos);
+	}
+	
+	@Override
+	public ITextComponent getDisplayName()
+	{
+		return new TranslationTextComponent("container.unwired.metabolic_generator");
 	}
 	
 	public boolean isProcessing()
@@ -110,21 +151,13 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory
 	@Override
 	public boolean isStackValid(int slot, ItemStack stack)
 	{
-		switch(slot)
-		{
-			case SLOT_BATTERY:
-				return stack.getCapability(CapabilityEnergy.ENERGY) != null;
-			case SLOT_FOOD:
-				return stack.getItem().isFood();
-			default:
-				return false;
-		}
+		return true;
 	}
 	
 	@Override
 	public int getSlotLimit(int slot)
 	{
-		return slot == 0 ? 1 : 64;
+		return 64;
 	}
 	
 	@Nonnull

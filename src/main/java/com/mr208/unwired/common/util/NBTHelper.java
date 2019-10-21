@@ -1,16 +1,15 @@
 package com.mr208.unwired.common.util;
 
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.StringNBT;
 import net.minecraft.util.NonNullList;
 
-import java.util.function.Consumer;
-
 public class NBTHelper
 {
+	public static String NBT_ENERGY_KEY = "energy";
+	
 	public static NonNullList<ItemStack> readInventory(CompoundNBT compound, int slots)
 	{
 		
@@ -66,4 +65,55 @@ public class NBTHelper
 		stackTag.put("display", displayTag);
 		stack.setTag(stackTag);
 	}
+	
+	public static int insertEnergyItem(ItemStack stack, int energy, int maxEnergy, boolean simulate)
+	{
+		int stored = getEnergyStoredItem(stack);
+		int received = Math.min(energy, maxEnergy-stored);
+		if(!simulate)
+		{
+			stored+= received;
+			setInt(stack, NBT_ENERGY_KEY, stored);
+		}
+		
+		return received;
+	}
+	
+	public static int extractEnergyItem(ItemStack stack, int energy, boolean simulate)
+	{
+		int stored = getEnergyStoredItem(stack);
+		int output = Math.min(energy, stored);
+		if(!simulate)
+		{
+			stored -= output;
+			setInt(stack, NBT_ENERGY_KEY, stored);
+		}
+		
+		return output;
+	}
+	
+	public static int getEnergyStoredItem(ItemStack stack)
+	{
+		return getInt(stack,NBT_ENERGY_KEY);
+	}
+	
+	public static void setInt(ItemStack stack, String name, int value)
+	{
+		getTag(stack).putInt(name, value);
+	}
+	
+	public static int getInt(ItemStack stack, String name)
+	{
+		if(!getTag(stack).contains(name))
+			getTag(stack).putInt(name, 0);
+		
+		return getTag(stack).getInt(name);
+	}
+	
+	public static CompoundNBT getTag(ItemStack stack)
+	{
+		return stack.getOrCreateTag();
+	}
+	
+	
 }

@@ -4,6 +4,7 @@ import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.common.block.StorageCrate.Crate;
 import com.mr208.unwired.common.item.ActivatedGoo;
 import com.mr208.unwired.common.item.CrateItem;
+import com.mr208.unwired.common.item.EnergyItem;
 import com.mr208.unwired.common.item.LabelMarker;
 import com.mr208.unwired.common.item.SoybeanItem;
 import com.mr208.unwired.common.item.base.UWBase;
@@ -62,6 +63,7 @@ public class ModItems
 	public static final Item crate_polymer_light_gray = null;
 	public static final Item marker_black = null;
 	public static final Item generator_metabolic = null;
+	public static final Item cell_bio = null;
 	
 	@SubscribeEvent
 	public static void onItemRegistryEvent(final RegistryEvent.Register<Item> event)
@@ -102,7 +104,8 @@ public class ModItems
 						p_77624_3_.add(new TranslationTextComponent("tooltip.unwired.wip").setStyle(new Style().setColor(TextFormatting.RED)));
 						super.addInformation(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
 					}
-				}
+				},
+				new EnergyItem("cell_bio",10000)
 		);
 		
 		for(DyeColor color : DyeColor.values())

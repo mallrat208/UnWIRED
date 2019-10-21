@@ -1,4 +1,4 @@
-package com.mr208.unwired.common.block.tile;
+package com.mr208.unwired.common.tile;
 
 import com.mr208.unwired.common.content.ModTileEntities;
 import com.mr208.unwired.common.block.StorageCrate;

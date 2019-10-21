@@ -2,14 +2,13 @@ package com.mr208.unwired.client.render;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.GlStateManager.LogicOp;
-import com.mr208.unwired.common.block.tile.StorageCrateTile;
+import com.mr208.unwired.common.tile.StorageCrateTile;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.RenderComponentsUtil;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -35,9 +34,9 @@ public class CrateTileEntityRenderer extends TileEntityRenderer<StorageCrateTile
 		float lvt_11_1_ = 0.6666667F;
 		
 		GlStateManager.enableRescaleNormal();
-		GlStateManager.pushMatrix();
+		//GlStateManager.pushMatrix();
 		GlStateManager.scalef(0.6666667F, -0.6666667F, -0.6666667F);
-		GlStateManager.popMatrix();
+		//GlStateManager.popMatrix();
 		FontRenderer fontRenderer = this.getFontRenderer();
 		float lvt_13_1_ = 0.010416667F;
 		GlStateManager.translatef(0.0F, 1.33333334F, 0.046666667F);
@@ -87,11 +86,6 @@ public class CrateTileEntityRenderer extends TileEntityRenderer<StorageCrateTile
 		GlStateManager.depthMask(true);
 		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.popMatrix();
-		if (destroyCount >= 0) {
-			GlStateManager.matrixMode(5890);
-			GlStateManager.popMatrix();
-			GlStateManager.matrixMode(5888);
-		}
 	}
 	
 	private void func_217657_a(int p_217657_1_, int p_217657_2_, int p_217657_3_, int p_217657_4_) {
