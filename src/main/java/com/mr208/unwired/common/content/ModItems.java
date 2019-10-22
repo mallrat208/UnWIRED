@@ -1,5 +1,6 @@
 package com.mr208.unwired.common.content;
 
+import com.mr208.unwired.Config;
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.common.block.StorageCrate.Crate;
 import com.mr208.unwired.common.item.ActivatedGoo;
@@ -95,17 +96,8 @@ public class ModItems
 					
 					}
 				},
-				new UWDirectionalBlockItem(ModBlocks.generator_metabolic)
-				{
-					@Override
-					@OnlyIn(Dist.CLIENT)
-					public void addInformation(ItemStack p_77624_1_, @Nullable World p_77624_2_, List<ITextComponent> p_77624_3_, ITooltipFlag p_77624_4_)
-					{
-						p_77624_3_.add(new TranslationTextComponent("tooltip.unwired.wip").setStyle(new Style().setColor(TextFormatting.RED)));
-						super.addInformation(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
-					}
-				},
-				new EnergyItem("cell_bio",10000)
+				new UWDirectionalBlockItem(ModBlocks.generator_metabolic),
+				new EnergyItem("cell_bio", Config.TIER_1_CELL_CAPACITY.get())
 		);
 		
 		for(DyeColor color : DyeColor.values())

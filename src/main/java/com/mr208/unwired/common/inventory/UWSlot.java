@@ -21,9 +21,6 @@ public abstract class UWSlot extends SlotItemHandler
 	{
 		super(itemHandler, index, xPos, yPos);
 		this.container = container;
-		
-		if(EffectiveSide.get() == LogicalSide.CLIENT)
-			this.setBackgroundName("unwired:gui/uw_slot");
 	}
 	
 	@Override
@@ -51,8 +48,6 @@ public abstract class UWSlot extends SlotItemHandler
 		public Food(Container container, IItemHandler itemHandler, int index, int xPos, int yPos)
 		{
 			super(container, itemHandler, index, xPos, yPos);
-			if(EffectiveSide.get() == LogicalSide.CLIENT)
-				this.setBackgroundName("unwired:gui/food_slot");
 		}
 		
 		@Override
@@ -67,8 +62,6 @@ public abstract class UWSlot extends SlotItemHandler
 		public Charge(Container container, IItemHandler itemHandler, int index, int xPos, int yPos)
 		{
 			super(container, itemHandler, index, xPos, yPos);
-			if(EffectiveSide.get() == LogicalSide.CLIENT)
-				this.setBackgroundName("unwired:gui/charge_slot");
 			
 		}
 		

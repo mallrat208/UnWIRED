@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:machines",
+  "pattern": [
+    "SBS",
+    "GFG",
+    "RAR"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:ingots/gold"
+    },
+    "S": {
+      "tag": "forge:plates/plastic"
+    },
+    "F": {
+      "item": "unwired:frame_polymer"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "A": {
+      "item": "unwired:active_goo"
+    },
+    "B": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "unwired:generator_metabolic"
+  }
+}

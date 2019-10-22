@@ -15,4 +15,6 @@ public interface IProxy
 	default void spawnRebreatherParticle(BlockPos pos, float eyeHeight, float pitch, float yaw) {}
 	
 	default void spawnConversionParticles(BlockPos pos) {}
+	
+	default void syncEnergy(BlockPos pos, int energy) {}
 }

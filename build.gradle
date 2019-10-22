@@ -18,7 +18,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
-version = '0.1.4'
+version = '0.1.5'
 group = 'com.mr208.unwired' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'UnWIRED'
 

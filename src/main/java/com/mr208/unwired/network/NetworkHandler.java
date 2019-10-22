@@ -3,11 +3,13 @@ package com.mr208.unwired.network;
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.network.packet.ConversionParticlePacket;
 import com.mr208.unwired.network.packet.RebreatherParticlePacket;
+import com.mr208.unwired.network.packet.SyncEnergyPacket;
 import com.mr208.unwired.network.packet.WritableColorPacket;
 import com.mr208.unwired.network.packet.WritableMenuPacket;
 import com.mr208.unwired.network.packet.WritableSyncPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.fml.network.NetworkRegistry;
@@ -58,6 +60,17 @@ public class NetworkHandler
 				WritableColorPacket::encode,
 				WritableColorPacket::decode,
 				WritableColorPacket.Handler::process);
+		
+		instance.registerMessage(
+				id++, SyncEnergyPacket.class,
+				SyncEnergyPacket::encode,
+				SyncEnergyPacket::decoded,
+				SyncEnergyPacket.Handler::process);
+	}
+	
+	public static void sendToTrackingPlayers(TileEntity tile, Object msg)
+	{
+		instance.send(PacketDistributor.TRACKING_CHUNK.with(() -> tile.getWorld().getChunkAt(tile.getPos())), msg);
 	}
 	
 	public static void sendToPlayer(PlayerEntity playerEntity, Object msg)

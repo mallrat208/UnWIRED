@@ -1,11 +1,14 @@
 package com.mr208.unwired.common.tile;
 
+import com.mr208.unwired.Config;
 import com.mr208.unwired.common.content.ModTileEntities;
 import com.mr208.unwired.common.inventory.MetabolicGenContainer;
 import com.mr208.unwired.common.util.EnergyUtil;
 import com.mr208.unwired.common.util.UWEnergyStorage;
 import com.mr208.unwired.common.util.UWInventory;
 import com.mr208.unwired.common.util.UWInventoryHandler;
+import com.mr208.unwired.network.NetworkHandler;
+import com.mr208.unwired.network.packet.SyncEnergyPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -13,18 +16,27 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.SoupItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MetabolicGenTile extends UWEnergyTile implements UWInventory, INamedContainerProvider
 {
@@ -42,6 +54,9 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 	private boolean processing;
 	private float processingTime = 0;
 	
+	private List<Direction> directionCache = new ArrayList<>();
+	private int cacheCounter = 0;
+	
 	NonNullList<ItemStack> inventory = NonNullList.withSize(METABOLIC_INVENTORY_SLOTS, ItemStack.EMPTY);
 	LazyOptional<IItemHandler> itemHandler = registerCapability(new UWInventoryHandler(inventory.size(), this));
 	
@@ -53,59 +68,111 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 	@Override
 	public UWEnergyStorage createEnergyStorage()
 	{
-		return new UWEnergyStorage(40000, 80);
+		return new UWEnergyStorage(Config.METABOLIC_GENERATOR_CAPACITY.get(), 80);
 	}
+	
 	
 	@Override
 	public void tick()
 	{
-		if(processing)
+		if(!world.isRemote())
 		{
-			processingTime--;
-			if(processingTime <= 0)
-				processing = false;
-			
-			receiveEnergy(METABOLIC_ENERGY_PER_TIC,false);
-		}
-		else
-		{
-			if(getEnergyStored() != getMaxEnergyStored() && !inventory.get(SLOT_FOOD).isEmpty())
+			if(processing)
 			{
-				Food stackFood = inventory.get(SLOT_FOOD).getItem().getFood();
+				processingTime--;
+				if(processingTime<=0)
+					processing=false;
 				
-				float foodModifier = (stackFood.getHealing() * stackFood.getSaturation()) * 100;
+				receiveEnergy(METABOLIC_ENERGY_PER_TIC, false);
+				syncEnergy();
 				
-				inventory.get(SLOT_FOOD).shrink(1);
-				
-				processing = true;
-				processingTime = foodModifier;
-				markDirty();
-			}
-		}
-		
-		if(!inventory.get(0).isEmpty())
-		{
-			if(!world.isRemote)
+			} else
 			{
-				int stored = EnergyUtil.getEnergyStored(inventory.get(0));
-				int max = EnergyUtil.getMaxEnergyStored(inventory.get(0));
-				
-				int space = max-stored;
-				
-				if(space> 0)
+				if(getEnergyStored()!=getMaxEnergyStored()&&!inventory.get(SLOT_FOOD).isEmpty()&&(inventory.get(SLOT_CONTAINER).isEmpty()||(inventory.get(SLOT_FOOD).getContainerItem().isEmpty())&&((inventory.get(SLOT_CONTAINER).getItem()==inventory.get(SLOT_FOOD).getContainerItem().getItem())||(inventory.get(SLOT_FOOD).getItem() instanceof SoupItem&&inventory.get(SLOT_CONTAINER).getItem()==Items.BOWL)&&inventory.get(SLOT_CONTAINER).getCount()<inventory.get(SLOT_CONTAINER).getMaxStackSize())))
 				{
-					int energyPre = (10 * stored)/max;
+					Food stackFood=inventory.get(SLOT_FOOD).getItem().getFood();
 					
-					int insert = Math.min(80, space);
-					int accepted = Math.min(EnergyUtil.extractEnergy(this,insert, true), EnergyUtil.insertEnergy(inventory.get(0), insert, true));
+					float foodModifier=(stackFood.getHealing()*stackFood.getSaturation())*100;
 					
-					if((accepted = EnergyUtil.extractEnergy(this, accepted, false)) > 0)
-						stored += EnergyUtil.insertEnergy(inventory.get(0), accepted, false);
+					if(inventory.get(SLOT_FOOD).hasContainerItem()||inventory.get(SLOT_FOOD).getItem() instanceof SoupItem)
+					{
+						if(inventory.get(SLOT_CONTAINER).isEmpty())
+						{
+							if(inventory.get(SLOT_FOOD).getItem() instanceof SoupItem)
+								inventory.set(SLOT_CONTAINER, new ItemStack(Items.BOWL));
+							else
+								inventory.set(SLOT_CONTAINER, inventory.get(SLOT_FOOD).getContainerItem().copy());
+						} else
+						{
+							ItemStack temp=inventory.get(SLOT_CONTAINER).copy();
+							temp.grow(1);
+							inventory.set(SLOT_CONTAINER, temp);
+						}
+					}
+					inventory.get(SLOT_FOOD).shrink(1);
 					
-					int energyPost = (10*stored)/max;
 					
-					if(energyPost!=energyPre)
+					processing=true;
+					processingTime=foodModifier;
+					markDirty();
+				}
+			}
+			
+			if(!inventory.get(0).isEmpty())
+			{
+				if(!world.isRemote)
+				{
+					int stored=EnergyUtil.getEnergyStored(inventory.get(0));
+					int max=EnergyUtil.getMaxEnergyStored(inventory.get(0));
+					
+					int space=max-stored;
+					
+					if(space>0)
+					{
+						int insert=Math.min(80, space);
+						int accepted=Math.min(EnergyUtil.extractEnergy(this, insert, true), EnergyUtil.insertEnergy(inventory.get(0), insert, true));
+						
+						if((accepted=EnergyUtil.extractEnergy(this, accepted, false))>0)
+							stored+=EnergyUtil.insertEnergy(inventory.get(0), accepted, false);
+						
 						this.markDirty();
+						syncEnergy();
+					}
+				}
+			}
+			
+			if(this.directionCache.isEmpty()||cacheCounter>30)
+			{
+				for(Direction direction : Direction.values())
+				{
+					TileEntity tile=world.getTileEntity(this.pos.add(direction.getXOffset(), direction.getYOffset(), direction.getZOffset()));
+					if(tile!=null&&!tile.isRemoved())
+						if(EnergyUtil.isEnergyReceiver(tile))
+							directionCache.add(direction);
+				}
+				
+				this.cacheCounter=0;
+			} else
+			{
+				this.cacheCounter++;
+			}
+			
+			
+			for(Direction direction : directionCache)
+			{
+				TileEntity tile=world.getTileEntity(this.pos.add(direction.getXOffset(), direction.getYOffset(), direction.getZOffset()));
+				if(tile!=null&&!tile.isRemoved())
+				{
+					int insert=Math.min(80, getEnergyStored());
+					int accepted=Math.min(EnergyUtil.extractEnergy(this, direction, insert, true), EnergyUtil.insertEnergy(tile, direction.getOpposite(), insert, true));
+					
+					if(accepted!=0)
+					{
+						EnergyUtil.extractEnergy(this, direction, accepted, false);
+						EnergyUtil.insertEnergy(tile, direction.getOpposite(), accepted, false);
+						
+						syncEnergy();
+					}
 				}
 			}
 		}
@@ -151,7 +218,15 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 	@Override
 	public boolean isStackValid(int slot, ItemStack stack)
 	{
-		return true;
+		switch(slot)
+		{
+			case SLOT_BATTERY:
+				return EnergyUtil.isEnergyReceiver(stack);
+			case SLOT_FOOD:
+				return stack.isFood();
+		}
+		
+		return false;
 	}
 	
 	@Override

@@ -1,0 +1,14 @@
+{
+  "parent": "block/cube",
+  "textures":
+  {
+    "up": "unwired:block/generator_metabolic_top",
+    "down": "unwired:block/frame_polymer",
+    "north": "unwired:block/generator_metabolic_front",
+    "south": "unwired:block/generator_metabolic_side",
+    "east": "unwired:block/generator_metabolic_side",
+    "west": "unwired:block/generator_metabolic_side",
+    "particle": "unwired:block/generator_metabolic_front"
+  }
+
+}

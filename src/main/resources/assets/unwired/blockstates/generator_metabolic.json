@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model": "unwired:block/generator_metabolic", "y":180},
+    "facing=south": {"model": "unwired:block/generator_metabolic"},
+    "facing=west": {"model": "unwired:block/generator_metabolic", "y":90},
+    "facing=east": {"model": "unwired:block/generator_metabolic", "y":270}
+  }
+}

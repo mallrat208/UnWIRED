@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "unwired:cells",
+  "pattern": [
+    "NRN",
+    "PGP",
+    "POP"
+  ],
+  "key": {
+    "N": {
+      "tag": "forge:nuggets/iron"
+    },
+    "P": {
+      "tag": "forge:plates/plastic"
+    },
+    "G": {
+      "tag": "forge:ingots/gold"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "O": {
+      "item": "unwired:inert_goo"
+    }
+  },
+  "result": {
+    "item": "unwired:cell_bio"
+  }
+}

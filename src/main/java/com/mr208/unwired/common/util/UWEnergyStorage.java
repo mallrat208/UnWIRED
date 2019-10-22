@@ -26,6 +26,18 @@ public class UWEnergyStorage extends EnergyStorage implements IEnergyStorage
 		super(capacity, maxReceive, maxExtract, energy);
 	}
 	
+	@Override
+	public int receiveEnergy(int maxReceive, boolean simulate)
+	{
+		return super.receiveEnergy(maxReceive, simulate);
+	}
+	
+	@Override
+	public int extractEnergy(int maxExtract, boolean simulate)
+	{
+		return super.extractEnergy(maxExtract, simulate);
+	}
+	
 	public void setEnergy(int amount)
 	{
 		this.energy = Math.max(0,Math.min(getMaxEnergyStored(), amount));
@@ -43,17 +55,11 @@ public class UWEnergyStorage extends EnergyStorage implements IEnergyStorage
 	
 	public void writeToNBT(CompoundNBT compound)
 	{
-		compound.putInt("Capacity", this.capacity);
-		compound.putInt("Energy", this.energy);
-		compound.putInt("MaxReceive", this.maxReceive);
-		compound.putInt("MaxExtract", this.maxExtract);
+		compound.putInt("Energy", energy);
 	}
 	
 	public void readFromNBT(CompoundNBT compound)
 	{
-		this.capacity = compound.getInt("Capacity");
-		this.energy = Math.max(0,compound.getInt("Energy"));
-		this.maxReceive = compound.getInt("MaxReceive");
-		this.maxExtract = compound.getInt("MaxExtract");
+		energy = compound.getInt("Energy");
 	}
 }

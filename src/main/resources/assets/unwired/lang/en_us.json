@@ -70,7 +70,11 @@
   "tooltip.unwired.wip":"WIP - Does Not Work Properly",
   "container.unwired.metabolic_generator":"Metabolic Generator",
   "tooltip.unwired.energy": "Energy: %1$s / %2$s ",
-  "item.unwired.cell_bio": "Bio Cell"
-
-
+  "item.unwired.cell_bio": "BioPolymer Cell",
+  "item.unwired.cell_dense": "Dense Carbon Cell",
+  "tooltip.unwired.slot.food": "Food Slot",
+  "tooltip.unwired.slot.charge": "Charge Slot",
+  "tooltip.unwired.slot.output": "Output Slot",
+  "block.unwired.generator_metabolic": "Metabolic Generator",
+  "unwired":"UnWIRED"
 }

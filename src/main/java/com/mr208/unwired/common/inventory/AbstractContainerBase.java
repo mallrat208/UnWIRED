@@ -1,17 +1,42 @@
 package com.mr208.unwired.common.inventory;
 
+import com.mr208.unwired.common.tile.UWEnergyTile;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractContainerBase extends Container
+public abstract class AbstractContainerBase<T extends TileEntity> extends Container
 {
+	protected T tile;
 	protected AbstractContainerBase(@Nullable ContainerType<?> type, int id)
 	{
 		super(type, id);
+		
+		if(tile instanceof UWEnergyTile && !tile.getWorld().isRemote)
+		{
+			((UWEnergyTile)tile).syncEnergy();
+		}
+	}
+	
+	public int getEnergy()
+	{
+		return tile.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
+	}
+	
+	public int getMaxEnergy()
+	{
+		return tile.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getMaxEnergyStored).orElse(0);
+	}
+	
+	public float getEnergyPercentage()
+	{
+		return tile.getCapability(CapabilityEnergy.ENERGY).map(energy ->((float)energy.getEnergyStored() / (float)energy.getMaxEnergyStored())).orElse(0f);
 	}
 	
 	protected int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx)

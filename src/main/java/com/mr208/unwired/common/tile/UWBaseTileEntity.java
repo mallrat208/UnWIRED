@@ -43,23 +43,19 @@ public abstract class UWBaseTileEntity extends TileEntity
 	@Override
 	public SUpdateTileEntityPacket getUpdatePacket()
 	{
-		CompoundNBT compound = new CompoundNBT();
-		this.writeCustomNBT(compound, true);
-		return new SUpdateTileEntityPacket(this.pos, 3, compound);
+		return new SUpdateTileEntityPacket(this.pos, 9, getUpdateTag());
 	}
 	
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
 	{
-		this.readCustomNBT(pkt.getNbtCompound(), true);
+		read(pkt.getNbtCompound());
 	}
 	
 	@Override
 	public CompoundNBT getUpdateTag()
 	{
-		CompoundNBT compound = super.getUpdateTag();
-		writeCustomNBT(compound, true);
-		return compound;
+		return write(new CompoundNBT());
 	}
 	
 	protected <T> LazyOptional<T> registerCapability(T val)

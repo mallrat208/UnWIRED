@@ -1,6 +1,8 @@
 package com.mr208.unwired.common.tile;
 
 import com.mr208.unwired.common.util.UWEnergyStorage;
+import com.mr208.unwired.network.NetworkHandler;
+import com.mr208.unwired.network.packet.SyncEnergyPacket;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -10,6 +12,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -29,6 +32,11 @@ public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergySt
 	public abstract UWEnergyStorage createEnergyStorage();
 	
 	public abstract void tick();
+	
+	public void syncEnergy()
+	{
+		NetworkHandler.sendToTrackingPlayers(this, new SyncEnergyPacket(this.pos, getEnergyStored()));
+	}
 	
 	public abstract boolean canExtract();
 	
@@ -59,7 +67,6 @@ public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergySt
 		energyStorage.writeToNBT(compound);
 	}
 	
-	
 	@Override
 	public int receiveEnergy(int energy, boolean simulate)
 	{
@@ -82,5 +89,10 @@ public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergySt
 	public int getMaxEnergyStored()
 	{
 		return energyStorage.getMaxEnergyStored();
+	}
+	
+	public void setEnergyStored(int energy)
+	{
+		energyStorage.setEnergy(energy);
 	}
 }
