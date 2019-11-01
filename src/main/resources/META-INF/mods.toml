@@ -6,7 +6,7 @@ authors="mallrat208"
 
 [[mods]]
 modId="unwired"
-version="0.1.5"
+version="0.1.6"
 displayName="UnWIRED"
 # updateJSONURL="http://myurl.me/" #optional
 description="Sci-Fi and Tech meets Minecraft"

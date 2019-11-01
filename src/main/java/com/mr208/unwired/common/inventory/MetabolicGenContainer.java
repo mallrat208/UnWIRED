@@ -1,26 +1,28 @@
 package com.mr208.unwired.common.inventory;
 
+import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.common.inventory.UWSlot.Charge;
 import com.mr208.unwired.common.inventory.UWSlot.Food;
 import com.mr208.unwired.common.inventory.UWSlot.Output;
 import com.mr208.unwired.common.content.ModBlocks;
 import com.mr208.unwired.common.content.ModContainers;
-import com.mr208.unwired.common.util.EnergyUtil;
+import com.mr208.unwired.common.tile.MetabolicGenTile;
+import com.mr208.unwired.common.util.EnergyUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 
+import net.minecraft.inventory.container.FurnaceContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class MetabolicGenContainer extends AbstractContainerBase
 {
-	private PlayerEntity player;
-	private IItemHandler playerInv;
+	IntReferenceHolder holderProgress;
 	
 	public MetabolicGenContainer(int id, PlayerInventory playerInventory)
 	{
@@ -35,13 +37,37 @@ public class MetabolicGenContainer extends AbstractContainerBase
 		this.player = playerInventory.player;
 		this.playerInv = new InvWrapper(playerInventory);
 		
+		
+		
 		tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
 			addSlot(new Charge(this,handler,0, 10,61));
 			addSlot(new Food(this,handler,1, 82,36));
 			addSlot(new Output(this,handler,2, 82,58));
 		});
 		
+		holderProgress = trackInt(new IntReferenceHolder()
+		{
+			@Override
+			public int get()
+			{
+				return ((MetabolicGenTile)tile).getProgressPercentage();
+			}
+			
+			@Override
+			public void set(int i)
+			{
+			
+			}
+		});
+		
 		addPlayerSlots(playerInv, 8, 84);
+	}
+	
+	
+	
+	public int getProgressPercentage()
+	{
+		return holderProgress.get();
 	}
 	
 	@Override
@@ -68,7 +94,7 @@ public class MetabolicGenContainer extends AbstractContainerBase
 					if(!this.mergeItemStack(slotStack, 1,2, false))
 						return ItemStack.EMPTY;
 				}
-				else if(EnergyUtil.isEnergyReceiver(slotStack))
+				else if(EnergyUtils.isEnergyReceiver(slotStack))
 				{
 					if(!this.mergeItemStack(slotStack,0,1, false))
 						return ItemStack.EMPTY;

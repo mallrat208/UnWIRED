@@ -12,7 +12,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,7 +25,7 @@ public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergySt
 	{
 		super(type);
 		this.energyStorage = createEnergyStorage();
-		this.energyHandler = registerCapability(energyStorage);
+		this.energyHandler = registerCapability(this);
 	}
 	
 	public abstract UWEnergyStorage createEnergyStorage();
@@ -76,7 +75,7 @@ public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergySt
 	@Override
 	public int extractEnergy(int energy, boolean simulate)
 	{
-		return energyStorage.receiveEnergy(energy, simulate);
+		return energyStorage.extractEnergy(energy, simulate);
 	}
 	
 	@Override

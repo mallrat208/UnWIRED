@@ -8,7 +8,7 @@
   ],
   "key": {
     "S": {
-      "item": "minecraft:heart_of_the_sea"
+      "tag": "minecraft:leaves"
     },
     "P": {
       "tag": "forge:plates/plastic"

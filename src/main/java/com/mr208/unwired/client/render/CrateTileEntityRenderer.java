@@ -34,13 +34,13 @@ public class CrateTileEntityRenderer extends TileEntityRenderer<StorageCrateTile
 		float lvt_11_1_ = 0.6666667F;
 		
 		GlStateManager.enableRescaleNormal();
-		//GlStateManager.pushMatrix();
+		GlStateManager.pushMatrix();
 		GlStateManager.scalef(0.6666667F, -0.6666667F, -0.6666667F);
-		//GlStateManager.popMatrix();
+		GlStateManager.popMatrix();
 		FontRenderer fontRenderer = this.getFontRenderer();
-		float lvt_13_1_ = 0.010416667F;
+		float scale = 0.010416667F;
 		GlStateManager.translatef(0.0F, 1.33333334F, 0.046666667F);
-		GlStateManager.scalef(0.010416667F, -0.010416667F, 0.010416667F);
+		GlStateManager.scalef(scale, -scale, scale);
 		GlStateManager.normal3f(0.0F, 0.0F, -0.010416667F);
 		GlStateManager.depthMask(false);
 		int fontColor = crateTile.getTextColor().getTextColor();
@@ -66,17 +66,6 @@ public class CrateTileEntityRenderer extends TileEntityRenderer<StorageCrateTile
 							} else {
 								fontRenderer.drawString("_", (float)textPosX, (float)textPosY, fontColor);
 							}
-						}
-						
-						if (crateTile.getCharLinePos() != crateTile.currentLength()) {
-							int lvt_21_1_ = Math.min(crateTile.currentLength(), crateTile.getCharLinePos());
-							int lvt_22_1_ = Math.max(crateTile.currentLength(), crateTile.getCharLinePos());
-							int lvt_23_1_ = (fontRenderer.getStringWidth(renderString.substring(0, lvt_21_1_)) - fontRenderer.getStringWidth(renderString) / 2) * lvt_18_1_;
-							int lvt_24_1_ = (fontRenderer.getStringWidth(renderString.substring(0, lvt_22_1_)) - fontRenderer.getStringWidth(renderString) / 2) * lvt_18_1_;
-							var10001 = Math.min(lvt_23_1_, lvt_24_1_);
-							int var10003 = Math.max(lvt_23_1_, lvt_24_1_);
-							fontRenderer.getClass();
-							//this.func_217657_a(var10001, textPosX, var10003, textPosY + 9);
 						}
 					}
 				}

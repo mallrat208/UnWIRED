@@ -49,10 +49,8 @@ public class EntityHelper
 		return Config.GREY_GOO_DIMENSION_WHITELIST.get().contains(world.getDimension().getType().getId()) && canEntitySpawn(entityType, world, reason, pos, random);
 	}
 	
-	public static boolean canEntitySpawn(EntityType<? extends LivingEntity> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
-		BlockPos blockpos = pos.down();
-		
-		return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entityType) && world.getLight(blockpos) < 8;
-		//return (reason == SpawnReason.SPAWNER || world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entityType)) && world.getLight(pos.down()) < 8;
+	public static boolean canEntitySpawn(EntityType<? extends LivingEntity> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random random)
+	{
+		return world.getDifficulty() != Difficulty.PEACEFUL && world.getLight(pos) < 8 && (reason == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entityType));
 	}
 }

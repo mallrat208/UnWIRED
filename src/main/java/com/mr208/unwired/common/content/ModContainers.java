@@ -1,6 +1,8 @@
 package com.mr208.unwired.common.content;
 
 import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.common.inventory.FluidDrumContainer;
+import com.mr208.unwired.common.inventory.GooCrecheContainer;
 import com.mr208.unwired.common.inventory.MetabolicGenContainer;
 import com.mr208.unwired.common.inventory.ResequencerContainer;
 import net.minecraft.inventory.container.ContainerType;
@@ -19,6 +21,8 @@ public class ModContainers
 {
 	public static final ContainerType<ResequencerContainer> resequencer = null;
 	public static final ContainerType<MetabolicGenContainer> metabolic_generator = null;
+	public static final ContainerType<GooCrecheContainer> goo_creche = null;
+	public static final ContainerType<FluidDrumContainer> fluid_drum = null;
 	
 	@SubscribeEvent
 	public static void onContainterRegistryEvent(final RegistryEvent.Register<ContainerType<?>> event)
@@ -30,7 +34,15 @@ public class ModContainers
 				IForgeContainerType.create((windowID, inv, data) -> {
 					BlockPos pos = data.readBlockPos();
 					return new MetabolicGenContainer(windowID, inv, pos);
-				}).setRegistryName(UnWIRED.MOD_ID, "metabolic_generator")
+				}).setRegistryName(UnWIRED.MOD_ID, "metabolic_generator"),
+				IForgeContainerType.create((windowID, inv, data) -> {
+					BlockPos pos = data.readBlockPos();
+					return new GooCrecheContainer(windowID, inv, pos);
+				}).setRegistryName(UnWIRED.MOD_ID,"goo_creche"),
+				IForgeContainerType.create((windowID, inv, data) -> {
+					BlockPos pos = data.readBlockPos();
+					return new FluidDrumContainer(windowID, inv, pos);
+				}).setRegistryName(UnWIRED.MOD_ID, "fluid_drum")
 		);
 	}
 }

@@ -1,17 +1,14 @@
 package com.mr208.unwired.common.inventory;
 
-import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.util.EnergyUtil;
+import com.mr208.unwired.common.util.EnergyUtils;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.common.thread.EffectiveSide;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-
-import javax.annotation.Nullable;
 
 public abstract class UWSlot extends SlotItemHandler
 {
@@ -62,14 +59,28 @@ public abstract class UWSlot extends SlotItemHandler
 		public Charge(Container container, IItemHandler itemHandler, int index, int xPos, int yPos)
 		{
 			super(container, itemHandler, index, xPos, yPos);
-			
 		}
 		
 		@Override
 		public boolean isItemValid(ItemStack stack)
 		{
-			LazyOptional<IEnergyStorage> energyCap = EnergyUtil.getEnergyHandler(stack);
+			LazyOptional<IEnergyStorage> energyCap = EnergyUtils.getEnergyHandler(stack);
 			return energyCap.isPresent();
+		}
+	}
+	
+	public static class Fluid extends UWSlot
+	{
+		public Fluid(Container container, IItemHandler itemHandler, int index, int xPos, int yPos)
+		{
+			super(container, itemHandler, index, xPos, yPos);
+		}
+		
+		@Override
+		public boolean isItemValid(ItemStack stack)
+		{
+			LazyOptional<IFluidHandlerItem> fluidCap =FluidUtil.getFluidHandler(stack);
+			return fluidCap.isPresent();
 		}
 	}
 }

@@ -13,10 +13,8 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 public class FluidHelper
 {
 	public static FluidAttributes.Builder nano_fluid_attributes = FluidAttributes.builder(new ResourceLocation(UnWIRED.MOD_ID,"fluid/nano_fluid_source"),new ResourceLocation(UnWIRED.MOD_ID, "fluid/nano_fluid_flowing"))
-			.color(0xFFDFDFDF)
 			.density(2000)
 			.luminosity(14)
-			.overlay(new ResourceLocation("minecraft","block/water_overlay"))
 			.sound(SoundEvents.ITEM_BUCKET_FILL_LAVA,SoundEvents.ITEM_BUCKET_EMPTY_LAVA)
 			.temperature(300);
 	

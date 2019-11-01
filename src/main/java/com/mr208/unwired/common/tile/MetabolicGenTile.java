@@ -3,12 +3,10 @@ package com.mr208.unwired.common.tile;
 import com.mr208.unwired.Config;
 import com.mr208.unwired.common.content.ModTileEntities;
 import com.mr208.unwired.common.inventory.MetabolicGenContainer;
-import com.mr208.unwired.common.util.EnergyUtil;
+import com.mr208.unwired.common.util.EnergyUtils;
 import com.mr208.unwired.common.util.UWEnergyStorage;
 import com.mr208.unwired.common.util.UWInventory;
 import com.mr208.unwired.common.util.UWInventoryHandler;
-import com.mr208.unwired.network.NetworkHandler;
-import com.mr208.unwired.network.packet.SyncEnergyPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -26,12 +24,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -52,6 +46,7 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 	
 	
 	private boolean processing;
+	private float processingMax = 0;
 	private float processingTime = 0;
 	
 	private List<Direction> directionCache = new ArrayList<>();
@@ -71,29 +66,37 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 		return new UWEnergyStorage(Config.METABOLIC_GENERATOR_CAPACITY.get(), 80);
 	}
 	
+	public int getProgressPercentage()
+	{
+		return (int)((processingTime/processingMax) * (float)100);
+	}
 	
 	@Override
 	public void tick()
 	{
-		if(!world.isRemote())
+
+		if(processing)
 		{
-			if(processing)
+			processingTime--;
+			if(processingTime<=0)
+				processing=false;
+			
+			if(!world.isRemote())
 			{
-				processingTime--;
-				if(processingTime<=0)
-					processing=false;
-				
 				receiveEnergy(METABOLIC_ENERGY_PER_TIC, false);
 				syncEnergy();
-				
-			} else
+			}
+			
+		} else
+		{
+			if(getEnergyStored()!=getMaxEnergyStored()&&!inventory.get(SLOT_FOOD).isEmpty()&&(!inventory.get(SLOT_FOOD).hasContainerItem()||inventory.get(SLOT_CONTAINER).isEmpty()||(inventory.get(SLOT_FOOD).getContainerItem().isEmpty())&&((inventory.get(SLOT_CONTAINER).getItem()==inventory.get(SLOT_FOOD).getContainerItem().getItem())||(inventory.get(SLOT_FOOD).getItem() instanceof SoupItem&&inventory.get(SLOT_CONTAINER).getItem()==Items.BOWL)&&inventory.get(SLOT_CONTAINER).getCount()<inventory.get(SLOT_CONTAINER).getMaxStackSize())))
 			{
-				if(getEnergyStored()!=getMaxEnergyStored()&&!inventory.get(SLOT_FOOD).isEmpty()&&(inventory.get(SLOT_CONTAINER).isEmpty()||(inventory.get(SLOT_FOOD).getContainerItem().isEmpty())&&((inventory.get(SLOT_CONTAINER).getItem()==inventory.get(SLOT_FOOD).getContainerItem().getItem())||(inventory.get(SLOT_FOOD).getItem() instanceof SoupItem&&inventory.get(SLOT_CONTAINER).getItem()==Items.BOWL)&&inventory.get(SLOT_CONTAINER).getCount()<inventory.get(SLOT_CONTAINER).getMaxStackSize())))
+				Food stackFood=inventory.get(SLOT_FOOD).getItem().getFood();
+				
+				float foodModifier=(stackFood.getHealing()*stackFood.getSaturation())*100;
+				
+				if(!world.isRemote())
 				{
-					Food stackFood=inventory.get(SLOT_FOOD).getItem().getFood();
-					
-					float foodModifier=(stackFood.getHealing()*stackFood.getSaturation())*100;
-					
 					if(inventory.get(SLOT_FOOD).hasContainerItem()||inventory.get(SLOT_FOOD).getItem() instanceof SoupItem)
 					{
 						if(inventory.get(SLOT_CONTAINER).isEmpty())
@@ -111,29 +114,34 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 					}
 					inventory.get(SLOT_FOOD).shrink(1);
 					
-					
-					processing=true;
-					processingTime=foodModifier;
 					markDirty();
 				}
+				
+				processing=true;
+				processingTime=foodModifier;
+				processingMax= foodModifier;
+				
 			}
-			
+		}
+	
+		if(!world.isRemote())
+		{
 			if(!inventory.get(0).isEmpty())
 			{
 				if(!world.isRemote)
 				{
-					int stored=EnergyUtil.getEnergyStored(inventory.get(0));
-					int max=EnergyUtil.getMaxEnergyStored(inventory.get(0));
+					int stored=EnergyUtils.getEnergyStored(inventory.get(0));
+					int max=EnergyUtils.getMaxEnergyStored(inventory.get(0));
 					
 					int space=max-stored;
 					
 					if(space>0)
 					{
 						int insert=Math.min(80, space);
-						int accepted=Math.min(EnergyUtil.extractEnergy(this, insert, true), EnergyUtil.insertEnergy(inventory.get(0), insert, true));
+						int accepted=Math.min(EnergyUtils.extractEnergy(this, insert, true), EnergyUtils.insertEnergy(inventory.get(0), insert, true));
 						
-						if((accepted=EnergyUtil.extractEnergy(this, accepted, false))>0)
-							stored+=EnergyUtil.insertEnergy(inventory.get(0), accepted, false);
+						if((accepted=EnergyUtils.extractEnergy(this, accepted, false))>0)
+							stored+=EnergyUtils.insertEnergy(inventory.get(0), accepted, false);
 						
 						this.markDirty();
 						syncEnergy();
@@ -141,20 +149,22 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 				}
 			}
 			
-			if(this.directionCache.isEmpty()||cacheCounter>30)
+			if(directionCache.isEmpty()||cacheCounter>30)
 			{
+				directionCache.clear();
+				
 				for(Direction direction : Direction.values())
 				{
-					TileEntity tile=world.getTileEntity(this.pos.add(direction.getXOffset(), direction.getYOffset(), direction.getZOffset()));
+					TileEntity tile=world.getTileEntity(pos.add(direction.getXOffset(), direction.getYOffset(), direction.getZOffset()));
 					if(tile!=null&&!tile.isRemoved())
-						if(EnergyUtil.isEnergyReceiver(tile))
+						if(EnergyUtils.isEnergyReceiver(tile))
 							directionCache.add(direction);
 				}
 				
-				this.cacheCounter=0;
+				cacheCounter=0;
 			} else
 			{
-				this.cacheCounter++;
+				cacheCounter++;
 			}
 			
 			
@@ -164,12 +174,12 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 				if(tile!=null&&!tile.isRemoved())
 				{
 					int insert=Math.min(80, getEnergyStored());
-					int accepted=Math.min(EnergyUtil.extractEnergy(this, direction, insert, true), EnergyUtil.insertEnergy(tile, direction.getOpposite(), insert, true));
+					int accepted=Math.min(EnergyUtils.extractEnergy(this, direction, insert, true), EnergyUtils.insertEnergy(tile, direction.getOpposite(), insert, true));
 					
 					if(accepted!=0)
 					{
-						EnergyUtil.extractEnergy(this, direction, accepted, false);
-						EnergyUtil.insertEnergy(tile, direction.getOpposite(), accepted, false);
+						EnergyUtils.extractEnergy(this, direction, accepted, false);
+						EnergyUtils.insertEnergy(tile, direction.getOpposite(), accepted, false);
 						
 						syncEnergy();
 					}
@@ -221,7 +231,7 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 		switch(slot)
 		{
 			case SLOT_BATTERY:
-				return EnergyUtil.isEnergyReceiver(stack);
+				return EnergyUtils.isEnergyReceiver(stack);
 			case SLOT_FOOD:
 				return stack.isFood();
 		}
@@ -251,17 +261,19 @@ public class MetabolicGenTile extends UWEnergyTile implements UWInventory, IName
 	public void readCustomNBT(CompoundNBT compound, boolean descPacket)
 	{
 		super.readCustomNBT(compound, descPacket);
-		ItemStackHelper.saveAllItems(compound, inventory);
+		ItemStackHelper.loadAllItems(compound, inventory);
 		this.processing = compound.getBoolean("Processing");
 		this.processingTime = compound.getFloat("ProcessingTime");
+		this.processingMax = compound.getFloat("ProcessingMax");
 	}
 	
 	@Override
 	public void writeCustomNBT(CompoundNBT compound, boolean descPacket)
 	{
 		super.writeCustomNBT(compound, descPacket);
-		ItemStackHelper.loadAllItems(compound, inventory);
+		ItemStackHelper.saveAllItems(compound, inventory);
 		compound.putBoolean("Processing", this.processing);
 		compound.putFloat("ProcessingTime", this.processingTime);
+		compound.putFloat("ProcessingMax", this.processingMax);
 	}
 }

@@ -1,6 +1,8 @@
 package com.mr208.unwired;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
 public interface IProxy
@@ -17,4 +19,6 @@ public interface IProxy
 	default void spawnConversionParticles(BlockPos pos) {}
 	
 	default void syncEnergy(BlockPos pos, int energy) {}
+	
+	default void syncFluid(BlockPos pos, CompoundNBT tankTag) {}
 }

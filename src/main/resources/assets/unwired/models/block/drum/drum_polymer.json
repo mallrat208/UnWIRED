@@ -1,0 +1,11 @@
+{
+  "parent": "unwired:block/drum/drum_base",
+  "textures":
+  {
+    "particle": "unwired:block/drum/drum_polymer_end",
+    "sides": "unwired:block/drum/drum_polymer_side",
+    "top": "unwired:block/drum/drum_polymer_top",
+    "bottom": "unwired:block/drum/drum_polymer_bottom",
+    "overlay": "unwired:block/drum/drum_polymer_side_overlay"
+  }
+}

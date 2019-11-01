@@ -1,0 +1,16 @@
+{
+  "parent": "item/generated",
+  "textures": {
+	"layer2": "unwired:item/canister/canister_glass_layer",
+    "layer1": "unwired:item/canister/canister_fluid_layer",
+    "layer0": "unwired:item/canister/canister_base_layer"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "filled": 1
+      },
+     "model": "unwired:item/canister_empty"
+    }
+  ]
+}

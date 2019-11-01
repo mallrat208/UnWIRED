@@ -1,6 +1,9 @@
 package com.mr208.unwired.common.content;
 
 import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.common.block.FluidDrum;
+import com.mr208.unwired.common.block.FluidDrum.Drum;
+import com.mr208.unwired.common.block.GooCreche;
 import com.mr208.unwired.common.block.MetabolicGenerator;
 import com.mr208.unwired.common.block.PlexiglassBlock;
 import com.mr208.unwired.common.block.Resequencer;
@@ -33,13 +36,20 @@ public class ModBlocks
 	
 	public static final Block plexiglass = null;
 	public static final Block smartglass = null;
+	
 	public static final Block resequencer = null;
 	
 	public static final Block block_polymer = null;
+	
 	public static final Block crate_polymer = null;
-	public static final Block generator_metabolic = null;
+	public static final Block drum_polymer = null;
+	
 	public static final Block soy_crop = null;
 	public static final Block nano_fluid_block = null;
+	
+	public static final Block generator_metabolic = null;
+	
+	public static final Block goo_creche = null;
 	
 	public static class Materials
 	{
@@ -60,7 +70,9 @@ public class ModBlocks
 				new UWFluidBlock(() -> (FlowingFluid) ModFluids.nano_fluid_source, Block.Properties.create(Material.WATER).doesNotBlockMovement().noDrops(), "nano_fluid"),
 				new Resequencer(),
 				new StorageCrate(Crate.POLYMER),
-				new MetabolicGenerator()
+				new MetabolicGenerator(),
+				new GooCreche(),
+				new FluidDrum(Drum.POLYMER)
 		);
 	}
 	

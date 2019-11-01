@@ -31,4 +31,6 @@ public interface IWritable
 	TileEntity getTile();
 	DyeColor getTextColor();
 	boolean setTextColor(DyeColor dyeColor);
+	
+	default float getOffset() {return 0f;}
 }

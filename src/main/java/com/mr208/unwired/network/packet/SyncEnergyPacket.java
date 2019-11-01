@@ -1,7 +1,6 @@
 package com.mr208.unwired.network.packet;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.network.packet.RebreatherParticlePacket.Handler;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
@@ -25,7 +24,7 @@ public class SyncEnergyPacket
 		buf.writeInt(msg.energy);
 	}
 	
-	public static SyncEnergyPacket decoded(PacketBuffer buf)
+	public static SyncEnergyPacket decode(PacketBuffer buf)
 	{
 		return new SyncEnergyPacket(buf.readBlockPos(), buf.readInt());
 	}

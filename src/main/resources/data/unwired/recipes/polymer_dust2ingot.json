@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "unwired:dust_polymer"
+  },
+  "result": "unwired:ingot_polymer",
+  "experience": 0.3,
+  "cookingtime": 200
+}

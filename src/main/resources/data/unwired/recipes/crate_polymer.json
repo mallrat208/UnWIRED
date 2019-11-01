@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "group": "unwired:crate",
   "pattern": [
-    " P ",
-    "PCP",
-    " P "
+    "PPP",
+    "P P",
+    "PPP"
   ],
   "key": {
     "P": {
       "tag": "forge:ingots/plastic"
-    },
-    "C": {
-      "tag": "forge:chests"
     }
   },
   "result": {

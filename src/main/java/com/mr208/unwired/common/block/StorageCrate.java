@@ -27,6 +27,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Plane;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -38,6 +39,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
 
@@ -102,9 +104,16 @@ public class StorageCrate extends UWBlock implements IWaterLoggable, ITileEntity
 		if(state.getBlock() != newState.getBlock())
 		{
 			TileEntity tile = worldIn.getTileEntity(pos);
-			if(tile instanceof IInventory)
+			if(tile!=null && tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent())
 			{
-				InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)tile);
+				tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
+					NonNullList<ItemStack> listDrops = NonNullList.create();
+					for(int i = 0; i < itemHandler.getSlots(); i++)
+						if(!itemHandler.getStackInSlot(0).isEmpty())
+							listDrops.add(itemHandler.getStackInSlot(i));
+					
+					InventoryHelper.dropItems(worldIn, pos, listDrops);
+				});
 				worldIn.updateComparatorOutputLevel(pos,this);
 			}
 			
@@ -159,7 +168,6 @@ public class StorageCrate extends UWBlock implements IWaterLoggable, ITileEntity
 		return SHAPE;
 	}
 	
-	//todo: This definitely needs a tile entity to work
 	@Nullable
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world)

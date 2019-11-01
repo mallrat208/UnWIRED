@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+
 public class MetabolicGenScreen extends ContainerScreenBase<MetabolicGenContainer>
 {
 	public MetabolicGenScreen(MetabolicGenContainer screenContainer, PlayerInventory inv, ITextComponent titleIn)
@@ -21,9 +22,14 @@ public class MetabolicGenScreen extends ContainerScreenBase<MetabolicGenContaine
 	@Override
 	protected void renderHoveredToolTip(int mouseX, int mouseY)
 	{
-		if(isCursorOnEnergyBar(9,10,mouseX, mouseY))
+		if(isCursorOnBar(9,10,mouseX, mouseY))
 		{
-			ITextComponent textComponent=new TranslationTextComponent("tooltip.unwired.energy", container.getEnergy(), container.getMaxEnergy());
+			ITextComponent textComponent=new TranslationTextComponent("tooltip.unwired.energy", container.getEnergyStored(), container.getMaxEnergy());
+			renderTooltip(textComponent.getFormattedText(), mouseX, mouseY);
+		}
+		else if(isCursorOnProgress(102,35, mouseX, mouseY))
+		{
+			ITextComponent textComponent = new TranslationTextComponent("tooltip.unwired.progress", container.getProgressPercentage());
 			renderTooltip(textComponent.getFormattedText(), mouseX, mouseY);
 		}
 		
@@ -42,5 +48,6 @@ public class MetabolicGenScreen extends ContainerScreenBase<MetabolicGenContaine
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		
 		drawEnergyBar(9,10,container.getEnergyPercentage());
+		drawProgressBar(102,35, ((float)container.getProgressPercentage()/(float)100));
 	}
 }

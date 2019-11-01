@@ -4,6 +4,7 @@ import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.network.packet.ConversionParticlePacket;
 import com.mr208.unwired.network.packet.RebreatherParticlePacket;
 import com.mr208.unwired.network.packet.SyncEnergyPacket;
+import com.mr208.unwired.network.packet.SyncFluidPacket;
 import com.mr208.unwired.network.packet.WritableColorPacket;
 import com.mr208.unwired.network.packet.WritableMenuPacket;
 import com.mr208.unwired.network.packet.WritableSyncPacket;
@@ -64,8 +65,14 @@ public class NetworkHandler
 		instance.registerMessage(
 				id++, SyncEnergyPacket.class,
 				SyncEnergyPacket::encode,
-				SyncEnergyPacket::decoded,
+				SyncEnergyPacket::decode,
 				SyncEnergyPacket.Handler::process);
+		
+		instance.registerMessage(
+				id++, SyncFluidPacket.class,
+				SyncFluidPacket::encode,
+				SyncFluidPacket::decode,
+				SyncFluidPacket.Handler::process);
 	}
 	
 	public static void sendToTrackingPlayers(TileEntity tile, Object msg)

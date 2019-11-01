@@ -15,7 +15,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class EnergyUtil
+public class EnergyUtils
 {
 	public static boolean isEnergyProvider(ICapabilityProvider provider)
 	{

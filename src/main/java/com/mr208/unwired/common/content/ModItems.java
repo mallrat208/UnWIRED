@@ -2,11 +2,16 @@ package com.mr208.unwired.common.content;
 
 import com.mr208.unwired.Config;
 import com.mr208.unwired.UnWIRED;
+import com.mr208.unwired.common.block.FluidDrum.Drum;
 import com.mr208.unwired.common.block.StorageCrate.Crate;
 import com.mr208.unwired.common.item.ActivatedGoo;
 import com.mr208.unwired.common.item.CrateItem;
+import com.mr208.unwired.common.item.DrumItem;
 import com.mr208.unwired.common.item.EnergyItem;
+import com.mr208.unwired.common.item.FluidCanister;
+import com.mr208.unwired.common.item.FluidCanister.CanisterType;
 import com.mr208.unwired.common.item.LabelMarker;
+import com.mr208.unwired.common.item.SafteyShears;
 import com.mr208.unwired.common.item.SoybeanItem;
 import com.mr208.unwired.common.item.base.UWBase;
 import com.mr208.unwired.common.item.base.UWBlockItem;
@@ -22,6 +27,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
@@ -62,9 +68,13 @@ public class ModItems
 	public static final Item boots_flippers = null;
 	public static final Item boots_moon = null;
 	public static final Item crate_polymer_light_gray = null;
+	public static final Item drum_polymer_light_gray = null;
 	public static final Item marker_black = null;
 	public static final Item generator_metabolic = null;
 	public static final Item cell_bio = null;
+	public static final Item goo_creche = null;
+	public static final Item canister_polymer = null;
+	public static final Item saftey_shears = null;
 	
 	@SubscribeEvent
 	public static void onItemRegistryEvent(final RegistryEvent.Register<Item> event)
@@ -97,13 +107,25 @@ public class ModItems
 					}
 				},
 				new UWDirectionalBlockItem(ModBlocks.generator_metabolic),
-				new EnergyItem("cell_bio", Config.TIER_1_CELL_CAPACITY.get())
+				new UWDirectionalBlockItem(ModBlocks.goo_creche){
+					@Override
+					@OnlyIn(Dist.CLIENT)
+					public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
+					{
+						tooltip.add(new TranslationTextComponent("tooltip.unwired.wip"));
+						super.addInformation(stack, worldIn, tooltip, flagIn);
+					}
+				},
+				new EnergyItem("cell_bio", Config.TIER_1_CELL_CAPACITY.get()),
+				new FluidCanister(CanisterType.POLYMER)
+				//new SafteyShears()
 		);
 		
 		for(DyeColor color : DyeColor.values())
 		{
 			registry.register(new LabelMarker(color));
 			registry.register(new CrateItem(ModBlocks.crate_polymer, Crate.POLYMER, color));
+			registry.register(new DrumItem(ModBlocks.drum_polymer, Drum.POLYMER, color));
 		}
 	}
 }

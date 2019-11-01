@@ -32,6 +32,7 @@ public class Config
 	public static ForgeConfigSpec.ConfigValue<List<Integer>> GREY_GOO_DIMENSION_WHITELIST;
 	
 	public static ForgeConfigSpec.BooleanValue ENERGY_CELLS_USE_DURABILITY_BAR;
+	public static ForgeConfigSpec.BooleanValue USE_GRAY_BACKGROUND;
 	
 	public static ForgeConfigSpec.IntValue METABOLIC_GENERATOR_CAPACITY;
 	public static ForgeConfigSpec.IntValue METABOLIC_GENERATOR_RATE;
@@ -53,6 +54,7 @@ public class Config
 		COMMON_BUILDER.push(SUBCATEGORY_GENERATOR);
 		METABOLIC_GENERATOR_CAPACITY = COMMON_BUILDER.defineInRange("Metabolic Generator Capacity", 120000,0, Integer.MAX_VALUE);
 		COMMON_BUILDER.pop();
+		COMMON_BUILDER.pop();
 		
 		COMMON_BUILDER.push(CATEGORY_ENTITIES);
 		COMMON_BUILDER.push(SUBCATEGORY_GREY_GOO);
@@ -60,6 +62,7 @@ public class Config
 		COMMON_BUILDER.pop(2);
 		
 		CLIENT_BUILDER.push(CATEGORY_ACCESSIBILITY);
+		USE_GRAY_BACKGROUND = CLIENT_BUILDER.define("Use Vanilla-like UI's", false);
 		ENERGY_CELLS_USE_DURABILITY_BAR = CLIENT_BUILDER.define("Energy Cells Use Durability Bar", false);
 		CLIENT_BUILDER.pop();
 		

@@ -5,6 +5,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.NonNullSupplier;
 
@@ -50,6 +51,16 @@ public abstract class UWBaseTileEntity extends TileEntity
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
 	{
 		read(pkt.getNbtCompound());
+	}
+	
+	public void syncFluid()
+	{
+	
+	}
+	
+	public void setStoredFluid(CompoundNBT tankTag)
+	{
+	
 	}
 	
 	@Override

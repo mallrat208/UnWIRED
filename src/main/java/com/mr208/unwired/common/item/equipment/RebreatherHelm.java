@@ -2,27 +2,35 @@ package com.mr208.unwired.common.item.equipment;
 
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.client.model.RebreatherModel;
+import com.mr208.unwired.common.content.ModGroups;
 import com.mr208.unwired.common.content.ModItems;
 import com.mr208.unwired.network.NetworkHandler;
 import com.mr208.unwired.network.packet.RebreatherParticlePacket;
 import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
+import net.minecraftforge.event.entity.player.PlayerEvent.Visibility;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 @EventBusSubscriber(bus = Bus.FORGE)
 public class RebreatherHelm extends UWGadget
@@ -33,7 +41,6 @@ public class RebreatherHelm extends UWGadget
 	{
 		super("helmet_rebreather", EquipmentSlotType.HEAD);
 	}
-	
 	
 	@OnlyIn(Dist.CLIENT)
 	@Nullable
