@@ -1,10 +1,10 @@
-package com.mr208.unwired.common.util;
+package com.mr208.unwired.common.util.energy;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class UWEnergyStorage extends EnergyStorage implements IEnergyStorage
+public class UWEnergyStorage extends EnergyStorage
 {
 	public UWEnergyStorage(int capacity)
 	{
@@ -41,6 +41,11 @@ public class UWEnergyStorage extends EnergyStorage implements IEnergyStorage
 	public void setEnergy(int amount)
 	{
 		this.energy = Math.max(0,Math.min(getMaxEnergyStored(), amount));
+	}
+	
+	public void setMaxEnergy(int amount)
+	{
+		this.capacity = amount;
 	}
 	
 	public void addEnergy(int amount)

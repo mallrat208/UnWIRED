@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.function.Function;
 
-public class StorageCrateTile extends LockableLootTileEntity implements ITickableTileEntity, IWritable
+public class StorageCrateTile extends LockableLootTileEntity implements ITickableTileEntity, UWInterfaces.IWritable
 {
 	
 	private int invSize;

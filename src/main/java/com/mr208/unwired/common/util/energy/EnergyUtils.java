@@ -1,4 +1,4 @@
-package com.mr208.unwired.common.util;
+package com.mr208.unwired.common.util.energy;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

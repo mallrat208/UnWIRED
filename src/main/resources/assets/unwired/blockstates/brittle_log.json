@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "unwired:block/brittle_log" },
+    "axis=z":   { "model": "unwired:block/brittle_log", "x": 90 },
+    "axis=x":   { "model": "unwired:block/brittle_log", "x": 90, "y": 90 }
+  }
+}

@@ -1,7 +1,7 @@
 package com.mr208.unwired.common.content;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.fluid.NanoFluid;
+import com.mr208.unwired.common.fluid.GooSlurryFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,8 +14,8 @@ import net.minecraftforge.registries.ObjectHolder;
 @EventBusSubscriber(bus = Bus.MOD)
 public class ModFluids
 {
-	public static final Fluid nano_fluid_source = null;
-	public static final Fluid nano_fluid_flowing = null;
+	public static final Fluid goo_slurry= null;
+	public static final Fluid goo_slurry_flowing= null;
 	
 	@SubscribeEvent
 	public static void onFluidRegistryEvent(final RegistryEvent.Register<Fluid> event)
@@ -23,8 +23,8 @@ public class ModFluids
 		IForgeRegistry<Fluid> registry = event.getRegistry();
 		
 		registry.registerAll(
-				new NanoFluid.Source(),
-				new NanoFluid.Flowing()
+				new GooSlurryFluid.Source(),
+				new GooSlurryFluid.Flowing()
 		);
 	}
 }

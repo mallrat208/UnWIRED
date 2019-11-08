@@ -3,8 +3,8 @@ package com.mr208.unwired.common.tile;
 import com.mr208.unwired.common.content.ModItems;
 import com.mr208.unwired.common.content.ModTileEntities;
 import com.mr208.unwired.common.inventory.GooCrecheContainer;
-import com.mr208.unwired.common.util.EnergyUtils;
-import com.mr208.unwired.common.util.UWEnergyStorage;
+import com.mr208.unwired.common.util.energy.EnergyUtils;
+import com.mr208.unwired.common.util.energy.UWEnergyStorage;
 import com.mr208.unwired.common.util.UWInventory;
 import com.mr208.unwired.common.util.UWInventoryHandler;
 import com.mr208.unwired.libs.TagLib;
@@ -43,7 +43,8 @@ public class GooCrecheTile extends UWEnergyTile implements UWInventory, INamedCo
 	public static final int SLOT_FLUID = 3;
 	
 	private boolean PROCESSING;
-	private float PROCESSING_TIME;
+	private int PROCESSING_TIME;
+	private int PROCESSING_MAX;
 	
 	private int GOO_USES;
 	
@@ -78,30 +79,7 @@ public class GooCrecheTile extends UWEnergyTile implements UWInventory, INamedCo
 				EnergyUtils.insertEnergy(this, accepted, false);
 			
 			this.markDirty();
-			syncEnergy();
 		}
-	}
-	
-	@Override
-	public boolean canExtract()
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean canReceive()
-	{
-		return true;
-	}
-	
-	@Override
-	public int receiveEnergy(int energy, boolean simulate)
-	{
-		int amount = super.receiveEnergy(energy, simulate);
-		if(!world.isRemote() && !simulate )
-			syncEnergy();
-		
-		return amount;
 	}
 	
 	@Nullable
@@ -165,8 +143,9 @@ public class GooCrecheTile extends UWEnergyTile implements UWInventory, INamedCo
 		super.readCustomNBT(compound, descPacket);
 		ItemStackHelper.loadAllItems(compound, INVENTORY);
 		TANK.readFromNBT(compound);
-		this.PROCESSING = compound.getBoolean("Processing");
-		this.PROCESSING_TIME = compound.getFloat("ProcessingTime");
+		PROCESSING = compound.getBoolean("Processing");
+		PROCESSING_TIME = compound.getInt("ProcessingTime");
+		PROCESSING_MAX = compound.getInt("ProcessingMax");
 	}
 	
 	@Override
@@ -176,6 +155,7 @@ public class GooCrecheTile extends UWEnergyTile implements UWInventory, INamedCo
 		ItemStackHelper.saveAllItems(compound, INVENTORY);
 		TANK.writeToNBT(compound);
 		compound.putBoolean("Processing", this.PROCESSING);
-		compound.putFloat("ProcessingTime", this.PROCESSING_TIME);
+		compound.putInt("ProcessingTime", PROCESSING_TIME);
+		compound.putInt("ProcessingMax", PROCESSING_MAX);
 	}
 }

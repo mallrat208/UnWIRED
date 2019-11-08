@@ -4,6 +4,7 @@ import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.common.tile.FluidDrumTile;
 import com.mr208.unwired.common.tile.GooCrecheTile;
 import com.mr208.unwired.common.tile.MetabolicGenTile;
+import com.mr208.unwired.common.tile.PolymerizedLogTile;
 import com.mr208.unwired.common.tile.StorageCrateTile;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
@@ -22,6 +23,8 @@ public class ModTileEntities
 	public static final TileEntityType<GooCrecheTile> goo_creche = null;
 	public static final TileEntityType<FluidDrumTile> fluid_drum = null;
 	
+	public static final TileEntityType<PolymerizedLogTile> polymerized_log = null;
+	
 	@SubscribeEvent
 	public static void onTileEntityRegistryEvent(final RegistryEvent.Register<TileEntityType<?>> event)
 	{
@@ -39,7 +42,10 @@ public class ModTileEntities
 					.setRegistryName(UnWIRED.MOD_ID, "goo_creche"),
 				TileEntityType.Builder.create(FluidDrumTile::new, ModBlocks.drum_polymer)
 					.build(null)
-					.setRegistryName(UnWIRED.MOD_ID, "fluid_drum")
+					.setRegistryName(UnWIRED.MOD_ID, "fluid_drum"),
+				TileEntityType.Builder.create(PolymerizedLogTile::new, ModBlocks.polymerized_log)
+					.build(null)
+					.setRegistryName(UnWIRED.MOD_ID, "polymerized_log")
 		);
 
 	}

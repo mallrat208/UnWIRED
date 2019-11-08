@@ -116,7 +116,7 @@ public abstract class ContainerScreenBase<T extends Container> extends Container
 		int relY=(this.height-this.ySize)/2;
 		
 		this.blit(relX+posX, relY+posY, 176, 0, 18, 48);
-		this.blit(relX+posX, relY+posY+(int)(48-(48*percentage)), 194, 0, 18, (int)(48*percentage));
+		this.blit(relX+posX, relY+posY+Math.max(0,(int)(48-(48*percentage))), 194, 0, 18, (int)(48*percentage));
 	}
 	
 	protected void drawProgressBar(int posX, int posY, float percentage)
@@ -125,7 +125,7 @@ public abstract class ContainerScreenBase<T extends Container> extends Container
 		int relY = (this.height-this.ySize)/2;
 		
 		this.blit(relX + posX, relY+posY, 176,48, 5, 18);
-		this.blit(relX+posX, relY+posY+(int)(18-(18*percentage)), 181,48, 5,(int)(18*percentage));
+		this.blit(relX+posX, relY+posY+Math.max(0,(int)(18-(18*percentage))), 181,48, 5,(int)(18*percentage));
 	}
 	
 	protected void drawFluidTank(int posX, int posY, LazyOptional<IFluidHandler> handler, int tank)
@@ -148,7 +148,7 @@ public abstract class ContainerScreenBase<T extends Container> extends Container
 			Minecraft.getInstance().textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
 			GlStateManager.color3f((col >> 16&255)/255.0f, (col >> 8&255)/255.0f, (col&255)/255.0f);
 			//TODO: Redo to tile the sprite to remove stretching
-			blit(relX+posX+1, relY+posY+1+(int)(46-(46*percentage)), 0, sprite.getWidth(), (int)(46*percentage), sprite);
+			blit(relX+posX+1, relY+posY+1+Math.max(0,(int)(46-(46*percentage))), 0, sprite.getWidth(), (int)(46*percentage), sprite);
 			GlStateManager.popMatrix();
 			GlStateManager.color3f(1f, 1f, 1f);
 			

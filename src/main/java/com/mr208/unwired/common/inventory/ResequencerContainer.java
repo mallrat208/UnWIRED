@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.mr208.unwired.common.content.ModContainers;
 import com.mr208.unwired.libs.TagLib;
 import com.mr208.unwired.common.crafting.RecipeTypes;
-import com.mr208.unwired.common.crafting.ResequencerRecipe;
+import com.mr208.unwired.common.crafting.recipes.ResequencerRecipe;
 import com.mr208.unwired.common.util.NBTHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -75,7 +75,7 @@ public class ResequencerContainer extends Container
 			{
 				if(intReferenceHolder.get() != -1  && intReferenceHolder.get() < getRecipeList().size())
 				{
-					if(inputSlot.getStack().getCount() < getRecipeList().get(intReferenceHolder.get()).getIngredientCount())
+					if(inputSlot.getStack().getCount() < getRecipeList().get(intReferenceHolder.get()).getIngredients().get(0).getMatchingStacks()[0].getCount())
 						return false;
 				}
 				
@@ -86,7 +86,7 @@ public class ResequencerContainer extends Container
 			@Override
 			public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack)
 			{
-				int count = recipes.get(intReferenceHolder.get()).getIngredientCount();
+				int count = recipes.get(intReferenceHolder.get()).getIngredients().get(0).getMatchingStacks()[0].getCount();
 				ItemStack itemStack = inputSlot.decrStackSize(count);
 				if(!itemStack.isEmpty())
 					func_217082_1();
@@ -183,7 +183,7 @@ public class ResequencerContainer extends Container
 			ResequencerRecipe recipe = this.recipes.get(this.intReferenceHolder.get());
 			ItemStack outputStack = recipe.getCraftingResult(this.inventory);
 			
-			if(inputSlot.getStack().getCount() < getRecipeList().get(intReferenceHolder.get()).getIngredientCount())
+			if(inputSlot.getStack().getCount() < getRecipeList().get(intReferenceHolder.get()).getIngredients().get(0).getMatchingStacks()[0].getCount())
 			{
 				outputStack = ItemStack.EMPTY;
 			}
@@ -236,7 +236,7 @@ public class ResequencerContainer extends Container
 			stack = itemstack1.copy();
 			if (index == 1) {
 				
-				if(this.inputSlot.getStack().getCount() < getRecipeList().get(intReferenceHolder.get()).getIngredientCount())
+				if(this.inputSlot.getStack().getCount() < getRecipeList().get(intReferenceHolder.get()).getIngredients().get(0).getMatchingStacks()[0].getCount())
 					return ItemStack.EMPTY;
 				
 				item.onCreated(itemstack1, playerIn.world, playerIn);

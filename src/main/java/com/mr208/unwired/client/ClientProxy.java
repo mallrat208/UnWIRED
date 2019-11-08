@@ -1,10 +1,9 @@
 package com.mr208.unwired.client;
 
 import com.mr208.unwired.client.screen.EditWritableScreen;
-import com.mr208.unwired.common.tile.IWritable;
+import com.mr208.unwired.common.tile.UWInterfaces.IWritable;
 import com.mr208.unwired.IProxy;
 import com.mr208.unwired.common.tile.UWBaseTileEntity;
-import com.mr208.unwired.common.tile.UWEnergyTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
@@ -12,7 +11,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -100,22 +98,6 @@ public class ClientProxy implements IProxy
 					0.8f,
 					00f
 			);
-		}
-	}
-	
-	@Override
-	public void syncEnergy(BlockPos pos, int energy)
-	{
-		World world = getClientWorld();
-		
-		if(world.isBlockLoaded(pos))
-		{
-			TileEntity tileEntity = world.getTileEntity(pos);
-			
-			if(tileEntity instanceof UWEnergyTile)
-			{
-				((UWEnergyTile)tileEntity).setEnergyStored(energy);
-			}
 		}
 	}
 	

@@ -18,7 +18,5 @@ public interface IProxy
 	
 	default void spawnConversionParticles(BlockPos pos) {}
 	
-	default void syncEnergy(BlockPos pos, int energy) {}
-	
 	default void syncFluid(BlockPos pos, CompoundNBT tankTag) {}
 }

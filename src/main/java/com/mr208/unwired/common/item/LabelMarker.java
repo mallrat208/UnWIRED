@@ -1,7 +1,7 @@
 package com.mr208.unwired.common.item;
 
 import com.mr208.unwired.common.content.ModGroups;
-import com.mr208.unwired.common.tile.IWritable;
+import com.mr208.unwired.common.tile.UWInterfaces.IWritable;
 import com.mr208.unwired.common.item.base.UWBase;
 import com.mr208.unwired.network.NetworkHandler;
 import com.mr208.unwired.network.packet.WritableColorPacket;

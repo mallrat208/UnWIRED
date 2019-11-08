@@ -2,7 +2,7 @@ package com.mr208.unwired.client.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.crafting.ResequencerRecipe;
+import com.mr208.unwired.common.crafting.recipes.ResequencerRecipe;
 import com.mr208.unwired.common.inventory.ResequencerContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SimpleSound;
@@ -94,7 +94,7 @@ public class ResequencerScreen extends ContainerScreen<ResequencerContainer>
 			int i1 = p_214142_2_ + l * 18 + 2;
 			this.minecraft.getItemRenderer().renderItemAndEffectIntoGUI(list.get(i).getRecipeOutput(), k, i1);
 			
-			if(this.container.inventorySlots.get(0).getStack().getCount() < this.getContainer().getRecipeList().get(i).getIngredientCount())
+			if(this.container.inventorySlots.get(0).getStack().getCount() < this.getContainer().getRecipeList().get(i).getIngredients().get(0).getMatchingStacks()[0].getCount())
 			{
 				this.minecraft.getItemRenderer().renderItemAndEffectIntoGUI(new ItemStack(Items.BARRIER), k, i1);
 			}

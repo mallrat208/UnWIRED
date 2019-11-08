@@ -3,6 +3,7 @@ package com.mr208.unwired.common.block.base;
 import com.mr208.unwired.UnWIRED;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ChestBlock;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -22,7 +23,7 @@ public class UWBlock extends Block
 	@Override
 	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
 	{
-		if(state.getBlock() != newState.getBlock())
+		if(state.getBlock() != newState.getBlock() && hasTileEntity(state))
 		{
 			TileEntity tile = worldIn.getTileEntity(pos);
 			if(tile!=null && tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent())
@@ -34,8 +35,9 @@ public class UWBlock extends Block
 							listDrops.add(itemHandler.getStackInSlot(i));
 					
 					InventoryHelper.dropItems(worldIn, pos, listDrops);
+					
+					worldIn.updateComparatorOutputLevel(pos,this);
 				});
-				worldIn.updateComparatorOutputLevel(pos,this);
 			}
 			
 			super.onReplaced(state, worldIn, pos, newState, isMoving);

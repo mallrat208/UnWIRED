@@ -27,7 +27,7 @@
   "item.unwired.inert_goo":"Inert Grey Goo",
   "item.unwired.active_goo":"Activated Grey Goo",
   "item.unwired.grey_goo_spawn_egg":"Grey Goo Spawn Egg",
-  "item.unwired.nano_fluid_bucket":"Goo Slurry Bucket",
+  "item.unwired.goo_slurry_bucket":"Goo Slurry Bucket",
   "container.unwired.resequencer":"Protein Resequencer",
   "entity.unwired.grey_goo":"Grey Goo",
   "attribute.name.forge.swimSpeed":"Swim Speed",
@@ -90,8 +90,11 @@
   "unwired":"UnWIRED",
   "tooltip.unwired.canister.fluid": "Fluid: %1$s",
   "tooltip.unwired.canister.amount": "%1$smB / %2$smB",
-  "fluid.unwired.nano_fluid_source": "Goo Slurry",
-  "fluid.unwired.nano_fluid_flowing": "Goo Slurry",
+  "fluid.unwired.goo_slurry": "Goo Slurry",
+  "fluid.unwired.goo_slurry_flowing": "Goo Slurry",
   "item.unwired.canister_polymer": "Polymer Canister",
-  "tooltip.unwired.progress": "%1$s Percent"
+  "tooltip.unwired.progress": "%1$s Percent",
+  "block.unwired.brittle_log": "Brittle Polymerized Log",
+  "block.unwired.polymerized_log.name": "Polymerizing Log",
+  "container.unwired.polymerizer": "Polymerizer"
 }

@@ -1,0 +1,15 @@
+{
+  "type":"unwired:polymerizer",
+  "liquid":
+  {
+    "fluid":"unwired:goo_slurry",
+    "amount": 250
+  },
+  "ingredient":
+  {
+    "item":"minecraft:kelp",
+    "count": 4
+  },
+  "result":"minecraft:leather",
+  "count":1
+}

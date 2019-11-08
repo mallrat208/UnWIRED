@@ -20,7 +20,7 @@ public class GooCrecheScreen extends ContainerScreenBase<GooCrecheContainer>
 	{
 		if(isCursorOnBar(9,10,mouseX, mouseY))
 		{
-			ITextComponent textComponent = new TranslationTextComponent("tooltip.unwired.energy", container.getEnergyStored(), container.getMaxEnergy());
+			ITextComponent textComponent = new TranslationTextComponent("tooltip.unwired.energy", container.getEnergyStored(), container.getMaxEnergyStored());
 			renderTooltip(textComponent.getFormattedText(), mouseX, mouseY);
 		}
 		else if(isCursorOnBar(149,10, mouseX, mouseY))

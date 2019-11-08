@@ -1,7 +1,10 @@
-package com.mr208.unwired.common.crafting;
+package com.mr208.unwired.common.crafting.recipes;
 
 import com.google.gson.JsonObject;
 import com.mr208.unwired.common.content.ModBlocks;
+import com.mr208.unwired.common.crafting.RecipeSerializers;
+import com.mr208.unwired.common.crafting.RecipeTypes;
+import com.mr208.unwired.common.util.ingredient.IngredientUtils;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -23,21 +26,19 @@ import javax.annotation.Nullable;
 public class ResequencerRecipe implements IRecipe<IInventory>
 {
 	protected final Ingredient ingredient;
-	protected final int ingredientCount;
 	protected final ItemStack result;
 	private final IRecipeType<?> type;
 	private final IRecipeSerializer<?> serializer;
 	protected final ResourceLocation id;
 	protected final String group;
 	
-	public ResequencerRecipe(ResourceLocation id, String group, Ingredient ingredient, int count, ItemStack result)
+	public ResequencerRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result)
 	{
 		this.type = RecipeTypes.RESEQUENCER;
 		this.serializer = RecipeSerializers.RESEQUENCER;
 		this.id = id;
 		this.group = group;
 		this.ingredient = ingredient;
-		this.ingredientCount = count;
 		this.result = result;
 	}
 	
@@ -45,11 +46,6 @@ public class ResequencerRecipe implements IRecipe<IInventory>
 	public boolean matches(IInventory inv, World worldIn)
 	{
 		return this.ingredient.test(inv.getStackInSlot(0));
-	}
-	
-	public int getIngredientCount()
-	{
-		return this.ingredientCount;
 	}
 	
 	@Override
@@ -124,15 +120,14 @@ public class ResequencerRecipe implements IRecipe<IInventory>
 			String sGroup = JSONUtils.getString(json, "group", "");
 			Ingredient ingredient;
 			if(JSONUtils.isJsonArray(json, "ingredient"))
-				ingredient = Ingredient.deserialize(JSONUtils.getJsonArray(json, "ingredient"));
+				ingredient = IngredientUtils.deserialize(JSONUtils.getJsonArray(json, "ingredient"));
 			else
-				ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "ingredient"));
-			int ingredientCount = JSONUtils.hasField(json, "in-count") ? JSONUtils.getInt(json,"in-count") : 1;
+				ingredient = IngredientUtils.deserialize(JSONUtils.getJsonObject(json, "ingredient"));
 			String sResult = JSONUtils.getString(json, "result");
 			int count = JSONUtils.getInt(json,"count");
 			ItemStack itemStack = new ItemStack(Registry.ITEM.getOrDefault(new ResourceLocation(sResult)),count);
 			
-			return this.factory.create(recipeId, sGroup, ingredient, ingredientCount, itemStack);
+			return this.factory.create(recipeId, sGroup, ingredient, itemStack);
 		}
 		
 		@Nullable
@@ -141,9 +136,8 @@ public class ResequencerRecipe implements IRecipe<IInventory>
 		{
 			String s = buffer.readString(32767);
 			Ingredient ingredient = Ingredient.read(buffer);
-			int count = buffer.readInt();
 			ItemStack itemStack = buffer.readItemStack();
-			return this.factory.create(recipeId, s, ingredient, count, itemStack);
+			return this.factory.create(recipeId, s, ingredient, itemStack);
 		}
 		
 		@Override
@@ -151,13 +145,12 @@ public class ResequencerRecipe implements IRecipe<IInventory>
 		{
 			buffer.writeString(recipe.group);
 			recipe.ingredient.write(buffer);
-			buffer.writeInt(recipe.ingredientCount);
 			buffer.writeItemStack(recipe.result);
 		}
 	}
 	
 	public interface IRecipeFactory<T extends ResequencerRecipe>
 	{
-		T create(ResourceLocation id, String group, Ingredient ingredient, int count, ItemStack result);
+		T create(ResourceLocation id, String group, Ingredient ingredient,ItemStack result);
 	}
 }

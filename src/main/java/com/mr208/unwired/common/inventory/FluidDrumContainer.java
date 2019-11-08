@@ -22,18 +22,10 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class FluidDrumContainer extends AbstractContainerBase
 {
-	public FluidDrumContainer(int id, PlayerInventory playerInventory)
-	{
-		super(ModContainers.fluid_drum, id);
-	}
 	
 	public FluidDrumContainer(int id, PlayerInventory playerInventory, BlockPos pos)
 	{
-		this(id, playerInventory);
-		
-		this.tile = playerInventory.player.world.getTileEntity(pos);
-		this.player = playerInventory.player;
-		this.playerInv = new InvWrapper(playerInventory);
+		super(ModContainers.fluid_drum, id, playerInventory, pos);
 		
 		tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
 			addSlot(new Fluid(this,handler,0, 44,30));

@@ -3,7 +3,6 @@ package com.mr208.unwired.network;
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.network.packet.ConversionParticlePacket;
 import com.mr208.unwired.network.packet.RebreatherParticlePacket;
-import com.mr208.unwired.network.packet.SyncEnergyPacket;
 import com.mr208.unwired.network.packet.SyncFluidPacket;
 import com.mr208.unwired.network.packet.WritableColorPacket;
 import com.mr208.unwired.network.packet.WritableMenuPacket;
@@ -61,12 +60,6 @@ public class NetworkHandler
 				WritableColorPacket::encode,
 				WritableColorPacket::decode,
 				WritableColorPacket.Handler::process);
-		
-		instance.registerMessage(
-				id++, SyncEnergyPacket.class,
-				SyncEnergyPacket::encode,
-				SyncEnergyPacket::decode,
-				SyncEnergyPacket.Handler::process);
 		
 		instance.registerMessage(
 				id++, SyncFluidPacket.class,

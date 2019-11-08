@@ -12,14 +12,14 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 public class FluidHelper
 {
-	public static FluidAttributes.Builder nano_fluid_attributes = FluidAttributes.builder(new ResourceLocation(UnWIRED.MOD_ID,"fluid/nano_fluid_source"),new ResourceLocation(UnWIRED.MOD_ID, "fluid/nano_fluid_flowing"))
+	public static FluidAttributes.Builder goo_slurry_attributes= FluidAttributes.builder(new ResourceLocation(UnWIRED.MOD_ID,"fluid/goo_slurry"),new ResourceLocation(UnWIRED.MOD_ID, "fluid/goo_slurry_flowing"))
 			.density(2000)
 			.luminosity(14)
 			.sound(SoundEvents.ITEM_BUCKET_FILL_LAVA,SoundEvents.ITEM_BUCKET_EMPTY_LAVA)
 			.temperature(300);
 	
-	public static ForgeFlowingFluid.Properties nano_fluid_props = new ForgeFlowingFluid.Properties(() -> ModFluids.nano_fluid_source, () -> ModFluids.nano_fluid_flowing, nano_fluid_attributes)
-			.block(() -> (FlowingFluidBlock) ModBlocks.nano_fluid_block)
-			.bucket(() -> ModItems.nano_fluid_bucket);
+	public static ForgeFlowingFluid.Properties goo_slurry_props= new ForgeFlowingFluid.Properties(() -> ModFluids.goo_slurry, () -> ModFluids.goo_slurry_flowing, goo_slurry_attributes)
+			.block(() -> (FlowingFluidBlock) ModBlocks.goo_slurry_block)
+			.bucket(() -> ModItems.goo_slurry_bucket);
 	
 }

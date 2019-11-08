@@ -1,0 +1,15 @@
+{
+  "type":"unwired:polymerizer",
+  "liquid":
+  {
+    "fluid":"unwired:goo_slurry",
+    "amount": 250
+  },
+  "ingredient":
+  {
+    "item":"minecraft:cactus",
+    "count": 4
+  },
+  "result":"minecraft:sponge",
+  "count":1
+}

@@ -1,5 +1,6 @@
-package com.mr208.unwired.common.crafting;
+package com.mr208.unwired.common.crafting.recipes;
 
+import com.mr208.unwired.common.crafting.RecipeSerializers;
 import com.mr208.unwired.common.item.base.IColorableEquipment;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.DyeColor;

@@ -18,9 +18,9 @@ import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
-public class DrumTileEntityRenderer extends TileEntityRenderer<FluidDrumTile>
+public class DrumTESR extends TileEntityRenderer<FluidDrumTile>
 {
-	public DrumTileEntityRenderer() {}
+	public DrumTESR() {}
 	
 	@Override
 	public void render(FluidDrumTile crateTile, double posX, double posY, double posZ, float partialTicks, int destroyCount)

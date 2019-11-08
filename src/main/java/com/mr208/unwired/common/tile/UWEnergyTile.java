@@ -1,8 +1,6 @@
 package com.mr208.unwired.common.tile;
 
-import com.mr208.unwired.common.util.UWEnergyStorage;
-import com.mr208.unwired.network.NetworkHandler;
-import com.mr208.unwired.network.packet.SyncEnergyPacket;
+import com.mr208.unwired.common.util.energy.UWEnergyStorage;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +14,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergyStorage, ITickableTileEntity
+public abstract class UWEnergyTile extends UWBaseTileEntity implements ITickableTileEntity
 {
 	UWEnergyStorage energyStorage;
 	LazyOptional<IEnergyStorage> energyHandler;
@@ -25,22 +23,12 @@ public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergySt
 	{
 		super(type);
 		this.energyStorage = createEnergyStorage();
-		this.energyHandler = registerCapability(this);
+		this.energyHandler = registerCapability(energyStorage);
 	}
 	
 	public abstract UWEnergyStorage createEnergyStorage();
 	
 	public abstract void tick();
-	
-	public void syncEnergy()
-	{
-		NetworkHandler.sendToTrackingPlayers(this, new SyncEnergyPacket(this.pos, getEnergyStored()));
-	}
-	
-	public abstract boolean canExtract();
-	
-	
-	public abstract boolean canReceive();
 	
 	@Nonnull
 	@Override
@@ -66,32 +54,23 @@ public abstract class UWEnergyTile extends UWBaseTileEntity implements IEnergySt
 		energyStorage.writeToNBT(compound);
 	}
 	
-	@Override
 	public int receiveEnergy(int energy, boolean simulate)
 	{
 		return energyStorage.receiveEnergy(energy, simulate);
 	}
 	
-	@Override
 	public int extractEnergy(int energy, boolean simulate)
 	{
 		return energyStorage.extractEnergy(energy, simulate);
 	}
 	
-	@Override
 	public int getEnergyStored()
 	{
 		return energyStorage.getEnergyStored();
 	}
 	
-	@Override
 	public int getMaxEnergyStored()
 	{
 		return energyStorage.getMaxEnergyStored();
-	}
-	
-	public void setEnergyStored(int energy)
-	{
-		energyStorage.setEnergy(energy);
 	}
 }

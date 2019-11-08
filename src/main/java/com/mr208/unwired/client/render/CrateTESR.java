@@ -17,9 +17,9 @@ import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
-public class CrateTileEntityRenderer extends TileEntityRenderer<StorageCrateTile>
+public class CrateTESR extends TileEntityRenderer<StorageCrateTile>
 {
-	public CrateTileEntityRenderer() {}
+	public CrateTESR() {}
 	
 	@Override
 	public void render(StorageCrateTile crateTile, double posX, double posY, double posZ, float partialTicks, int destroyCount)

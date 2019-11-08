@@ -15,18 +15,9 @@ import javax.annotation.Nullable;
 
 public class GooCrecheContainer extends AbstractContainerBase
 {
-	protected GooCrecheContainer(@Nullable ContainerType type, int id)
-	{
-		super(type, id);
-	}
-	
 	public GooCrecheContainer(int id, PlayerInventory playerInventory, BlockPos pos)
 	{
-		super(ModContainers.goo_creche,id);
-		
-		this.tile = playerInventory.player.world.getTileEntity(pos);
-		this.player = playerInventory.player;
-		this.playerInv = new InvWrapper(playerInventory);
+		super(ModContainers.goo_creche,id, playerInventory, pos);
 		
 		tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
 			addSlot(new UWSlot.Charge(this,itemHandler, 0, 10, 61));

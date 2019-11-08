@@ -1,0 +1,15 @@
+{
+  "type":"unwired:polymerizer",
+  "liquid":
+  {
+    "fluid":"unwired:goo_slurry",
+    "amount": 250
+  },
+  "ingredient":
+  {
+    "tag":"minecraft:leaves",
+    "count": 4
+  },
+  "result":"minecraft:feather",
+  "count":1
+}

@@ -1,0 +1,14 @@
+{
+  "type":"unwired:polymerizer",
+  "liquid":
+  {
+    "fluid":"unwired:goo_slurry",
+    "amount": 200
+  },
+  "ingredient":
+  {
+    "tag":"minecraft:logs"
+  },
+  "result":"unwired:dust_polymer",
+  "count":1
+}

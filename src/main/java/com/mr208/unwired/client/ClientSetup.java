@@ -1,9 +1,10 @@
 package com.mr208.unwired.client;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.client.render.CrateTileEntityRenderer;
-import com.mr208.unwired.client.render.DrumTileEntityRenderer;
+import com.mr208.unwired.client.render.CrateTESR;
+import com.mr208.unwired.client.render.DrumTESR;
 import com.mr208.unwired.client.render.GreyGooRenderer;
+import com.mr208.unwired.client.render.PolymerizedLogTESR;
 import com.mr208.unwired.client.screen.FluidDrumScreen;
 import com.mr208.unwired.client.screen.GooCrecheScreen;
 import com.mr208.unwired.client.screen.MetabolicGenScreen;
@@ -15,13 +16,14 @@ import com.mr208.unwired.common.block.StorageCrate;
 import com.mr208.unwired.common.item.DrumItem;
 import com.mr208.unwired.common.item.FluidCanister;
 import com.mr208.unwired.common.tile.FluidDrumTile;
+import com.mr208.unwired.common.tile.PolymerizedLogTile;
 import com.mr208.unwired.common.tile.StorageCrateTile;
 import com.mr208.unwired.common.content.ModItems;
 import com.mr208.unwired.common.entity.GreyGooEntity;
 import com.mr208.unwired.common.item.CrateItem;
 import com.mr208.unwired.common.item.LabelMarker;
 import com.mr208.unwired.common.item.base.IColorableEquipment;
-import com.mr208.unwired.common.util.EnergyUtils;
+import com.mr208.unwired.common.util.energy.EnergyUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.fluid.Fluid;
@@ -31,7 +33,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -50,7 +51,7 @@ import java.util.Random;
 @EventBusSubscriber(bus = Bus.MOD, value = Dist.CLIENT)
 public class ClientSetup
 {
-	private static Random rand;
+	public static Random rand;
 	
 	private static HashMap<Fluid, Integer> fluidColorMap = new HashMap<>();
 	
@@ -58,8 +59,9 @@ public class ClientSetup
 	{
 		rand = new Random();
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(StorageCrateTile.class, new CrateTileEntityRenderer());
-		ClientRegistry.bindTileEntitySpecialRenderer(FluidDrumTile.class, new DrumTileEntityRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(PolymerizedLogTile.class, new PolymerizedLogTESR());
+		ClientRegistry.bindTileEntitySpecialRenderer(StorageCrateTile.class, new CrateTESR());
+		ClientRegistry.bindTileEntitySpecialRenderer(FluidDrumTile.class, new DrumTESR());
 		
 		ScreenManager.registerFactory(ModContainers.resequencer, ResequencerScreen::new);
 		ScreenManager.registerFactory(ModContainers.metabolic_generator, MetabolicGenScreen::new);

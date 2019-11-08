@@ -2,9 +2,9 @@
   "type":"unwired:resequencer",
   "ingredient":
   {
-    "item":"minecraft:rotten_flesh"
+    "item":"minecraft:rotten_flesh",
+    "count": 6
   },
-  "in-count": 6,
   "result":"minecraft:salmon",
   "count":1
 }

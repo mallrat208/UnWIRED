@@ -3,7 +3,7 @@ package com.mr208.unwired.common.compat;
 import com.google.common.collect.Lists;
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.common.content.ModItems;
-import com.mr208.unwired.common.crafting.ResequencerRecipe;
+import com.mr208.unwired.common.crafting.recipes.ResequencerRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -70,7 +70,7 @@ public class ResequencerRecipeCategory implements IRecipeCategory<ResequencerRec
 		resequencerRecipe.getIngredients().forEach(ingredient -> {
 			for(ItemStack stack:ingredient.getMatchingStacks())
 			{
-				modifiedList.add(Ingredient.fromStacks(new ItemStack(stack.getItem(),resequencerRecipe.getIngredientCount())));
+				modifiedList.add(Ingredient.fromStacks(stack));
 			}
 		});
 		iIngredients.setInputIngredients(modifiedList);

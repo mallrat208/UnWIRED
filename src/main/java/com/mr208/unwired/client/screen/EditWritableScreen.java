@@ -2,7 +2,7 @@ package com.mr208.unwired.client.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.tile.IWritable;
+import com.mr208.unwired.common.tile.UWInterfaces.IWritable;
 import com.mr208.unwired.network.NetworkHandler;
 import com.mr208.unwired.network.packet.WritableSyncPacket;
 import net.minecraft.block.BlockState;

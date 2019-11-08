@@ -5,19 +5,19 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
-public abstract class NanoFluid extends ForgeFlowingFluid
+public abstract class GooSlurryFluid extends ForgeFlowingFluid
 {
-	protected NanoFluid(String name)
+	protected GooSlurryFluid(String name)
 	{
-		super(FluidHelper.nano_fluid_props);
+		super(FluidHelper.goo_slurry_props);
 		setRegistryName(UnWIRED.MOD_ID,name);
 	}
 	
-	public static class Source extends NanoFluid
+	public static class Source extends GooSlurryFluid
 	{
 		public Source()
 		{
-			super("nano_fluid_source");
+			super("goo_slurry");
 		}
 		
 		@Override
@@ -33,11 +33,11 @@ public abstract class NanoFluid extends ForgeFlowingFluid
 		}
 	}
 	
-	public static class Flowing extends NanoFluid
+	public static class Flowing extends GooSlurryFluid
 	{
 		public Flowing()
 		{
-			super("nano_fluid_flowing");
+			super("goo_slurry_flowing");
 			this.setDefaultState(this.getStateContainer().getBaseState().with(LEVEL_1_8, 7));
 		}
 		

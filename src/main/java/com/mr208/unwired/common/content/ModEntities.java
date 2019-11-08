@@ -20,7 +20,7 @@ public class ModEntities
 			.setTrackingRange(80)
 			.setUpdateInterval(3)
 			.setShouldReceiveVelocityUpdates(true)
-			.size(1f, 1f)
+			.size(2f, 2f)
 			.build(UnWIRED.MOD_ID+":grey_goo");
 	
 	@SubscribeEvent

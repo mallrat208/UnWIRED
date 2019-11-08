@@ -1,6 +1,6 @@
 package com.mr208.unwired.common.inventory;
 
-import com.mr208.unwired.common.util.EnergyUtils;
+import com.mr208.unwired.common.util.energy.EnergyUtils;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.LazyOptional;

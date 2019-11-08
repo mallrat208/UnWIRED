@@ -1,5 +1,6 @@
-package com.mr208.unwired.common.util;
+package com.mr208.unwired.common.util.energy;
 
+import com.mr208.unwired.common.util.NBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.energy.IEnergyStorage;
 

@@ -1,43 +1,28 @@
 package com.mr208.unwired.common.inventory;
 
-import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.common.inventory.UWSlot.Charge;
 import com.mr208.unwired.common.inventory.UWSlot.Food;
 import com.mr208.unwired.common.inventory.UWSlot.Output;
 import com.mr208.unwired.common.content.ModBlocks;
 import com.mr208.unwired.common.content.ModContainers;
-import com.mr208.unwired.common.tile.MetabolicGenTile;
-import com.mr208.unwired.common.util.EnergyUtils;
+import com.mr208.unwired.common.util.energy.EnergyUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 
-import net.minecraft.inventory.container.FurnaceContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class MetabolicGenContainer extends AbstractContainerBase
 {
 	IntReferenceHolder holderProgress;
 	
-	public MetabolicGenContainer(int id, PlayerInventory playerInventory)
-	{
-		super(ModContainers.metabolic_generator,id);
-	}
-	
 	public MetabolicGenContainer(int id, PlayerInventory playerInventory, BlockPos pos)
 	{
-		super(ModContainers.metabolic_generator,id);
-		
-		this.tile = playerInventory.player.world.getTileEntity(pos);
-		this.player = playerInventory.player;
-		this.playerInv = new InvWrapper(playerInventory);
-		
-		
+		super(ModContainers.metabolic_generator,id, playerInventory, pos);
 		
 		tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
 			addSlot(new Charge(this,handler,0, 10,61));
@@ -45,29 +30,7 @@ public class MetabolicGenContainer extends AbstractContainerBase
 			addSlot(new Output(this,handler,2, 82,58));
 		});
 		
-		holderProgress = trackInt(new IntReferenceHolder()
-		{
-			@Override
-			public int get()
-			{
-				return ((MetabolicGenTile)tile).getProgressPercentage();
-			}
-			
-			@Override
-			public void set(int i)
-			{
-			
-			}
-		});
-		
 		addPlayerSlots(playerInv, 8, 84);
-	}
-	
-	
-	
-	public int getProgressPercentage()
-	{
-		return holderProgress.get();
 	}
 	
 	@Override

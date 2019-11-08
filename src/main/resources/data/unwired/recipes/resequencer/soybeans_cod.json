@@ -2,9 +2,9 @@
   "type":"unwired:resequencer",
   "ingredient":
   {
-    "tag":"forge:crops/soybean"
+    "tag":"forge:crops/soybean",
+    "count": 3
   },
-  "in-count": 3,
   "result":"minecraft:cod",
   "count":1
 }

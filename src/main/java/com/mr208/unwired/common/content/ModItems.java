@@ -11,7 +11,6 @@ import com.mr208.unwired.common.item.EnergyItem;
 import com.mr208.unwired.common.item.FluidCanister;
 import com.mr208.unwired.common.item.FluidCanister.CanisterType;
 import com.mr208.unwired.common.item.LabelMarker;
-import com.mr208.unwired.common.item.SafteyShears;
 import com.mr208.unwired.common.item.SoybeanItem;
 import com.mr208.unwired.common.item.base.UWBase;
 import com.mr208.unwired.common.item.base.UWBlockItem;
@@ -27,11 +26,8 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -57,7 +53,7 @@ public class ModItems
 	public static final Item plate_polymer = null;
 	public static final Item inert_goo = null;
 	public static final Item active_goo = null;
-	public static final Item nano_fluid_bucket = null;
+	public static final Item goo_slurry_bucket= null;
 	public static final Item grey_goo_spawn_egg = null;
 	public static final Item resequencer = null;
 	public static final Item frame_plastic = null;
@@ -75,6 +71,7 @@ public class ModItems
 	public static final Item goo_creche = null;
 	public static final Item canister_polymer = null;
 	public static final Item saftey_shears = null;
+	public static final Item brittle_log = null;
 	
 	@SubscribeEvent
 	public static void onItemRegistryEvent(final RegistryEvent.Register<Item> event)
@@ -87,7 +84,7 @@ public class ModItems
 				new UWBase("dust_polymer"),
 				new UWBase("inert_goo"),
 				new ActivatedGoo(),
-				new UWBucket("nano_fluid", () -> ModFluids.nano_fluid_source),
+				new UWBucket("nano_fluid", () -> ModFluids.goo_slurry),
 				new UWSpawnItem(ModEntities.grey_goo, 0x616161, 0x343434,"grey_goo"),
 				new UWBlockItem(ModBlocks.plexiglass),
 				new UWBlockItem(ModBlocks.smartglass),
@@ -117,8 +114,10 @@ public class ModItems
 					}
 				},
 				new EnergyItem("cell_bio", Config.TIER_1_CELL_CAPACITY.get()),
-				new FluidCanister(CanisterType.POLYMER)
-				//new SafteyShears()
+				new FluidCanister(CanisterType.POLYMER),
+				new UWBlockItem(ModBlocks.brittle_log)
+				//new SafteyShears(),
+				
 		);
 		
 		for(DyeColor color : DyeColor.values())
