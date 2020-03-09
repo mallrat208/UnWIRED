@@ -1,5 +1,6 @@
 package com.mr208.unwired.client.render;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.GlStateManager.LogicOp;
 import com.mr208.unwired.common.tile.StorageCrateTile;
@@ -8,6 +9,7 @@ import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.RenderComponentsUtil;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -93,5 +95,11 @@ public class CrateTESR extends TileEntityRenderer<StorageCrateTile>
 		lvt_5_1_.draw();
 		GlStateManager.disableColorLogicOp();
 		GlStateManager.enableTexture();
+	}
+	
+	@Override
+	public void render(StorageCrateTile storageCrateTile, float v, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int i, int i1)
+	{
+	
 	}
 }

@@ -1,9 +1,7 @@
 package com.mr208.unwired.client.screen;
 
-import com.mr208.unwired.common.inventory.MetabolicGenContainer;
+import com.mr208.unwired.common.inventory.container.MetabolicGenContainer;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.FurnaceContainer;
-import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 

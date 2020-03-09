@@ -1,4 +1,4 @@
-package com.mr208.unwired.common.inventory;
+package com.mr208.unwired.common.inventory.container;
 
 import com.google.common.collect.Lists;
 import com.mr208.unwired.common.content.ModContainers;

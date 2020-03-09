@@ -1,7 +1,7 @@
 package com.mr208.unwired.client.screen;
 
 import com.google.common.collect.Lists;
-import com.mr208.unwired.common.inventory.FluidDrumContainer;
+import com.mr208.unwired.common.inventory.container.FluidDrumContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;

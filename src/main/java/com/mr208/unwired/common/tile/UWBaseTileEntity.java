@@ -1,12 +1,9 @@
 package com.mr208.unwired.common.tile;
 
-import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.libs.FieldsLib;
-import net.minecraft.inventory.container.AbstractFurnaceContainer;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IIntArray;

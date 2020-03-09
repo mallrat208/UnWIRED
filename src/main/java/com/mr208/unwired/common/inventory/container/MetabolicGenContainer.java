@@ -1,4 +1,4 @@
-package com.mr208.unwired.common.inventory;
+package com.mr208.unwired.common.inventory.container;
 
 import com.mr208.unwired.common.inventory.UWSlot.Charge;
 import com.mr208.unwired.common.inventory.UWSlot.Food;

@@ -26,7 +26,7 @@ import org.apache.logging.log4j.Logger;
 public class UnWIRED
 {
 	public static final String MOD_ID = "unwired";
-	private static final Logger LOGGER = LogManager.getLogger();
+	private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	
 	public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new CommonProxy());
 	

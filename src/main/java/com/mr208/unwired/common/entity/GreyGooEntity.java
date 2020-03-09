@@ -9,6 +9,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.SlimeEntity;
+import net.minecraft.item.MilkBucketItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
@@ -45,7 +46,6 @@ public class GreyGooEntity extends SlimeEntity
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextGaussian() * 0.05D, AttributeModifier.Operation.MULTIPLY_BASE));
 		this.setSlimeSize(rand.nextInt(3)+1,true);
 		this.recalculateSize();
-		
 		return spawnDataIn;
 	}
 	

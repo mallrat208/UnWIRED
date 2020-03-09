@@ -1,10 +1,10 @@
 package com.mr208.unwired.common.content;
 
 import com.mr208.unwired.UnWIRED;
-import com.mr208.unwired.common.inventory.FluidDrumContainer;
-import com.mr208.unwired.common.inventory.GooCrecheContainer;
-import com.mr208.unwired.common.inventory.MetabolicGenContainer;
-import com.mr208.unwired.common.inventory.ResequencerContainer;
+import com.mr208.unwired.common.inventory.container.FluidDrumContainer;
+import com.mr208.unwired.common.inventory.container.GooCrecheContainer;
+import com.mr208.unwired.common.inventory.container.MetabolicGenContainer;
+import com.mr208.unwired.common.inventory.container.ResequencerContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.extensions.IForgeContainerType;

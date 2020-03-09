@@ -1,24 +1,18 @@
-package com.mr208.unwired.common.inventory;
+package com.mr208.unwired.common.inventory.container;
 
-import com.mr208.unwired.client.screen.ContainerScreenBase;
 import com.mr208.unwired.common.content.ModBlocks;
 import com.mr208.unwired.common.content.ModContainers;
-import com.mr208.unwired.common.inventory.UWSlot.Charge;
 import com.mr208.unwired.common.inventory.UWSlot.Fluid;
-import com.mr208.unwired.common.inventory.UWSlot.Food;
 import com.mr208.unwired.common.inventory.UWSlot.Output;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class FluidDrumContainer extends AbstractContainerBase
 {

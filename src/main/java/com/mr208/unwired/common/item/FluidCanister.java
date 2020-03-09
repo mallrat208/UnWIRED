@@ -2,9 +2,8 @@ package com.mr208.unwired.common.item;
 
 import com.mr208.unwired.common.content.ModGroups;
 import com.mr208.unwired.common.item.base.UWBase;
+import com.mr208.unwired.common.util.UWFluidHandlerItemStack;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ElytraItem;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
@@ -12,7 +11,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,7 +19,6 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -77,7 +74,7 @@ public class FluidCanister extends UWBase
 	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt)
 	{
 		if(!stack.isEmpty())
-			return new FluidHandlerItemStackSimple(stack, type.capacity);
+			return new UWFluidHandlerItemStack(stack, type.capacity);
 		
 		return null;
 	}

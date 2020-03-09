@@ -7,6 +7,7 @@ import com.mr208.unwired.common.item.DrumItem;
 import com.mr208.unwired.common.tile.FluidDrumTile;
 import com.mr208.unwired.common.tile.StorageCrateTile;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.IWaterLoggable;
@@ -25,7 +26,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IStringSerializable;
@@ -81,8 +82,10 @@ public class FluidDrum extends UWBlock implements IWaterLoggable, ITileEntityPro
 		}
 	}
 	
+	
+	
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
 		if(!worldIn.isRemote)
 		{
@@ -92,11 +95,13 @@ public class FluidDrum extends UWBlock implements IWaterLoggable, ITileEntityPro
 				NetworkHooks.openGui((ServerPlayerEntity)player, (INamedContainerProvider)tile, tile.getPos());
 			}
 			
-			return true;
+			return ActionResultType.CONSUME;
 		}
 		
 		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
 	}
+	
+	
 	
 	@Nullable
 	@Override
@@ -120,12 +125,6 @@ public class FluidDrum extends UWBlock implements IWaterLoggable, ITileEntityPro
 	public IFluidState getFluidState(BlockState state)
 	{
 		return state.get(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
-	}
-	
-	@Override
-	public BlockRenderLayer getRenderLayer()
-	{
-		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 	
 	@Nullable

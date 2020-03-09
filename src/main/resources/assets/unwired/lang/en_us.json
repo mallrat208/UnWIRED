@@ -96,5 +96,9 @@
   "tooltip.unwired.progress": "%1$s Percent",
   "block.unwired.brittle_log": "Brittle Polymerized Log",
   "block.unwired.polymerized_log.name": "Polymerizing Log",
-  "container.unwired.polymerizer": "Polymerizer"
+  "container.unwired.polymerizer": "Polymerizer",
+  "item.unwired.datapad": "Datapad",
+  "datapad.landingtext": "Insert Landing Text here",
+  "datapad.category.entity": "Entities",
+  "datapad.category.entity.desc": "Grey Goo and More"
 }

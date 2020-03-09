@@ -2,7 +2,7 @@ package com.mr208.unwired.common.tile;
 
 import com.mr208.unwired.Config;
 import com.mr208.unwired.common.content.ModTileEntities;
-import com.mr208.unwired.common.inventory.MetabolicGenContainer;
+import com.mr208.unwired.common.inventory.container.MetabolicGenContainer;
 import com.mr208.unwired.common.util.energy.EnergyUtils;
 import com.mr208.unwired.common.util.energy.UWEnergyStorage;
 import com.mr208.unwired.common.util.UWInventory;

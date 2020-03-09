@@ -22,7 +22,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Plane;
 import net.minecraft.util.Hand;
@@ -79,11 +79,11 @@ public class StorageCrate extends UWBlock implements IWaterLoggable, ITileEntity
 	}
 	
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
 		if(worldIn.isRemote())
 		{
-			return true;
+			return ActionResultType.PASS;
 		}
 		else
 		{
@@ -94,7 +94,7 @@ public class StorageCrate extends UWBlock implements IWaterLoggable, ITileEntity
 					player.openContainer(containerProvider);
 				}
 				
-			return true;
+			return ActionResultType.CONSUME;
 		}
 	}
 	
@@ -156,11 +156,6 @@ public class StorageCrate extends UWBlock implements IWaterLoggable, ITileEntity
 		return state.get(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 	}
 	
-	@Override
-	public BlockRenderLayer getRenderLayer()
-	{
-		return BlockRenderLayer.CUTOUT_MIPPED;
-	}
 	
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)

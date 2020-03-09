@@ -5,7 +5,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.LazyLoadBase;
+import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import java.util.function.Supplier;
@@ -21,7 +21,7 @@ public enum UnWIREDMaterials implements IArmorMaterial, IStringSerializable
 	private final int[] damageReduction;
 	private final int enchantability;
 	private final SoundEvent soundEvent;
-	private final LazyLoadBase<Ingredient> repairMaterial;
+	private final LazyValue<Ingredient> repairMaterial;
 	private final float toughness;
 
 	UnWIREDMaterials(int durability, int[] damageReduction, float toughness, int enchantability, SoundEvent soundEvent, Supplier<Ingredient> repairMaterial)
@@ -31,7 +31,7 @@ public enum UnWIREDMaterials implements IArmorMaterial, IStringSerializable
 		this.toughness = toughness;
 		this.enchantability = enchantability;
 		this.soundEvent = soundEvent;
-		this.repairMaterial = new LazyLoadBase<>(repairMaterial);
+		this.repairMaterial = new LazyValue<>(repairMaterial);
 	}
 	
 	@Override

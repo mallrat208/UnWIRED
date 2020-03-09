@@ -2,7 +2,7 @@ package com.mr208.unwired.common.tile;
 
 import com.mr208.unwired.common.content.ModItems;
 import com.mr208.unwired.common.content.ModTileEntities;
-import com.mr208.unwired.common.inventory.GooCrecheContainer;
+import com.mr208.unwired.common.inventory.container.GooCrecheContainer;
 import com.mr208.unwired.common.util.energy.EnergyUtils;
 import com.mr208.unwired.common.util.energy.UWEnergyStorage;
 import com.mr208.unwired.common.util.UWInventory;

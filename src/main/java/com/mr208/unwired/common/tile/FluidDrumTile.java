@@ -3,7 +3,7 @@ package com.mr208.unwired.common.tile;
 import com.mr208.unwired.common.block.FluidDrum;
 import com.mr208.unwired.common.block.FluidDrum.Drum;
 import com.mr208.unwired.common.content.ModTileEntities;
-import com.mr208.unwired.common.inventory.FluidDrumContainer;
+import com.mr208.unwired.common.inventory.container.FluidDrumContainer;
 import com.mr208.unwired.common.util.FluidUtils;
 import com.mr208.unwired.common.util.UWInventory;
 import com.mr208.unwired.common.util.UWInventoryHandler;

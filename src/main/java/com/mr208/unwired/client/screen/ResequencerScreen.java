@@ -3,7 +3,7 @@ package com.mr208.unwired.client.screen;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mr208.unwired.UnWIRED;
 import com.mr208.unwired.common.crafting.recipes.ResequencerRecipe;
-import com.mr208.unwired.common.inventory.ResequencerContainer;
+import com.mr208.unwired.common.inventory.container.ResequencerContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SimpleSound;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;

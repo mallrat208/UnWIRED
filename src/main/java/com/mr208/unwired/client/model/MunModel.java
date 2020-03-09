@@ -1,32 +1,26 @@
 package com.mr208.unwired.client.model;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.LivingEntity;
 
-public class MunModel extends BipedModel
+public class MunModel<T extends LivingEntity> extends BipedModel<T>
 {
-	public RendererModel base_left;
-	public RendererModel base_right;
+	public ModelRenderer base_left;
+	public ModelRenderer base_right;
 	
 	public MunModel()
 	{
+		super(0.0f);
 		this.textureHeight = 32;
 		this.textureWidth = 32;
 		
-		bipedHeadwear.cubeList.clear();
-		bipedHead.cubeList.clear();
-		bipedBody.cubeList.clear();
-		bipedLeftArm.cubeList.clear();
-		bipedLeftLeg.cubeList.clear();
-		bipedRightArm.cubeList.clear();
-		bipedRightLeg.cubeList.clear();
-		
-		base_left = new RendererModel(this,0,0);
+		base_left = new ModelRenderer(this,0,0);
 		base_left.addBox(0f,0f,0f, 5,6,5);
 		base_left.setRotationPoint(-2.5f, 6.5f, -2.5f);
 		setRotation(base_left, 0,0,0);
 		
-		base_right = new RendererModel(this,0,0);
+		base_right = new ModelRenderer(this,0,0);
 		base_right.mirror = true;
 		base_right.addBox(0f,0f,0f, 5,6,5);
 		base_right.setRotationPoint(-2.5f,6.5f,-2.5f);
@@ -36,7 +30,7 @@ public class MunModel extends BipedModel
 		this.bipedRightLeg.addChild(base_right);
 	}
 	
-	private void setRotation(RendererModel model, float x, float y, float z)
+	private void setRotation(ModelRenderer model, float x, float y, float z)
 	{
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;

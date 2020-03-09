@@ -1,0 +1,12 @@
+{
+  "i18n": true,
+  "name": "item.unwired.datapad",
+  "landing_text": "datapad.landingtext",
+  "version": 1,
+  "creative_tab": "unwired",
+  "show_progress": false,
+  "book_texture": "unwired:textures/gui/datapad_textures.png",
+  "text_color": "f2e4c8",
+  "header_color": "f2e4c8",
+  "nameplate_color": "f2e4c8"
+}

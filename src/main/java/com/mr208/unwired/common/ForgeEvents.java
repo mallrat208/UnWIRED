@@ -16,8 +16,11 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(bus = Bus.FORGE)
 public class ForgeEvents
 {
-	/*	Quick and Easy way to addConversion Soybean's to the drops from Grass. Technically wrong since it ignores the loot table
-		for Grass blocks, however adding another LootPool would make my item far too common compared to Wheat Seeds		*/
+	/*
+		Quick and Easy way to addConversion Soybean's to the drops from Grass. Technically wrong since it ignores the loot table
+		for Grass blocks, however adding another LootPool would make my item far too common compared to Wheat Seeds	and potentially
+		breaks when multiple mods adjust a vanilla loot table
+	*/
 	@SubscribeEvent
 	@OnlyIn(Dist.DEDICATED_SERVER)
 	public static void onBreakEvent(BreakEvent event)
@@ -35,5 +38,4 @@ public class ForgeEvents
 			}
 		}
 	}
-	
 }

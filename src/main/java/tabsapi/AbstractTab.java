@@ -63,8 +63,8 @@ public abstract class AbstractTab extends Button
 			mc.textureManager.bindTexture(this.texture);
 			this.blit(this.x, yPos, xOffset * 28, yTexPos, 28, ySize);
 			
-			RenderHelper.enableGUIStandardItemLighting();
-			this.blitOffset = 100;
+			RenderHelper.enableStandardItemLighting();
+			this.setBlitOffset(100);
 			this.itemRenderer.zLevel = 100.0F;
 			GlStateManager.enableLighting();
 			GlStateManager.enableRescaleNormal();
@@ -73,7 +73,7 @@ public abstract class AbstractTab extends Button
 			GlStateManager.disableLighting();
 			GlStateManager.enableBlend();
 			this.itemRenderer.zLevel = 0.0F;
-			this.blitOffset = 0;
+			this.setBlitOffset(0);
 			RenderHelper.disableStandardItemLighting();
 			
 		}

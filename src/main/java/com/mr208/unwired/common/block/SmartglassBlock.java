@@ -8,7 +8,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
@@ -76,12 +75,6 @@ public class SmartglassBlock extends AbstractUnWIREDGlass
 	public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos)
 	{
 		return state.get(POWER) == 0 ? 0 : 255;
-	}
-	
-	@Override
-	public BlockRenderLayer getRenderLayer()
-	{
-		return BlockRenderLayer.CUTOUT;
 	}
 	
 	@Override

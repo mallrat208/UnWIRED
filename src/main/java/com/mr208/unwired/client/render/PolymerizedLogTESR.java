@@ -1,37 +1,42 @@
 package com.mr208.unwired.client.render;
 
-import com.mr208.unwired.client.ClientSetup;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mr208.unwired.common.tile.PolymerizedLogTile;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
-import net.minecraftforge.client.model.animation.TileEntityRendererFast;
 
-public class PolymerizedLogTESR extends TileEntityRendererFast<PolymerizedLogTile>
+public class PolymerizedLogTESR extends TileEntityRenderer<PolymerizedLogTile>
 {
-	@Override
-	public void renderTileEntityFast(PolymerizedLogTile te, double x, double y, double z, float partialTicks, int damageStage, BufferBuilder buffer)
+	public PolymerizedLogTESR(TileEntityRendererDispatcher p_i226006_1_)
 	{
-		if(te.getCachedState()!=null)
+		super(p_i226006_1_);
+	}
+	
+	@Override
+	public void render(PolymerizedLogTile polymerizedLogTile, float v, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int i, int i1)
+	{
+		if(polymerizedLogTile.getCachedState()!=null)
 		{
 			BlockRendererDispatcher dispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
 			
-			BlockState cachedState = te.getCachedState();
+			BlockState cachedState = polymerizedLogTile.getCachedState();
 			
-			IBakedModel model = Minecraft.getInstance().getBlockRendererDispatcher().getModelForState(te.getCachedState());
-			BlockPos pos = te.getPos();
+			IBakedModel model = Minecraft.getInstance().getBlockRendererDispatcher().getModelForState(polymerizedLogTile.getCachedState());
+			BlockPos pos = polymerizedLogTile.getPos();
 			
-			buffer.setTranslation(x,y,z);
-			buffer.setTranslation(x - pos.getX(), y - pos.getY(), z - pos.getZ());
-			int skyLight = getWorld().getLightFor(LightType.SKY, pos);
-			int blockLight = getWorld().getLightFor(LightType.BLOCK, pos);
-			buffer.lightmap(skyLight,blockLight);
-			dispatcher.getBlockModelRenderer().renderModelFlat(getWorld(), model, cachedState, te.getPos(), buffer, true, ClientSetup.rand,ClientSetup.rand.nextLong(),te.getModelData());
-			buffer.setTranslation(0,0,0);
-		}
+			matrixStack.translate(pos.getX(),pos.getY(),pos.getZ());
+			int skyLight = polymerizedLogTile.getWorld().getLightFor(LightType.SKY, pos);
+			int blockLight = polymerizedLogTile.getWorld().getLightFor(LightType.BLOCK, pos);
+			//matrixStack.(skyLight,blockLight);
+			//dispatcher.getBlockModelRenderer().renderModelFlat(polymerizedLogTile.getWorld(), model, cachedState, polymerizedLogTile.getPos(), iRenderTypeBuffer, true, ClientSetup.rand,ClientSetup.rand.nextLong(),polymerizedLogTile.getModelData());
+			matrixStack.translate(0,0,0);
+	}
 	}
 }

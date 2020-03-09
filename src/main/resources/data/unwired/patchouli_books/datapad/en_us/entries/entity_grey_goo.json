@@ -1,0 +1,18 @@
+{
+  "name": "Grey Goo",
+  "icon": "unwired:inert_goo",
+  "category": "entities",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!",
+      "title": "Nanites, man"
+    },
+    {
+      "type": "entity",
+      "entity": "unwired:grey_goo{Size:2}",
+      "rotate": false,
+      "default_rotation": -30
+    }
+  ]
+}

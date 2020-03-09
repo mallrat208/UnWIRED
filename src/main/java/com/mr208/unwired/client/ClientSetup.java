@@ -59,16 +59,16 @@ public class ClientSetup
 	{
 		rand = new Random();
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(PolymerizedLogTile.class, new PolymerizedLogTESR());
-		ClientRegistry.bindTileEntitySpecialRenderer(StorageCrateTile.class, new CrateTESR());
-		ClientRegistry.bindTileEntitySpecialRenderer(FluidDrumTile.class, new DrumTESR());
+		//ClientRegistry.bindTileEntitySpecialRenderer(PolymerizedLogTile.class, new PolymerizedLogTESR());
+		//ClientRegistry.bindTileEntitySpecialRenderer(StorageCrateTile.class, new CrateTESR());
+		//ClientRegistry.bindTileEntitySpecialRenderer(FluidDrumTile.class, new DrumTESR());
 		
 		ScreenManager.registerFactory(ModContainers.resequencer, ResequencerScreen::new);
 		ScreenManager.registerFactory(ModContainers.metabolic_generator, MetabolicGenScreen::new);
 		ScreenManager.registerFactory(ModContainers.goo_creche, GooCrecheScreen::new);
 		ScreenManager.registerFactory(ModContainers.fluid_drum, FluidDrumScreen::new);
 		
-		RenderingRegistry.registerEntityRenderingHandler(GreyGooEntity.class, GreyGooRenderer::new);
+		//RenderingRegistry.registerEntityRenderingHandler(GreyGooEntity.class, GreyGooRenderer::new);
 		
 		Minecraft.getInstance().getItemColors().register(
 				(itemStack, i)-> i == 1 ? ((IColorableEquipment)ModItems.helmet_visor).getColorInt(itemStack) : -1, ModItems.helmet_visor);
@@ -208,11 +208,11 @@ public class ClientSetup
 		return new Color(Math.min(2f * (1 - percentage),1f),Math.min(2f * percentage, 1f), 0f).getRGB();
 	}
 	
-	@SubscribeEvent
+	//@SubscribeEvent
 	public static void onTextureAtlasStich(TextureStitchEvent.Pre event)
 	{
-		if(!event.getMap().getBasePath().equalsIgnoreCase("textures"))
-			return;
+		//if(!event.getMap().getBasePath().equalsIgnoreCase("textures"))
+		//	return;
 		
 		event.addSprite(new ResourceLocation(UnWIRED.MOD_ID,"gui/uw_slot"));
 		event.addSprite(new ResourceLocation(UnWIRED.MOD_ID,"gui/food_slot"));

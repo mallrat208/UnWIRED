@@ -2,7 +2,7 @@ package com.mr208.unwired.common.block;
 
 import com.mr208.unwired.common.block.base.UWBlock;
 import com.mr208.unwired.common.content.ModBlocks;
-import com.mr208.unwired.common.inventory.ResequencerContainer;
+import com.mr208.unwired.common.inventory.container.ResequencerContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;

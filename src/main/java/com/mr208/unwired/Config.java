@@ -88,10 +88,4 @@ public class Config
 	
 	}
 	
-	@SubscribeEvent
-	public static void onConfigReload(final ModConfig.ConfigReloading event)
-	{
-	
-	}
-	
 }

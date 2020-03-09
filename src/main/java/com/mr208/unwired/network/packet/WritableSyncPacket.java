@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.util.Constants.BlockFlags;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 import java.util.function.Supplier;
@@ -69,7 +70,7 @@ public class WritableSyncPacket
 					}
 					
 					writableEntity.getTile().markDirty();
-					serverworld.notifyBlockUpdate(blockpos, blockstate, blockstate, 3);
+					serverworld.notifyBlockUpdate(blockpos, blockstate, blockstate, BlockFlags.DEFAULT);
 				}
 			});
 		}

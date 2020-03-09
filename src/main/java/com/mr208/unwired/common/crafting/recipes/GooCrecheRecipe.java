@@ -56,6 +56,12 @@ public class GooCrecheRecipe implements IMachineRecipe<IMachineInventory>
 	}
 	
 	@Override
+	public ItemStack getCraftingResult(IMachineInventory iMachineInventory)
+	{
+		return ItemStack.EMPTY;
+	}
+	
+	@Override
 	public boolean canFit(int i, int i1)
 	{
 		return false;
